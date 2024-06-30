@@ -1,15 +1,15 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Windows;
-using System.Windows.Input;
-using AnimalHelp.Application.DTO;
+﻿using AnimalHelp.Application.DTO;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Factories;
+using System;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Windows;
+using System.Windows.Input;
 
 namespace AnimalHelp.WPF.ViewModels.Common
 {
@@ -78,9 +78,8 @@ namespace AnimalHelp.WPF.ViewModels.Common
                 switch (loginResult.UserType)
                 {
                     case UserType.Admin:
-                        MessageBox.Show("Admin", "Success");
-
-                        //_navigationService.Navigate(ViewType.admin);
+                        //MessageBox.Show("Admin", "Success");
+                        _navigationService.Navigate(ViewType.Admin);
                         break;
                     case UserType.Volunteer:
                         MessageBox.Show("Volunteer", "Success");

@@ -18,6 +18,7 @@ public class AnimalHelpWindowFactory : IAnimalHelpWindowFactory
             RegisterViewModel registerViewModel => new RegisterWindow(registerViewModel, this),
             AdminMenuViewModel adminMenuViewModel => new AdminMenuWindow(adminMenuViewModel, this),
 
+
             _ => throw new ArgumentOutOfRangeException(nameof(viewModel), viewModel,
                 "No Window exists for the given ViewModel: " + viewModel.GetType())
         };

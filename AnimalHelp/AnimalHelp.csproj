@@ -36,6 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Material.Icons, Version=2.1.10.0, Culture=neutral, PublicKeyToken=34ed5903a64b4509, processorArchitecture=MSIL">
+      <HintPath>..\packages\Material.Icons.2.1.10\lib\netstandard2.0\Material.Icons.dll</HintPath>
+    </Reference>
+    <Reference Include="Material.Icons.WPF, Version=2.1.10.0, Culture=neutral, PublicKeyToken=34ed5903a64b4509, processorArchitecture=MSIL">
+      <HintPath>..\packages\Material.Icons.WPF.2.1.10\lib\net461\Material.Icons.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -245,6 +251,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WPF\ViewModels\Admin\AdminMenuViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Admin\VolunteerRegistrationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\LoginViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
     <Compile Include="WPF\ViewModels\Factories\IAnimalHelpViewModelFactory.cs" />
@@ -253,6 +260,9 @@
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
       <DependentUpon>AdminMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Admin\VolunteerRegistrationView.xaml.cs">
+      <DependentUpon>VolunteerRegistrationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Common\LoginWindow.xaml.cs">
@@ -288,10 +298,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\Admin.json" />
+    <None Include="Data\Members.json" />
+    <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="WPF\Views\Admin\AdminMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Admin\VolunteerRegistrationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,6 +332,9 @@
   <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\Id\AdminId.txt" />
+    <Resource Include="Data\Id\UserId.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

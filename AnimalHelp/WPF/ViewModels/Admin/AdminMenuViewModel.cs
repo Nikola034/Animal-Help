@@ -13,8 +13,22 @@ namespace AnimalHelp.WPF.ViewModels.Admin
 
         private readonly ILoginService _loginService;
         private readonly INavigationService _navigationService;
-        //private readonly Domain.Model.Admin _loggedInUser;
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
+
+        private VolunteerRegistrationViewModel? volunteerRegistrationViewModel;
+
+        private VolunteerRegistrationViewModel VolunteerRegistrationViewModel
+        {
+            get
+            {
+                if (volunteerRegistrationViewModel == null)
+                {
+                    volunteerRegistrationViewModel = (VolunteerRegistrationViewModel)_viewModelFactory.CreateViewModel(ViewType.VolunteerTable);
+                }
+
+                return volunteerRegistrationViewModel;
+            }
+        }
 
 
 
@@ -27,29 +41,25 @@ namespace AnimalHelp.WPF.ViewModels.Admin
             get => currentViewModel;
             private set => SetField(ref currentViewModel, value);
         }
-        //public AdminMenuViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore,
-        //    IAuthenticationStore authenticationStore, IAnimalHelpViewModelFactory viewModelFactory)
-        //{
-        //    _loginService = loginService;
-        //    _navigationService = navigationService;
-        //    NavigationStore = navigationStore;
-        //    NavCommand = new RelayCommand(execute => OnNav(execute as string));
-        //    _viewModelFactory = viewModelFactory;
-        //    //currentViewModel = RegisterViewModel;
-        //    LogoutCommand = new RelayCommand(execute => Logout());
-        //    //_loggedInUser = (Domain.Model.Admin)authenticationStore.CurrentUser.Person;
-        //}
-
-        public AdminMenuViewModel(NavigationStore navigationStore)
+        public AdminMenuViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore,
+             IAnimalHelpViewModelFactory viewModelFactory)
         {
-
+            _loginService = loginService;
+            _navigationService = navigationService;
             NavigationStore = navigationStore;
+            NavCommand = new RelayCommand(execute => OnNav(execute as string));
+            _viewModelFactory = viewModelFactory;
+            currentViewModel = VolunteerRegistrationViewModel;
+            LogoutCommand = new RelayCommand(execute => Logout());
+
         }
+
+
         private void OnNav(string? destination)
         {
             CurrentViewModel = destination switch
             {
-
+                "volunteers" => VolunteerRegistrationViewModel,
                 _ => CurrentViewModel
             };
         }
