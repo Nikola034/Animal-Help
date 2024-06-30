@@ -4,12 +4,19 @@ namespace AnimalHelp.Application.DTO;
 
 public class UserDto
 {
-    public Person? Person { get; }
+    public User? Person { get; }
     public UserType? UserType { get; }
+    public Admin? Admin { get; }
 
-    public UserDto(Person? person, UserType? userType)
+    public UserDto(User? person, UserType? userType)
     {
         Person = person;
+        UserType = userType;
+    }
+
+    public UserDto(Admin? admin, UserType? userType)
+    {
+        Admin = admin;
         UserType = userType;
     }
 }

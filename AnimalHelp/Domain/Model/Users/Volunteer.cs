@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AnimalHelp.Domain.Model
 {
-    public class Volunteer : Person, IEntity
+    public class Volunteer : User, IEntity
     {
         public string Id { get; set; }
 

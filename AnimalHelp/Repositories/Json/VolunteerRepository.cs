@@ -8,4 +8,18 @@ public class VolunteerRepository : AutoIdRepository<Volunteer>, IVolunteerReposi
     public VolunteerRepository(string filepath, string lastIdFilePath) : base(filepath, lastIdFilePath)
     {
     }
+    public Volunteer GetByEmail(string email)
+    {
+        var volunteers = Load();
+        foreach (Volunteer volunteer in volunteers.Values)
+        {
+            if (volunteer.Profile == null) continue;
+            if (volunteer.Profile.Email == email) return volunteer;
+        }
+
+        return null;
+    }
+
+
+
 }
