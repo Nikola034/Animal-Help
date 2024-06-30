@@ -7,6 +7,6 @@
         public string Receiver { get; set; }
         public bool IsAnonymous {  get; set; }
         public string Sender {  get; set; }
-	public Post? Post { get; set; }
+	    public Post? Post { get; set; }
     }
 }
