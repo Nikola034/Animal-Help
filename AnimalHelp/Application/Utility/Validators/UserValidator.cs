@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Mail;
-using AnimalHelp.Application.Utility.Authentication;
+using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Domain.Model;
 
 namespace AnimalHelp.Application.Utility.Validators;
 
 public class UserValidator : IUserValidator
 {
-    private readonly IProfileService _profileService;
+    private readonly IAccountService _accountService;
     
-    public UserValidator(IProfileService profileService)
+    public UserValidator(IAccountService accountService)
     {
-        _profileService = profileService;
+        _accountService = accountService;
     }
 
     public ValidationError EmailTaken(string? email)
     {
-        if (email == null || email == "" || !_profileService.IsEmailTaken(email))
+        if (email == null || email == "" || !_accountService.IsEmailTaken(email))
             return ValidationError.None;
         else
             return ValidationError.EmailUnavailable;

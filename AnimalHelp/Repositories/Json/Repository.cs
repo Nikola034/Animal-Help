@@ -19,13 +19,13 @@ public abstract class Repository<T> where T : class
     {
         return Load().Values.ToList();
     }
-    
+
     public T? Get(string id)
     {
         var items = Load();
         return items.ContainsKey(id) ? items[id] : null;
     }
-    
+
     public List<T> Get(List<string> ids)
     {
         var items = Load();
@@ -63,7 +63,7 @@ public abstract class Repository<T> where T : class
         items.Remove(id);
         Save(items);
     }
-    
+
     protected Dictionary<string, T> Load()
     {
         return JsonUtil.ReadFromFile<T>(_filepath);

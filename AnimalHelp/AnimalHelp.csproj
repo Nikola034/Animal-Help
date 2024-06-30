@@ -196,10 +196,6 @@
     <Compile Include="Application\Stores\AuthenticationStore.cs" />
     <Compile Include="Application\Stores\IAuthenticationStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
-    <Compile Include="Application\Utility\Authentication\IProfileService.cs" />
-    <Compile Include="Application\Utility\Authentication\IUserProfileMapper.cs" />
-    <Compile Include="Application\Utility\Authentication\ProfileService.cs" />
-    <Compile Include="Application\Utility\Authentication\UserProfileMapper.cs" />
     <Compile Include="Application\Utility\Navigation\ClosePopupNavigationService.cs" />
     <Compile Include="Application\Utility\Navigation\INavigationService.cs" />
     <Compile Include="Application\Utility\Navigation\NavigationService.cs" />
@@ -210,20 +206,18 @@
     <Compile Include="Core\StringExtensions.cs" />
     <Compile Include="Core\Unsubscriber.cs" />
     <Compile Include="Domain\Constants.cs" />
-    <Compile Include="Domain\Model\Admin.cs" />
+    <Compile Include="Domain\Model\Users\Admin.cs" />
     <Compile Include="Domain\Model\Entity.cs" />
     <Compile Include="Domain\Model\IEntity.cs" />
     <Compile Include="Domain\Model\LastId.cs" />
-    <Compile Include="Domain\Model\Person.cs" />
-    <Compile Include="Domain\Model\PersonProfileMapping.cs" />
-    <Compile Include="Domain\Model\Profile.cs" />
-    <Compile Include="Domain\Model\Member.cs" />
+    <Compile Include="Domain\Model\Users\User.cs" />
+    <Compile Include="Domain\Model\Users\Profile.cs" />
+    <Compile Include="Domain\Model\Users\Member.cs" />
     <Compile Include="Domain\Model\Transaction.cs" />
-    <Compile Include="Domain\Model\UserType.cs" />
-    <Compile Include="Domain\Model\ValidationError.cs" />
-    <Compile Include="Domain\Model\Volunteer.cs" />
+    <Compile Include="Domain\Model\Users\UserType.cs" />
+    <Compile Include="Domain\Model\Users\ValidationError.cs" />
+    <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
-    <Compile Include="Domain\RepositoryInterfaces\IPersonProfileMappingRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
@@ -235,9 +229,7 @@
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
-    <Compile Include="Repositories\Json\DirectorRepository.cs" />
-    <Compile Include="Repositories\Json\PersonProfileMappingRepository.cs" />
-    <Compile Include="Repositories\Json\ProfileRepository.cs" />
+    <Compile Include="Repositories\Json\AdminRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
     <Compile Include="Repositories\Util\JsonUtil.cs" />
@@ -320,7 +312,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Application\Utility\Authentication\" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

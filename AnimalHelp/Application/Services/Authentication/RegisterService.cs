@@ -37,5 +37,28 @@ namespace AnimalHelp.Application.UseCases.Authentication
             }
             return error;
         }
+
+        public ValidationError RegisterVolunteer(string? email, string? password, string? name, string? surname, DateTime birthDay, Gender gender, string? phoneNumber)
+        {
+            ValidationError error = ValidationError.None;
+            error |= _userValidator.CheckUserData(email, password, name, surname, phoneNumber, birthDay);
+            error |= _userValidator.EmailTaken(email!);
+
+            if (error == ValidationError.None)
+            {
+                _accountService.RegisterVolunteer(new RegisterVolunteerDto(
+                    email!,
+                    password!,
+                    name!,
+                    surname!,
+                    birthDay,
+                    gender,
+                    phoneNumber!
+                    ));
+            }
+            return error;
+        }
+
+
     }
 }

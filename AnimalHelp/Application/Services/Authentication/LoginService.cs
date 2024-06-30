@@ -1,6 +1,6 @@
 ﻿using AnimalHelp.Application.DTO;
 using AnimalHelp.Application.Stores;
-using AnimalHelp.Application.Utility.Authentication;
+using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Domain.Model;
 
 namespace AnimalHelp.Application.UseCases.Authentication;
@@ -8,14 +8,13 @@ namespace AnimalHelp.Application.UseCases.Authentication;
 public class LoginService : ILoginService
 {
     private readonly IAuthenticationStore _authenticationStore;
-    private readonly IProfileService _profileService;
-    private readonly IUserProfileMapper _userProfileMapper;
 
-    public LoginService(IAuthenticationStore authenticationStore, IProfileService profileService, IUserProfileMapper userProfileMapper)
+    private readonly IAccountService _accountService;
+
+    public LoginService(IAuthenticationStore authenticationStore, IAccountService accountService)
     {
         _authenticationStore = authenticationStore;
-        _profileService = profileService;
-        _userProfileMapper = userProfileMapper;
+        _accountService = accountService;
     }
 
     public LoginResult LogIn(string? email, string? password)
@@ -23,10 +22,22 @@ public class LoginService : ILoginService
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             return new LoginResult(false);
 
-        Profile? profile = _profileService.GetProfile(email);
+        UserDto? user = _accountService.GetPerson(email);
 
-        if (profile == null) return new LoginResult(false);
-        
+        if (user.Person == null && user.Admin == null) return new LoginResult(false);
+
+        Profile profile = null;
+        if(user.UserType == UserType.Admin)
+        {
+            profile = user.Admin.Profile;
+        }
+        else
+        {
+            profile = user.Person.Profile;
+        }
+
+
+
         if (profile.Password != password)
             return new LoginResult(false, true);
 
@@ -34,7 +45,7 @@ public class LoginService : ILoginService
             return new LoginResult(false, true);
         
         _authenticationStore.CurrentUserProfile = profile;
-        _authenticationStore.UserType = _userProfileMapper.GetPerson(profile).UserType;
+        _authenticationStore.UserType = profile.UserType;
         return new LoginResult(true, true, profile, _authenticationStore.UserType);
     }
 
