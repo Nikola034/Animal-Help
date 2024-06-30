@@ -1,5 +1,5 @@
 ﻿using AnimalHelp.Application.DTO;
-using AnimalHelp.Application.Utility.Authentication;
+using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Domain.Model;
 
 namespace AnimalHelp.Application.Stores;
@@ -12,12 +12,12 @@ public class AuthenticationStore : IAuthenticationStore
     
     public UserType? UserType { get; set; }
 
-    public UserDto CurrentUser => CurrentUserProfile != null ? userProfileMapper.GetPerson(CurrentUserProfile) : new UserDto(null, null);
+    public UserDto CurrentUser => CurrentUserProfile != null ? _accountService.GetPerson(CurrentUserProfile) : new UserDto((Admin)null, null);
 
-    private readonly IUserProfileMapper userProfileMapper;
+    private readonly IAccountService _accountService;
 
-    public AuthenticationStore(IUserProfileMapper userProfileMapper)
+    public AuthenticationStore(IAccountService accountService)
     {
-        this.userProfileMapper = userProfileMapper;
+        this._accountService = accountService;
     }
 }

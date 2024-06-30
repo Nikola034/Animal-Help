@@ -32,16 +32,14 @@ namespace AnimalHelp.WPF.ViewModels.Common
         public ICommand SwitchToLoginCommand { get; }
 
         private readonly IRegisterService _registerService;
-        private readonly ILoginService _loginService;
         private readonly IUserValidator _userValidator;
         private readonly INavigationService _navigationService;
         
         public NavigationStore NavigationStore { get; }
         
-        public RegisterViewModel(IRegisterService registerService, ILoginService loginService, IUserValidator userValidator, INavigationService navigationService, NavigationStore navigationStore)
+        public RegisterViewModel(IRegisterService registerService, IUserValidator userValidator, INavigationService navigationService, NavigationStore navigationStore)
         {
             _registerService = registerService;
-            _loginService = loginService;
             _userValidator = userValidator;
             _navigationService = navigationService;
             NavigationStore = navigationStore;
