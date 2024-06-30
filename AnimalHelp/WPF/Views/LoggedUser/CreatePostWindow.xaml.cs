@@ -1,5 +1,4 @@
-﻿using AnimalHelp.Domain.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +15,13 @@ using System.Windows.Shapes;
 namespace AnimalHelp.WPF.Views.LoggedUser
 {
     /// <summary>
-    /// Interaction logic for CreatePost.xaml
+    /// Interaction logic for CreatePostWindow.xaml
     /// </summary>
     public partial class CreatePostWindow : Window
     {
         public CreatePostWindow()
         {
             InitializeComponent();
-            PostStateComboBox.ItemsSource = Enum.GetValues(typeof(PostState));
-            PostStatusComboBox.ItemsSource = Enum.GetValues(typeof(PostStatus));
         }
 
         private void SavePostButton_Click(object sender, RoutedEventArgs e)

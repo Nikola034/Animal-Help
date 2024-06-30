@@ -168,6 +168,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Domain\Model\Animal.cs" />
+    <Compile Include="Domain\Model\AnimalType.cs" />
+    <Compile Include="Domain\Model\Comment.cs" />
+    <Compile Include="Domain\Model\HealthCondition.cs" />
+    <Compile Include="Domain\Model\HealthState.cs" />
+    <Compile Include="Domain\Model\Location.cs" />
+    <Compile Include="Domain\Model\Photo.cs" />
     <Compile Include="Domain\Model\Post.cs" />
     <Compile Include="Domain\Model\PostState.cs" />
     <Compile Include="Domain\Model\PostStatus.cs" />
@@ -211,6 +218,7 @@
     <Compile Include="Domain\Model\PersonProfileMapping.cs" />
     <Compile Include="Domain\Model\Profile.cs" />
     <Compile Include="Domain\Model\Member.cs" />
+    <Compile Include="Domain\Model\Transaction.cs" />
     <Compile Include="Domain\Model\UserType.cs" />
     <Compile Include="Domain\Model\ValidationError.cs" />
     <Compile Include="Domain\Model\Volunteer.cs" />
@@ -251,9 +259,6 @@
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
-    <Compile Include="WPF\Views\LoggedUser\CreatePost.xaml.cs">
-      <DependentUpon>CreatePost.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WPF\Views\Common\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -263,6 +268,9 @@
     <Compile Include="WPF\Views\Factories\IAnimalHelpWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\AnimalHelpWindowFactory.cs" />
+    <Compile Include="WPF\Views\LoggedUser\CreatePostWindow.xaml.cs">
+      <DependentUpon>CreatePostWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -287,10 +295,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="WPF\Views\LoggedUser\CreatePost.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="WPF\Views\Common\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -299,14 +303,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WPF\Views\LoggedUser\CreatePostWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Application\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
