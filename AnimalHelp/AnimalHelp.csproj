@@ -298,6 +298,7 @@
     <None Include="App.config" />
     <None Include="Data\Members.json" />
     <None Include="Data\PersonProfile.json" />
+    <None Include="Data\Posts.json" />
     <None Include="Data\Profiles.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
@@ -320,7 +321,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\Id\PostId.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>

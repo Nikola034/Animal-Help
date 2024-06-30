@@ -14,9 +14,6 @@
         public const string UserIdFilePath = "../../../Data/Id/UserId.txt";
         public const string AdminIdFilePath = "../../../Data/Id/AdminId.txt";
         public const string PostIdFilePath = "../../../Data/Id/PostId.txt";
-
-
-
     }
 }
 

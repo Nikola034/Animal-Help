@@ -41,7 +41,7 @@ namespace AnimalHelp.Domain.Model
             PublishDate = DateTime.Now;
             Status = PostStatus.PendingApproval;
             Description = description;
-            Likes = likes;
+            Likes = 0;
             Comments = comments;
             Photos = photos;
             Animal = animal;
@@ -54,7 +54,7 @@ namespace AnimalHelp.Domain.Model
             PublishDate = DateTime.Now;
             Status = PostStatus.PendingApproval;
             Description = description;
-            Likes = likes;
+            Likes = 0;
             Comments = comments;
             Photos = photos;
             Animal = animal;
