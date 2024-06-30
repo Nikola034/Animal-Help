@@ -14,8 +14,10 @@
 *.userosscache
 *.sln.docstates
 
-LangLang/Data
-LangLang/Properties
+AnimalHelp/Data
+AnimalHelp/Properties
+Data
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
