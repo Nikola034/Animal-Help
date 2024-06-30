@@ -5,4 +5,5 @@ namespace AnimalHelp.Domain.RepositoryInterfaces;
 
 public interface IMemberRepository : IRepository<Member>
 {
+    public Member GetByEmail(string email);
 }
