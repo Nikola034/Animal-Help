@@ -9,10 +9,13 @@
         public const string ProfileFilePath = "../../../Data/Profiles.json";
         public const string PersonProfileMappingFilePath = "../../../Data/PersonProfile.json";
         public const string AdminFilePath = "../../../Data/Admin.json";
-
+        public const string PostFilePath = "../../../Data/Posts.json";
 
         public const string UserIdFilePath = "../../../Data/Id/UserId.txt";
         public const string AdminIdFilePath = "../../../Data/Id/AdminId.txt";
+        public const string PostIdFilePath = "../../../Data/Id/PostId.txt";
+
+
 
     }
 }
