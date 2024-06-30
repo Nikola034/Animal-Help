@@ -1,5 +1,6 @@
 ﻿using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels;
+using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Common;
 using AnimalHelp.WPF.ViewModels.Factories;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<MainViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegisterViewModel>();
+            services.AddScoped<AdminMenuViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -29,8 +31,12 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<CreateViewModel<RegisterViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<RegisterViewModel>
             );
+
+            services.AddScoped<CreateViewModel<AdminMenuViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AdminMenuViewModel>
+            );
         });
-        
+
         return host;
     }
 }
