@@ -167,6 +167,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\Services\Post\IPostService.cs" />
+    <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
@@ -218,6 +220,8 @@
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IPersonProfileMappingRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
@@ -229,6 +233,10 @@
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
+    <Compile Include="Repositories\Json\DirectorRepository.cs" />
+    <Compile Include="Repositories\Json\PersonProfileMappingRepository.cs" />
+    <Compile Include="Repositories\Json\PostRepository.cs" />
+    <Compile Include="Repositories\Json\ProfileRepository.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
@@ -284,6 +292,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\Members.json" />
+    <None Include="Data\PersonProfile.json" />
+    <None Include="Data\Posts.json" />
+    <None Include="Data\Profiles.json" />
+    <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -305,8 +318,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\Id\PostId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Id\UserId.txt" />
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

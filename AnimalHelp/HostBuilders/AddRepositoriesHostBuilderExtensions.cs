@@ -19,7 +19,8 @@ public static class AddRepositoriesHostBuilderExtensions
             services.AddSingleton<IAdminRepository, AdminRepository>(_ =>
                 new AdminRepository(Constants.AdminFilePath, Constants.AdminIdFilePath));
 
-
+            services.AddSingleton<IPostRepository, PostRepository>(_ =>
+            new PostRepository(Constants.PostFilePath, Constants.PostIdFilePath));
 
         });
 
