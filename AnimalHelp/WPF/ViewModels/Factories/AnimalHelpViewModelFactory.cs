@@ -1,7 +1,6 @@
 ﻿using System;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Common;
-using AnimalHelp.WPF.ViewModels.Factories;
 
 namespace AnimalHelp.WPF.ViewModels.Factories;
 

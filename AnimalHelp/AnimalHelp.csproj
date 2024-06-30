@@ -169,8 +169,19 @@
     </ApplicationDefinition>
     <Compile Include="Application\DTO\LoginResult.cs" />
     <Compile Include="Application\DTO\RegisterDto.cs" />
+    <Compile Include="Application\DTO\RegisterVolunteerDto.cs" />
     <Compile Include="Application\DTO\RegisterMemberDto.cs" />
     <Compile Include="Application\DTO\UserDto.cs" />
+    <Compile Include="Application\Services\Authentication\ILoginService.cs" />
+    <Compile Include="Application\Services\Authentication\IRegisterService.cs" />
+    <Compile Include="Application\Services\Authentication\LoginService.cs" />
+    <Compile Include="Application\Services\Authentication\RegisterService.cs" />
+    <Compile Include="Application\Services\User\AccountService.cs" />
+    <Compile Include="Application\Services\User\IAccountService.cs" />
+    <Compile Include="Application\Services\User\IMemberService.cs" />
+    <Compile Include="Application\Services\User\IVolunteerService.cs" />
+    <Compile Include="Application\Services\User\MemberService.cs" />
+    <Compile Include="Application\Services\User\VolunteerService.cs" />
     <Compile Include="Application\Stores\AuthenticationStore.cs" />
     <Compile Include="Application\Stores\IAuthenticationStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
@@ -183,9 +194,12 @@
     <Compile Include="Application\Utility\Navigation\NavigationService.cs" />
     <Compile Include="Application\Utility\Navigation\NavigationServiceBase.cs" />
     <Compile Include="Application\Utility\Navigation\PopupNavigationService.cs" />
+    <Compile Include="Application\Utility\Validators\IUserValidator.cs" />
+    <Compile Include="Application\Utility\Validators\UserValidator.cs" />
     <Compile Include="Core\StringExtensions.cs" />
     <Compile Include="Core\Unsubscriber.cs" />
     <Compile Include="Domain\Constants.cs" />
+    <Compile Include="Domain\Model\Admin.cs" />
     <Compile Include="Domain\Model\Entity.cs" />
     <Compile Include="Domain\Model\IEntity.cs" />
     <Compile Include="Domain\Model\LastId.cs" />
@@ -194,12 +208,14 @@
     <Compile Include="Domain\Model\Profile.cs" />
     <Compile Include="Domain\Model\Member.cs" />
     <Compile Include="Domain\Model\UserType.cs" />
+    <Compile Include="Domain\Model\ValidationError.cs" />
     <Compile Include="Domain\Model\Volunteer.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPersonProfileMappingRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
-    <Compile Include="Domain\RepositoryInterfaces\IVolnteerRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IVolunteerRepository.cs" />
     <Compile Include="HostBuilders\AddRepositoriesHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddServicesHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
@@ -207,13 +223,14 @@
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
+    <Compile Include="Repositories\Json\DirectorRepository.cs" />
     <Compile Include="Repositories\Json\PersonProfileMappingRepository.cs" />
     <Compile Include="Repositories\Json\ProfileRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
     <Compile Include="Repositories\Util\JsonUtil.cs" />
     <Compile Include="Repositories\Json\MemberRepository.cs" />
-    <Compile Include="Repositories\Json\VolnteerRepository.cs" />
+    <Compile Include="Repositories\Json\VolunteerRepository.cs" />
     <Compile Include="WPF\MVVM\CreateViewModel.cs" />
     <Compile Include="WPF\MVVM\INavigableDataContext.cs" />
     <Compile Include="WPF\MVVM\NavigableWindow.cs" />
@@ -275,8 +292,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Application\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

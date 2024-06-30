@@ -5,11 +5,8 @@ namespace AnimalHelp.Application.DTO;
 
 public class RegisterMemberDto : RegisterDto
 {
-    public EducationLevel EducationLevel { get; }
-
-    public RegisterMemberDto(string email, string password, string name, string surname, DateTime birthDay, Gender gender, string phoneNumber, EducationLevel educationLvl)
+    public RegisterMemberDto(string email, string password, string name, string surname, DateTime birthDay, Gender gender, string phoneNumber)
     : base(email, password, name, surname, birthDay, gender, phoneNumber)
     {
-        EducationLevel = educationLvl;
     }
 }

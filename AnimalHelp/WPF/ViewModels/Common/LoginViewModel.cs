@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Windows;
 using System.Windows.Input;
 using AnimalHelp.Application.DTO;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
-using AnimalHelp.Application.UseCases.Report;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
@@ -77,14 +77,20 @@ namespace AnimalHelp.WPF.ViewModels.Common
             {
                 switch (loginResult.UserType)
                 {
-                    case UserType.Director:
-                        _navigationService.Navigate(ViewType.Director);
+                    case UserType.Admin:
+                        MessageBox.Show("Admin", "Success");
+
+                        //_navigationService.Navigate(ViewType.admin);
                         break;
-                    case UserType.Tutor:
-                        _navigationService.Navigate(ViewType.Tutor);
+                    case UserType.Volunteer:
+                        MessageBox.Show("Volunteer", "Success");
+
+                        //_navigationService.Navigate(ViewType.volunteer);
                         break;
-                    case UserType.Student:
-                        _navigationService.Navigate(ViewType.Student);
+                    case UserType.Member:
+                        MessageBox.Show("Member", "Success");
+
+                        //_navigationService.Navigate(ViewType.Member);
                         break;
                     default:
                         throw new ArgumentException("No available window for current user type");

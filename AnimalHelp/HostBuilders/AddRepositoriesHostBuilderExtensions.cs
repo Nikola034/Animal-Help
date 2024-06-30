@@ -18,8 +18,10 @@ public static class AddRepositoriesHostBuilderExtensions
                 new PersonProfileMappingRepository(Constants.PersonProfileMappingFilePath));
             services.AddSingleton<IMemberRepository, MemberRepository>(_ =>
                 new MemberRepository(Constants.MemberFilePath, Constants.UserIdFilePath));
-            services.AddSingleton<IVolnteerRepository, VolnteerRepository>(_ =>
-                new VolnteerRepository(Constants.VolunteerFilePath, Constants.UserIdFilePath));
+            services.AddSingleton<IVolunteerRepository, VolunteerRepository>(_ =>
+                new VolunteerRepository(Constants.VolunteerFilePath, Constants.UserIdFilePath));
+            services.AddSingleton<IAdminRepository, AdminRepository>(_ =>
+                new AdminRepository(Constants.AdminFilePath, Constants.AdminIdFilePath));
 
 
 

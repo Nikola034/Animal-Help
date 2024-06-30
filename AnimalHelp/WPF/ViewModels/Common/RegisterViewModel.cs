@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using AnimalHelp.Application.DTO;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.Utility.Navigation;
@@ -21,7 +20,6 @@ namespace AnimalHelp.WPF.ViewModels.Common
         private string? _phoneNumber;
         private Gender _gender;
         private DateTime _birthday;
-        private EducationLevel _educationLevel;
 
         private string? _errorMessageRequired;
         private string? _errorMessageEmail;
@@ -122,11 +120,6 @@ namespace AnimalHelp.WPF.ViewModels.Common
             set => SetField(ref _gender, value);
         }
 
-        public EducationLevel EducationLevel
-        {
-            get => _educationLevel;
-            set => SetField(ref _educationLevel, value);
-        }
         public string? BirthdayFormatted => _birthday.ToString("yyyy-MM-dd");
 
         public DateTime Birthday
@@ -152,9 +145,8 @@ namespace AnimalHelp.WPF.ViewModels.Common
             string? phoneNumber = PhoneNumber;
             Gender gender = Gender;
             DateTime birthday = Birthday;
-            EducationLevel educationLevel = EducationLevel;
 
-            ValidationError error = _registerService.RegisterStudent(email, password, name, surname, birthday, gender, phoneNumber, educationLevel);
+            ValidationError error = _registerService.RegisterMember(email, password, name, surname, birthday, gender, phoneNumber);
 
 
             if (error != ValidationError.None)

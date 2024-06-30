@@ -33,7 +33,7 @@ namespace AnimalHelp.Domain.Model
             IsBlackListed = isBlackListed;
         }
 
-        public void Update(string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, bool isBlackListed, bool isActive)
+        public void Update(string name, string surname, DateTime birthDate, Gender gender, string phoneNumber)
         {
             Name = name;
             Surname = surname;
@@ -41,8 +41,11 @@ namespace AnimalHelp.Domain.Model
             BirthDate = birthDate;
             Gender = gender;
             PhoneNumber = phoneNumber;
-            IsActive = isActive;
-            IsBlackListed = isBlackListed;
+        }
+
+        public void BlackList()
+        {
+            IsBlackListed = true;
         }
     }
 

@@ -10,21 +10,21 @@ namespace AnimalHelp.Application.Utility.Authentication;
 public class UserProfileMapper : IUserProfileMapper, IObserver<PersonProfileMapping>
 {
     private readonly Dictionary<string, PersonProfileMapping> _profileToUser;
-    private readonly Dictionary<string, string> _studentToProfile = new();
-    private readonly Dictionary<string, string> _tutorToProfile = new();
-    private readonly Dictionary<string, string> _directorToProfile = new();
+    private readonly Dictionary<string, string> _memberToProfile = new();
+    private readonly Dictionary<string, string> _volunteerToProfile = new();
+    private readonly Dictionary<string, string> _adminToProfile = new();
 
     private readonly IProfileService _profileService;
-    private readonly IStudentRepository _studentRepository;
-    private readonly ITutorRepository _tutorRepository;
-    private readonly IDirectorRepository _directorRepository;
+    private readonly IVolunteerRepository _volunteerRepository;
+    private readonly IMemberRepository _memberRepository;
+    private readonly IAdminRepository _adminRepository;
 
-    public UserProfileMapper(IPersonProfileMappingRepository personProfileMappingRepository, IProfileService profileService, IStudentRepository studentRepository, ITutorRepository tutorRepository, IDirectorRepository directorRepository)
+    public UserProfileMapper(IPersonProfileMappingRepository personProfileMappingRepository, IProfileService profileService, IVolunteerRepository volunteerRepository, IMemberRepository memberRepository, IAdminRepository adminRepository)
     {
         _profileService = profileService;
-        _studentRepository = studentRepository;
-        _tutorRepository = tutorRepository;
-        _directorRepository = directorRepository;
+        _memberRepository = memberRepository;
+        _volunteerRepository = volunteerRepository;
+        _adminRepository = adminRepository;
         
         _profileToUser = personProfileMappingRepository.GetMap();
         InitPersonToProfileMappings();
@@ -37,9 +37,9 @@ public class UserProfileMapper : IUserProfileMapper, IObserver<PersonProfileMapp
         {
             var mapper = mapping.UserType switch
             {
-                UserType.Student => _studentToProfile,
-                UserType.Tutor => _tutorToProfile,
-                UserType.Director => _directorToProfile,
+                UserType.Member => _memberToProfile,
+                UserType.Volunteer => _volunteerToProfile,
+                UserType.Admin => _adminToProfile,
                 _ => throw new ArgumentException("User type not supported.")
             };
             mapper.Add(mapping.UserId, mapping.Email);
@@ -51,9 +51,9 @@ public class UserProfileMapper : IUserProfileMapper, IObserver<PersonProfileMapp
         var mapping = _profileToUser[profile.Email];
         Person? person = mapping.UserType switch
         {
-            UserType.Student => _studentRepository.Get(mapping.UserId),
-            UserType.Tutor => _tutorRepository.Get(mapping.UserId),
-            UserType.Director => _directorRepository.Get(mapping.UserId),
+            UserType.Member => _memberRepository.Get(mapping.UserId),
+            UserType.Volunteer => _volunteerRepository.Get(mapping.UserId),
+            UserType.Admin => _adminRepository.Get(mapping.UserId),
             _ => null
         };
         return new UserDto(person, mapping.UserType);
@@ -62,14 +62,22 @@ public class UserProfileMapper : IUserProfileMapper, IObserver<PersonProfileMapp
     public Profile? GetProfile(UserDto user)
     {
         if (user.Person == null) return null;
-        
+
         var email = user.UserType switch
         {
-            UserType.Student => _studentToProfile.GetValueOrDefault(((Student)user.Person).Id),
-            UserType.Tutor => _tutorToProfile.GetValueOrDefault(((Tutor)user.Person).Id),
-            UserType.Director => _directorToProfile.GetValueOrDefault(((Director)user.Person).Id),
+            UserType.Member => _memberToProfile.ContainsKey(((Member)user.Person).Id)
+                ? _memberToProfile[((Member)user.Person).Id]
+                : null,
+            UserType.Volunteer => _volunteerToProfile.ContainsKey(((Volunteer)user.Person).Id)
+                ? _volunteerToProfile[((Volunteer)user.Person).Id]
+                : null,
+            UserType.Admin => _adminToProfile.ContainsKey(((Admin)user.Person).Id)
+                ? _adminToProfile[((Admin)user.Person).Id]
+                : null,
             _ => throw new ArgumentException("User type not supported.")
         };
+
+        return email == null ? null : _profileService.GetProfile(email);
 
         return email == null ? null : _profileService.GetProfile(email);
     }
@@ -77,9 +85,9 @@ public class UserProfileMapper : IUserProfileMapper, IObserver<PersonProfileMapp
     public void OnCompleted()
     {
         _profileToUser.Clear();
-        _studentToProfile.Clear();
-        _tutorToProfile.Clear();
-        _directorToProfile.Clear();
+        _memberToProfile.Clear();
+        _volunteerToProfile.Clear();
+        _adminToProfile.Clear();
     }
 
     public void OnError(Exception error)
@@ -91,9 +99,9 @@ public class UserProfileMapper : IUserProfileMapper, IObserver<PersonProfileMapp
         _profileToUser.Add(mapping.Email, mapping);
         var mapper = mapping.UserType switch
         {
-            UserType.Student => _studentToProfile,
-            UserType.Tutor => _tutorToProfile,
-            UserType.Director => _directorToProfile,
+            UserType.Member => _memberToProfile,
+            UserType.Volunteer => _volunteerToProfile,
+            UserType.Admin => _adminToProfile,
             _ => throw new ArgumentException("User type not supported.")
         };
         mapper.Add(mapping.UserId, mapping.Email);

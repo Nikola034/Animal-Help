@@ -73,7 +73,7 @@ namespace AnimalHelp.Repositories.Json.Util
                 }
 
                 Int64 milliseconds = Int64.Parse(reader.GetString() ?? throw new JsonException("Invalid date time format."));
-                return  DateTimeMillisecondsConverter.ToDateTime(milliseconds);
+                return DateTimeMillisecondsConverter.ToDateTime(milliseconds);
             }
 
             public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)

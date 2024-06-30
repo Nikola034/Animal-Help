@@ -1,4 +1,5 @@
 ﻿using AnimalHelp.WPF.Views;
+using AnimalHelp.WPF.Views.Common;
 using AnimalHelp.WPF.Views.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,7 +13,7 @@ public static class AddWindowsHostBuilderExtensions
         host.ConfigureServices(services =>
         {
             services.AddSingleton<IAnimalHelpWindowFactory, AnimalHelpWindowFactory>();
-            services.AddTransient<MainWindow>();
+            services.AddTransient<LoginWindow>();
         });
         
         return host;
