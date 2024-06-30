@@ -1,5 +1,5 @@
 ﻿using AnimalHelp.WPF.MVVM;
-using LangLang.WPF.ViewModels.Factories;
+using AnimalHelp.WPF.ViewModels.Factories;
 
 namespace AnimalHelp.WPF.ViewModels.Factories;
 

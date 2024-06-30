@@ -18,9 +18,9 @@ namespace AnimalHelp.WPF.Views.LoggedUser
     /// <summary>
     /// Interaction logic for CreatePost.xaml
     /// </summary>
-    public partial class CreatePost : Window
+    public partial class CreatePostWindow : Window
     {
-        public CreatePost()
+        public CreatePostWindow()
         {
             InitializeComponent();
             PostStateComboBox.ItemsSource = Enum.GetValues(typeof(PostState));
