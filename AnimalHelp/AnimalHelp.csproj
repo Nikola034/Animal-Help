@@ -296,6 +296,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\Data\Members.json" />
+    <None Include="Data\Data\PersonProfile.json" />
+    <None Include="Data\Data\Posts.json" />
+    <None Include="Data\Data\Profiles.json" />
+    <None Include="Data\Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -316,7 +321,11 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\Data\Id\UserId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Data\Id\PostId.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
