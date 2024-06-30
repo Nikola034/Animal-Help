@@ -1,0 +1,29 @@
+﻿<Window x:Class="AnimalHelp.WPF.Views.LoggedUser.CreatePostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalHelp.WPF.Views.LoggedUser"
+        mc:Ignorable="d"
+        Title="CreatePostWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Post State" Margin="5"/>
+            <ComboBox Name="PostStateComboBox" Margin="5" />
+
+            <TextBlock Text="Publish Date" Margin="5"/>
+            <DatePicker Name="PublishDatePicker" Margin="5" />
+
+            <TextBlock Text="Post Status" Margin="5"/>
+            <ComboBox Name="PostStatusComboBox" Margin="5" />
+
+            <TextBlock Text="Description" Margin="5"/>
+            <TextBox Name="DescriptionTextBox" Margin="5" Height="100" AcceptsReturn="True" />
+
+            <TextBlock Text="Likes" Margin="5"/>
+            <TextBox Name="LikesTextBox" Margin="5" />
+
+            <Button Content="Save Post" Click="SavePostButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

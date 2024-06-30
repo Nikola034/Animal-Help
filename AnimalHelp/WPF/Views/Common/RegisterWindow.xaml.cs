@@ -18,5 +18,10 @@ namespace AnimalHelp.WPF.Views.Common
             datePicker.DisplayDateEnd = DateTime.Today.AddYears(-16);   //minimum age of 16
             datePicker.SelectedDate = DateTime.Today.AddYears(-16);
         }
+
+        private void SignUpBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
