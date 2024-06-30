@@ -1,75 +1,103 @@
 ﻿using System;
-using AnimalHelp.Application.Utility.Authentication;
 using AnimalHelp.Domain.RepositoryInterfaces;
 using AnimalHelp.Application.DTO;
-
 using AnimalHelp.Domain.Model;
+
 
 namespace AnimalHelp.Application.UseCases.User
 {
     public class AccountService : IAccountService
     {
-        private readonly IProfileService _profileService;
         private readonly IMemberService _memberService;
         private readonly IVolunteerService _volunteerService;
-        private readonly IPersonProfileMappingRepository _personProfileMappingRepository;
-        private readonly IUserProfileMapper _userProfileMapper;
+        private readonly IMemberRepository _memberRepository;
+        private readonly IVolunteerRepository _volunteerRepository;
+        private readonly IAdminRepository _adminRepository;
 
-        public AccountService(IProfileService profileService, IMemberService memberService, IVolunteerService volunteerService, IPersonProfileMappingRepository personProfileMappingRepository, IUserProfileMapper userProfileMapper)
+        public AccountService(IMemberService memberService, IVolunteerService volunteerService, IAdminRepository adminRepository, IMemberRepository memberRepository, IVolunteerRepository volunteerRepository)
         {
-            _profileService = profileService;
             _memberService = memberService;
             _volunteerService = volunteerService;
-            _personProfileMappingRepository = personProfileMappingRepository;
-            _userProfileMapper = userProfileMapper;
+            _adminRepository = adminRepository;
+            _memberRepository = memberRepository;
+            _volunteerRepository = volunteerRepository;
+        }
+
+        public bool IsEmailTaken(string email)
+        {
+            bool found = _memberRepository.GetByEmail(email) != null;
+            found = _volunteerRepository.GetByEmail(email) != null;
+            found = _adminRepository.GetByEmail(email) != null;
+            return found;
+        }
+
+        public UserDto GetPerson(Profile profile)
+        {
+            if(profile.UserType == UserType.Member)
+            {
+                return new UserDto(_memberRepository.GetByEmail(profile.Email), UserType.Member);
+            }else if(profile.UserType == UserType.Volunteer)
+            {
+                return new UserDto(_volunteerRepository.GetByEmail(profile.Email), UserType.Volunteer);
+            }
+            else
+            {
+                return new UserDto(_adminRepository.GetByEmail(profile.Email), UserType.Admin);
+            }
+        }
+
+        public UserDto GetPerson(string email)
+        {
+            Volunteer volunteer = _volunteerRepository.GetByEmail(email);
+            if(volunteer != null)
+            {
+                return new UserDto(volunteer, UserType.Volunteer);
+            }
+            Member member = _memberRepository.GetByEmail(email);
+            if (member != null)
+            {
+                return new UserDto(member, UserType.Member);
+            }
+            Admin admin = _adminRepository.GetByEmail(email);
+            if (admin != null)
+            {
+                return new UserDto(admin, UserType.Admin);
+            }
+            return new UserDto((Admin)null, null);
         }
 
         public string GetEmailByUserId(string userId, UserType userType)
         {
-
-            return _personProfileMappingRepository.GetEmailByUserId(userId);
+            if(userType == UserType.Admin)
+            {
+                return _adminRepository.Get(userId).Profile.Email;
+            }else if(userType == UserType.Member) {
+                return _memberRepository.Get(userId).Profile.Email;
+            }
+            return _volunteerRepository.Get(userId).Profile.Email;
         }
 
         public void UpdateMember(string userId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber)
         {
             Member member = _memberService.GetMemberById(userId)!;
+            member.ChangePassword(password);
             _memberService.UpdateMember(member, name, surname, birthDate, gender, phoneNumber);
-
-            Profile profile = _userProfileMapper.GetProfile(new UserDto(member, UserType.Member))
-                              ?? throw new InvalidOperationException("No profile associated with member.");
-            _profileService.UpdatePassword(profile, password);
         }
-
-
 
         public void RegisterMember(RegisterMemberDto registerDto)
         {
-            var profile = _profileService.AddProfile(new Profile(
-                registerDto.Email,
-                registerDto.Password
-            ));
             var member = _memberService.AddMember(new Member(
                 registerDto.Name,
                 registerDto.Surname,
                 registerDto.BirthDay,
                 registerDto.Gender,
-                registerDto.PhoneNumber,
-                false, 
-                true
+                registerDto.PhoneNumber
             ));
-            _personProfileMappingRepository.Add(new PersonProfileMapping(
-                profile.Email,
-                UserType.Member,
-                member.Id
-            ));
+            member.AddProfile(registerDto.Email, registerDto.Password, UserType.Member);
         }
 
         public Volunteer RegisterVolunteer(RegisterVolunteerDto registerDto)
         {
-            var profile = _profileService.AddProfile(new Profile(
-                registerDto.Email,
-                registerDto.Password
-            ));
             var volunteer = _volunteerService.AddVolunteer(new Volunteer(
                 registerDto.Name,
                 registerDto.Surname,
@@ -77,33 +105,22 @@ namespace AnimalHelp.Application.UseCases.User
                 registerDto.Gender,
                 registerDto.PhoneNumber
             ));
-            _personProfileMappingRepository.Add(new PersonProfileMapping(
-                profile.Email,
-                UserType.Volunteer,
-                volunteer.Id
-            ));
+            volunteer.AddProfile(registerDto.Email, registerDto.Password, UserType.Volunteer);
+
             return volunteer;
         }
         public Volunteer UpdateVolunteer(string volunteerId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined)
         {
             Volunteer volunteer = _volunteerService.GetVolunteerById(volunteerId)!;
+            volunteer.ChangePassword(password);
             _volunteerService.UpdateVolunteer(volunteer, name, surname, birthDate, gender, phoneNumber, dateJoined);
 
-            Profile profile = _userProfileMapper.GetProfile(new UserDto(volunteer, UserType.Volunteer))
-                              ?? throw new InvalidOperationException("No profile associated with volunteer.");
-            _profileService.UpdatePassword(profile, password);
             return volunteer;
         }
 
         public void DeleteMember(Member member)
         {
             _memberService.DeleteAccount(member);
-            var profile = _userProfileMapper.GetProfile(new UserDto(member, UserType.Member));
-            if (profile != null)
-            {
-                _profileService.DeleteProfile(profile.Email);
-                _personProfileMappingRepository.Delete(profile.Email);
-            }
         }
     }
 }
