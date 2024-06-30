@@ -26,6 +26,7 @@ public class Profile
         Email = email;
         Password = password;
         UserType = userType;
+        IsActive = true;
     }
     public Profile(string email, string password, UserType userType, bool isActive)
     {

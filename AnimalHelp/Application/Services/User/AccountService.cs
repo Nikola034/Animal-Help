@@ -86,27 +86,29 @@ namespace AnimalHelp.Application.UseCases.User
 
         public void RegisterMember(RegisterMemberDto registerDto)
         {
-            var member = _memberService.AddMember(new Member(
+            Member member = new Member(
                 registerDto.Name,
                 registerDto.Surname,
                 registerDto.BirthDay,
                 registerDto.Gender,
                 registerDto.PhoneNumber
-            ));
+            );
             member.AddProfile(registerDto.Email, registerDto.Password, UserType.Member);
+            _memberService.AddMember(member);
         }
 
         public Volunteer RegisterVolunteer(RegisterVolunteerDto registerDto)
         {
-            var volunteer = _volunteerService.AddVolunteer(new Volunteer(
+            Volunteer volunteer = new Volunteer(
                 registerDto.Name,
                 registerDto.Surname,
                 registerDto.BirthDay,
                 registerDto.Gender,
                 registerDto.PhoneNumber
-            ));
+            );
             volunteer.AddProfile(registerDto.Email, registerDto.Password, UserType.Volunteer);
-
+            _volunteerService.AddVolunteer(volunteer);
+           
             return volunteer;
         }
         public Volunteer UpdateVolunteer(string volunteerId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined)
