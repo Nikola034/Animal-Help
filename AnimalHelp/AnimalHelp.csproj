@@ -167,15 +167,74 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application\Services\AdoptionRequest\AdoptionRequestService.cs" />
-    <Compile Include="Application\Services\AdoptionRequest\IAdoptionRequestService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
-    <Compile Include="Domain\Model\AdoptionRequest.cs" />
+    <Compile Include="Domain\Model\Post.cs" />
+    <Compile Include="Domain\Model\PostState.cs" />
+    <Compile Include="Domain\Model\PostStatus.cs" />
+    <Compile Include="Application\DTO\LoginResult.cs" />
+    <Compile Include="Application\DTO\RegisterDto.cs" />
+    <Compile Include="Application\DTO\RegisterVolunteerDto.cs" />
+    <Compile Include="Application\DTO\RegisterMemberDto.cs" />
+    <Compile Include="Application\DTO\UserDto.cs" />
+    <Compile Include="Application\Services\Authentication\ILoginService.cs" />
+    <Compile Include="Application\Services\Authentication\IRegisterService.cs" />
+    <Compile Include="Application\Services\Authentication\LoginService.cs" />
+    <Compile Include="Application\Services\Authentication\RegisterService.cs" />
+    <Compile Include="Application\Services\User\AccountService.cs" />
+    <Compile Include="Application\Services\User\IAccountService.cs" />
+    <Compile Include="Application\Services\User\IMemberService.cs" />
+    <Compile Include="Application\Services\User\IVolunteerService.cs" />
+    <Compile Include="Application\Services\User\MemberService.cs" />
+    <Compile Include="Application\Services\User\VolunteerService.cs" />
+    <Compile Include="Application\Stores\AuthenticationStore.cs" />
+    <Compile Include="Application\Stores\IAuthenticationStore.cs" />
+    <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Application\Utility\Authentication\IProfileService.cs" />
+    <Compile Include="Application\Utility\Authentication\IUserProfileMapper.cs" />
+    <Compile Include="Application\Utility\Authentication\ProfileService.cs" />
+    <Compile Include="Application\Utility\Authentication\UserProfileMapper.cs" />
+    <Compile Include="Application\Utility\Navigation\ClosePopupNavigationService.cs" />
+    <Compile Include="Application\Utility\Navigation\INavigationService.cs" />
+    <Compile Include="Application\Utility\Navigation\NavigationService.cs" />
+    <Compile Include="Application\Utility\Navigation\NavigationServiceBase.cs" />
+    <Compile Include="Application\Utility\Navigation\PopupNavigationService.cs" />
+    <Compile Include="Application\Utility\Validators\IUserValidator.cs" />
+    <Compile Include="Application\Utility\Validators\UserValidator.cs" />
+    <Compile Include="Core\StringExtensions.cs" />
+    <Compile Include="Core\Unsubscriber.cs" />
+    <Compile Include="Domain\Constants.cs" />
+    <Compile Include="Domain\Model\Admin.cs" />
+    <Compile Include="Domain\Model\Entity.cs" />
+    <Compile Include="Domain\Model\IEntity.cs" />
+    <Compile Include="Domain\Model\LastId.cs" />
+    <Compile Include="Domain\Model\Person.cs" />
+    <Compile Include="Domain\Model\PersonProfileMapping.cs" />
+    <Compile Include="Domain\Model\Profile.cs" />
+    <Compile Include="Domain\Model\Member.cs" />
+    <Compile Include="Domain\Model\UserType.cs" />
+    <Compile Include="Domain\Model\ValidationError.cs" />
+    <Compile Include="Domain\Model\Volunteer.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IPersonProfileMappingRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IVolunteerRepository.cs" />
     <Compile Include="HostBuilders\AddRepositoriesHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddServicesHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
+    <Compile Include="Repositories\Json\AutoIdRepository.cs" />
+    <Compile Include="Repositories\Constants.cs" />
+    <Compile Include="Repositories\Json\DirectorRepository.cs" />
+    <Compile Include="Repositories\Json\PersonProfileMappingRepository.cs" />
+    <Compile Include="Repositories\Json\ProfileRepository.cs" />
+    <Compile Include="Repositories\Json\Repository.cs" />
+    <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
+    <Compile Include="Repositories\Util\JsonUtil.cs" />
+    <Compile Include="Repositories\Json\MemberRepository.cs" />
+    <Compile Include="Repositories\Json\VolunteerRepository.cs" />
     <Compile Include="WPF\MVVM\CreateViewModel.cs" />
     <Compile Include="WPF\MVVM\INavigableDataContext.cs" />
     <Compile Include="WPF\MVVM\NavigableWindow.cs" />
@@ -185,10 +244,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WPF\ViewModels\Common\LoginViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
     <Compile Include="WPF\ViewModels\Factories\IAnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
+    <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
+    <Compile Include="WPF\Views\LoggedUser\CreatePost.xaml.cs">
+      <DependentUpon>CreatePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Common\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Common\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Views\Factories\IAnimalHelpWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\AnimalHelpWindowFactory.cs" />
@@ -216,10 +287,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="WPF\Views\LoggedUser\CreatePost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Common\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Views\Common\RegisterWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WPF\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Application\Services\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
