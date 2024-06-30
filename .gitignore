@@ -18,6 +18,7 @@ AnimalHelp/Data
 AnimalHelp/Properties
 Data
 
+*.zip
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
