@@ -1,46 +1,52 @@
-﻿using System.Security.Principal;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LangLang.Domain.Model
+namespace AnimalHelp.Domain.Model;
+
+public class AdoptionRequest : IEntity
 {
-    public class CourseApplication
+    public string Id { get; set; }
+    public string Message { get; set; }
+    public AdoptionRequestStatus State { get; set; }
+    public AdoptionType Type { get; set; }
+    public string PostId { get; set; }
+    public string UserId { get; set; }
+
+    public AdoptionRequest()
     {
-        public string Id { get; set; }
-        public enum State
-        {
-            Pending, Rejected, Accepted, Paused
-        }
-        public string CourseId { get; set; }
-        public string StudentId { get; set; }
-        public State CourseApplicationState { get; set; }
-        public CourseApplication()
-        {
-            Id = "";
-            CourseId = "";
-            StudentId = "";
-            CourseApplicationState = State.Pending;
-
-        }
-
-        public CourseApplication(string studentId, string courseId, State courseApplicationState)
-        {
-            Id = "";
-            CourseId = courseId;
-            StudentId = studentId;
-            CourseApplicationState = courseApplicationState;
-        }
-
-        public CourseApplication(string id, string courseId, string studentId, State courseApplicationState)
-        {
-            Id = id;
-            CourseId = courseId;
-            StudentId = studentId;
-            CourseApplicationState = courseApplicationState;
-        }
-        public void ChangeApplicationState(State courseApplicationState)
-        {
-            CourseApplicationState = courseApplicationState;
-        }
-
-
+        Id = "";
+        Message = "";
+        State = AdoptionRequestStatus.InReview;
+        Type = AdoptionType.ForeverHome;
+        PostId = "";
+        UserId = "";
     }
+    public AdoptionRequest(string message, AdoptionRequestStatus state, AdoptionType type, string postId, string userId)
+    {
+        Id = "";
+        Message = message;
+        State = state;
+        Type = type;
+        PostId = postId;
+        UserId = userId;
+    }
+    public AdoptionRequest(string id, string message, AdoptionRequestStatus state, AdoptionType type, string postId, string userId)
+    {
+        Id = id;
+        Message = message;
+        State = state;
+        Type = type;
+        PostId = postId;
+        UserId = userId;
+    }
+    public void ChangeRequestState(AdoptionRequestStatus state)
+    {
+        State = state;
+    }
+
+
+
 }

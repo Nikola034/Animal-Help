@@ -168,6 +168,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Domain\Model\Adoption.cs" />
+    <Compile Include="Domain\Model\AdoptionRequest.cs" />
+    <Compile Include="Domain\Model\AdoptionRequestStatus.cs" />
+    <Compile Include="Domain\Model\AdoptionType.cs" />
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
     <Compile Include="Domain\Model\Comment.cs" />
@@ -284,6 +288,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\Admin.json" />
+    <None Include="Data\Members.json" />
+    <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +314,9 @@
   <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\Id\AdminId.txt" />
+    <Resource Include="Data\Id\UserId.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
