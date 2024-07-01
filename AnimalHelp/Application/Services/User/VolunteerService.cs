@@ -23,7 +23,7 @@ namespace AnimalHelp.Application.UseCases.User
 
         public void DeleteAccount(Volunteer volunteer) => _volunteerRepository.Delete(volunteer.Id);
 
-        public bool UpdateVolunteer(Volunteer volunteer, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined)
+        public bool UpdateVolunteer(Volunteer volunteer, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined, string email)
         {
             volunteer.Name = name;
             volunteer.Surname = surname;
@@ -32,6 +32,7 @@ namespace AnimalHelp.Application.UseCases.User
             volunteer.Gender = gender;
             volunteer.PhoneNumber = phoneNumber;
             volunteer.DateJoined = dateJoined;
+            volunteer.Profile.Email = email;
 
             _volunteerRepository.Update(volunteer.Id, volunteer);
             return true;

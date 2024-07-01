@@ -1,14 +1,9 @@
-using System.Windows;
 using AnimalHelp.HostBuilders;
-using AnimalHelp.WPF.ViewModels.Volounteer;
-using AnimalHelp.WPF.Views;
-using AnimalHelp.WPF.Views.Common;
-using AnimalHelp.WPF.Views.Member;
-using AnimalHelp.WPF.Views.Volounteer;
 using AnimalHelp.WPF.Views.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Windows;
 
 namespace AnimalHelp
 {
@@ -30,7 +25,7 @@ namespace AnimalHelp
             _host.Start();
             Window window = _host.Services.GetRequiredService<LoginWindow>();
             window.Show();
-            
+
             base.OnStartup(e);
         }
         protected override void OnExit(ExitEventArgs e)
