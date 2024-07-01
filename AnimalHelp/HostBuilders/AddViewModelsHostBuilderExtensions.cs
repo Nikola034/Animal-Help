@@ -2,6 +2,7 @@
 using AnimalHelp.WPF.ViewModels;
 using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Common;
+using AnimalHelp.WPF.ViewModels.Donations;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Member;
 using AnimalHelp.WPF.ViewModels.Volounteer;
@@ -25,6 +26,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<VolunteerRegistrationViewModel>();
             services.AddScoped<MemberMenuViewModel>();
             services.AddScoped<VolounteerMenuViewModel>();
+            services.AddTransient<CreateDonationViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -41,6 +43,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<CreateViewModel<CreatePostViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<CreatePostViewModel>
             );
+
             services.AddScoped<CreateViewModel<AdminMenuViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AdminMenuViewModel>
             );
@@ -54,6 +57,10 @@ public static class AddViewModelsHostBuilderExtensions
             );
             services.AddScoped<CreateViewModel<VolounteerMenuViewModel>>(
                 servicesProvider => servicesProvider.GetRequiredService<VolounteerMenuViewModel>
+            );
+            
+            services.AddScoped<CreateViewModel<CreateDonationViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<CreateDonationViewModel>
             );
         });
 

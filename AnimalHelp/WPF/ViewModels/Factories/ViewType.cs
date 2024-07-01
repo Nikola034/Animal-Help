@@ -9,5 +9,6 @@ public enum ViewType
     Admin,
     VolunteerTable,
     VolounteerMenu,
-    MemberMenu
+    MemberMenu,
+    CreateDonation,
 }
