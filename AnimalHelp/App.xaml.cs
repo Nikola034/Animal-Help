@@ -25,7 +25,7 @@ namespace AnimalHelp
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            Window window = _host.Services.GetRequiredService<CreatePostWindow>();
+            Window window = _host.Services.GetRequiredService<MemberMenuWindow>();
             window.Show();
             
             base.OnStartup(e);

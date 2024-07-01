@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -6,9 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using AnimalHelp.Application.DTO;
 using AnimalHelp.Application.Services.Post;
-=======
 ﻿using AnimalHelp.Application.DTO;
->>>>>>> dc231a7ae30a6da80d6cb8108d6dfa94f2720c33
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.Utility.Navigation;

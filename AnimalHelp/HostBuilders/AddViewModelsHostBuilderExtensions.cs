@@ -22,6 +22,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<CreatePostViewModel>();
             services.AddScoped<AdminMenuViewModel>();
             services.AddScoped<VolunteerRegistrationViewModel>();
+            services.AddScoped<MemberMenuViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -37,12 +38,17 @@ public static class AddViewModelsHostBuilderExtensions
 
             services.AddScoped<CreateViewModel<CreatePostViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<CreatePostViewModel>
+            );
             services.AddScoped<CreateViewModel<AdminMenuViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AdminMenuViewModel>
             );
 
             services.AddScoped<CreateViewModel<VolunteerRegistrationViewModel>>(
                 servicesProvider => servicesProvider.GetRequiredService<VolunteerRegistrationViewModel>
+            );
+
+            services.AddScoped<CreateViewModel<MemberMenuViewModel>>(
+                servicesProvider => servicesProvider.GetRequiredService<MemberMenuViewModel>
             );
         });
 
