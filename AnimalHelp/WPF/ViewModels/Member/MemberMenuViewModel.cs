@@ -69,7 +69,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             NavigationStore = navigationStore;
             NavCommand = new RelayCommand(execute => OnNav(execute as string));
             _viewModelFactory = viewModelFactory;
-            currentViewModel = FeedViewModel;
+            currentViewModel = CreatePostViewModel;
         }
 
         private void OnNav(string? destination)

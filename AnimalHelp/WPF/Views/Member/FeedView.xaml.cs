@@ -25,10 +25,9 @@ namespace AnimalHelp.WPF.Views.Member
     /// </summary>
     public partial class FeedView : UserControl
     {
-        public FeedView(IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
+        public FeedView()
         {
             InitializeComponent();
-            DataContext = new FeedViewModel(authenticationStore, memberService, postService, navigationService, navigationStore);
             DataContextChanged += new DependencyPropertyChangedEventHandler(SubscribeToEvents);
         }
 

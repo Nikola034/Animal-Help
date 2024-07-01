@@ -50,10 +50,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
             posts = _postService.GetAll();
             foreach (Domain.Model.Post post in posts)
             {
-                if(post.Status == PostStatus.Approved)
-                {
+                
                     Posts.Add(post);
-                }
+                
             }
         }
     }

@@ -14,10 +14,14 @@
                         <Border BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="10">
                             <StackPanel>
                                 <TextBlock Text="{Binding State}" FontWeight="Bold" />
+                                <Label Content="Publish date: " FontWeight="Bold"></Label>
                                 <TextBlock Text="{Binding PublishDate}" />
+                                <Label Content="Status: " FontWeight="Bold"></Label>
                                 <TextBlock Text="{Binding Status}" />
+                                <Label Content="Description: " FontWeight="Bold"></Label>
                                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,5,0,5"/>
-                                <TextBlock Text="Likes: {Binding Likes}" />
+                                <Label Content="Likes: " FontWeight="Bold"></Label>
+                                <TextBlock Text="{Binding Likes}" />
                                 <TextBlock Text="Comments:" FontWeight="Bold" Margin="0,5,0,5"/>
                                 <ItemsControl ItemsSource="{Binding Comments}">
                                     <ItemsControl.ItemTemplate>
