@@ -289,6 +289,7 @@
     <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\ApprovePostsViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VolounteerMenuViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
       <DependentUpon>AdminMenuWindow.xaml</DependentUpon>
@@ -324,6 +325,9 @@
     </Compile>
     <Compile Include="WPF\Views\Member\MemberMenuWindow.xaml.cs">
       <DependentUpon>MemberMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Volounteer\ApprovePosts.xaml.cs">
+      <DependentUpon>ApprovePosts.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Volounteer\VolounteerMenuWindow.xaml.cs">
       <DependentUpon>VolounteerMenuWindow.xaml</DependentUpon>
@@ -371,6 +375,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\Views\Member\MemberMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Volounteer\ApprovePosts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

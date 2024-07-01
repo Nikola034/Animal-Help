@@ -58,7 +58,20 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 return feedViewModel;
             }
         }
+        private ApprovePostsViewModel? approvePostsViewModel;
 
+        private ApprovePostsViewModel ApprovePostsViewModel
+        {
+            get
+            {
+                if (approvePostsViewModel == null)
+                {
+                    approvePostsViewModel = (ApprovePostsViewModel)_viewModelFactory.CreateViewModel(ViewType.ApprovePosts);
+                }
+
+                return approvePostsViewModel;
+            }
+        }
         public VolounteerMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
         {
             _memberService = memberService;
@@ -75,6 +88,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             {
                 "posts" => CreatePostViewModel,
                 "feed" => FeedViewModel,
+                "approve" => ApprovePostsViewModel,
                 _ => CurrentViewModel
             };
         }
