@@ -48,11 +48,23 @@ namespace AnimalHelp.WPF.ViewModels.Member
             List<Domain.Model.Post> posts;
 
             posts = _postService.GetAll();
-            foreach (Domain.Model.Post post in posts)
+
+            if (_authenticationStore.CurrentUser.UserType == UserType.Member)
             {
-                
+                foreach (Domain.Model.Post post in posts)
+                {
+                    if (post.Status == PostStatus.Approved)
+                    {
+                        Posts.Add(post);
+                    }
+                }
+            }
+            else if (_authenticationStore.CurrentUser.UserType == UserType.Volunteer)
+            {
+                foreach (Domain.Model.Post post in posts)
+                {
                     Posts.Add(post);
-                
+                }
             }
         }
     }
