@@ -173,10 +173,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\Services\Post\IPostService.cs" />
+    <Compile Include="Application\Services\Post\PostService.cs" />
+    <Compile Include="Application\Services\DonationServices\DonationService.cs" />
+    <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
     <Compile Include="Domain\Model\Comment.cs" />
+    <Compile Include="Domain\Model\Donation.cs" />
     <Compile Include="Domain\Model\HealthCondition.cs" />
     <Compile Include="Domain\Model\HealthState.cs" />
     <Compile Include="Domain\Model\Location.cs" />
@@ -224,6 +229,8 @@
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
@@ -235,7 +242,9 @@
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
+    <Compile Include="Repositories\Json\PostRepository.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
+    <Compile Include="Repositories\Json\DonationRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
     <Compile Include="Repositories\Util\JsonUtil.cs" />
@@ -254,15 +263,22 @@
     <Compile Include="WPF\ViewModels\Admin\VolunteerRegistrationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\LoginViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Donations\CreateDonationViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Donations\DonationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Factories\IAnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
       <DependentUpon>AdminMenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Admin\VolunteerRegistrationView.xaml.cs">
       <DependentUpon>VolunteerRegistrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Donations\CreateDonationWindow.xaml.cs">
+      <DependentUpon>CreateDonationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Common\LoginWindow.xaml.cs">
@@ -274,32 +290,26 @@
     <Compile Include="WPF\Views\Factories\IAnimalHelpWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\AnimalHelpWindowFactory.cs" />
-    <Compile Include="WPF\Views\LoggedUser\CreatePostWindow.xaml.cs">
+    <Compile Include="WPF\Views\Member\CreatePostView.xaml.cs">
+      <DependentUpon>CreatePostView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Member\CreatePostWindow.xaml.cs">
       <DependentUpon>CreatePostWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
+    <Compile Include="WPF\Views\Member\MemberMenuWindow.xaml.cs">
+      <DependentUpon>MemberMenuWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Data\Admin.json" />
     <None Include="Data\Members.json" />
+    <None Include="Data\Posts.json" />
+    <None Include="Data\Profiles.json" />
+    <None Include="Data\Admin.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -320,7 +330,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="WPF\Views\LoggedUser\CreatePostWindow.xaml">
+    <Page Include="WPF\Views\Member\CreatePostView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Donations\CreateDonationWindow.xaml" />
+    <Page Include="WPF\Views\Member\CreatePostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,6 +343,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WPF\Views\Member\MemberMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Id\PostId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />

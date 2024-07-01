@@ -5,6 +5,8 @@ public enum ViewType
     Login,
     Register,
     Main,
+    CreatePost,
     Admin,
-    VolunteerTable
+    VolunteerTable,
+    CreateDonation,
 }

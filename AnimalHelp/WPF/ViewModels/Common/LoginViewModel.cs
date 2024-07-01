@@ -1,3 +1,10 @@
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Windows;
+using System.Windows.Input;
+using AnimalHelp.Application.DTO;
+using AnimalHelp.Application.Services.Post;
 ﻿using AnimalHelp.Application.DTO;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
@@ -21,7 +28,6 @@ namespace AnimalHelp.WPF.ViewModels.Common
 
         private readonly ILoginService _loginService;
         private readonly INavigationService _navigationService;
-
         public NavigationStore NavigationStore { get; }
 
         public ICommand LoginCommand { get; }
