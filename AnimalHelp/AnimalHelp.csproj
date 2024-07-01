@@ -173,11 +173,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\Services\AdoptionServices\AdoptionRequestService.cs" />
+    <Compile Include="Application\Services\AdoptionServices\AdoptionService.cs" />
+    <Compile Include="Application\Services\AdoptionServices\IAdoptionRequestService.cs" />
+    <Compile Include="Application\Services\AdoptionServices\IAdoptionService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Domain\Model\Adoption.cs" />
+    <Compile Include="Domain\Model\AdoptionRequest.cs" />
+    <Compile Include="Domain\Model\AdoptionRequestStatus.cs" />
+    <Compile Include="Domain\Model\AdoptionType.cs" />
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
     <Compile Include="Domain\Model\Comment.cs" />
@@ -231,6 +239,8 @@
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdoptionRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdoptionRequestRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
@@ -240,6 +250,8 @@
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
+    <Compile Include="Repositories\Json\AdoptionRepository.cs" />
+    <Compile Include="Repositories\Json\AdoptionRequestRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />
@@ -311,8 +323,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Data\Members.json" />
-    <None Include="Data\Posts.json" />
-    <None Include="Data\Profiles.json" />
     <None Include="Data\Admin.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
@@ -357,9 +367,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\PostId.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +375,9 @@
   <ItemGroup>
     <Resource Include="Data\Id\AdminId.txt" />
     <Resource Include="Data\Id\UserId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Id\PostId.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
