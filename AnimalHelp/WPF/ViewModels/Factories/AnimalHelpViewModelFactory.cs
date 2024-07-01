@@ -21,6 +21,7 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<VolounteerMenuViewModel> _createVolunteerMenuViewModel;
     private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
     private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
+    private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
@@ -29,7 +30,8 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
         CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
         CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
-        CreateViewModel<CreateDonationViewModel>  createDonationViewModel
+        CreateViewModel<CreateDonationViewModel>  createDonationViewModel,
+        CreateViewModel<FeedViewModel> createFeedViewModel
         )
     {
         _createMainViewModel = createMainViewModel;
@@ -41,6 +43,7 @@ public class AnimalHelpViewModelFactory
         _createVolunteerMenuViewModel = createVolunteerMenuViewModel;
         _createMemberMenuViewModel = createMemberMenuViewModel;
         _createDonationViewModel = createDonationViewModel;
+        _createFeedViewModel = createFeedViewModel;
     }
 
     public ViewModelBase CreateViewModel(ViewType viewType)
@@ -56,6 +59,7 @@ public class AnimalHelpViewModelFactory
             ViewType.VolounteerMenu => _createVolunteerMenuViewModel(),
             ViewType.MemberMenu => _createMemberMenuViewModel(),
             ViewType.CreateDonation => _createDonationViewModel(),
+            ViewType.Feed => _createFeedViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

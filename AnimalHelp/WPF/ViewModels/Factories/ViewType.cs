@@ -11,4 +11,5 @@ public enum ViewType
     VolounteerMenu,
     MemberMenu,
     CreateDonation,
+    Feed
 }
