@@ -43,7 +43,6 @@ public class AnimalHelpViewModelFactory
         _createDonationViewModel = createDonationViewModel;
     }
 
-
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
         return viewType switch

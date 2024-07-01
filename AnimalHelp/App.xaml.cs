@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using AnimalHelp.HostBuilders;
 using AnimalHelp.WPF.ViewModels.Volounteer;
 using AnimalHelp.WPF.Views;
