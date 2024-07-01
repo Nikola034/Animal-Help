@@ -24,7 +24,6 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IMemberService, MemberService>();
             services.AddSingleton<IVolunteerService, VolunteerService>();
-            services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
             services.AddSingleton<IPostService, PostService>();
             services.AddSingleton<IDonationService, DonationService>();
             services.AddSingleton<IAdoptionCentreService, AdoptionCentreService>();
