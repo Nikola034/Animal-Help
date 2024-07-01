@@ -1,4 +1,5 @@
-﻿using AnimalHelp.Application.Services.Post;
+﻿using AnimalHelp.Application.Services.AdoptionCentre;
+using AnimalHelp.Application.Services.Post;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
@@ -39,6 +40,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
         private readonly IMemberService _memberService;
         private readonly IPostService _postService;
+        private readonly IAnimalService _animalService;
         private readonly INavigationService _navigationService;
         private readonly IAuthenticationStore _authenticationStore;
 
@@ -82,14 +84,22 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
 
+        private Animal _selectedAnimal;
+        public Animal SelectedAnimal
+        {
+            get => _selectedAnimal;
+            set => SetField(ref _selectedAnimal, value);
+        }
+
         public NavigationStore NavigationStore { get; }
 
 
-        public CreatePostViewModel(IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
+        public CreatePostViewModel(IAuthenticationStore authenticationStore, IAnimalService animalService, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
         {
             _authenticationStore = authenticationStore;
             _memberService = memberService;
             _postService = postService;
+            _animalService = animalService;
             _navigationService = navigationService;
             NavigationStore = navigationStore;
             
@@ -125,12 +135,12 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
         private void LoadAnimals()
         {
-            //Animals.Clear();
-            //List<Domain.Model.Animal> animals;
+            Animals.Clear();
+            List<Domain.Model.Animal> animals;
 
-            //animals = _animalService.GetAll();
-            //foreach (Domain.Model.Animal animal in animals)
-            //    Posts.Add(animal);
+            animals = _animalService.GetAll();
+            foreach (Domain.Model.Animal animal in animals)
+                Animals.Add(animal);
         }
 
         public string? ErrorDescriptionRequired
@@ -189,9 +199,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
             string? description = Description;
             List<Photo>? photos = ChosenPhotos.ToList();
-            Animal? animal = Animal;
+            Animal? animal = SelectedAnimal;
 
-            if(Description == null || Animal == null)
+            if(description == null || animal == null)
             {
                 return;
             }
@@ -217,7 +227,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             if (SelectedItem == null)
                 return;
 
-            Domain.Model.Post post = _postService.Update(SelectedItem.Id, new Post(SelectedItem.Id, Description, ChosenPhotos.ToList(), Animal));
+            Domain.Model.Post post = _postService.Update(SelectedItem.Id, new Post(SelectedItem.Id, Description, ChosenPhotos.ToList(), SelectedAnimal));
 
             if (_authenticationStore.CurrentUser.UserType == UserType.Member)
             {

@@ -174,7 +174,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\Services\AdoptionCentre\AdoptionCentreService.cs" />
+    <Compile Include="Application\Services\AdoptionCentre\AnimalService.cs" />
     <Compile Include="Application\Services\AdoptionCentre\IAdoptionCentreService.cs" />
+    <Compile Include="Application\Services\AdoptionCentre\IAnimalService.cs" />
     <Compile Include="Application\Services\AdoptionServices\AdoptionRequestService.cs" />
     <Compile Include="Application\Services\AdoptionServices\AdoptionService.cs" />
     <Compile Include="Application\Services\AdoptionServices\IAdoptionRequestService.cs" />
@@ -241,6 +243,7 @@
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionCentreRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAnimalRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionRepository.cs" />
@@ -257,6 +260,7 @@
     <Compile Include="Repositories\Json\AdoptionCentreRepository.cs" />
     <Compile Include="Repositories\Json\AdoptionRepository.cs" />
     <Compile Include="Repositories\Json\AdoptionRequestRepository.cs" />
+    <Compile Include="Repositories\Json\AnimalRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />

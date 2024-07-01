@@ -29,6 +29,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IAdoptionCentreService, AdoptionCentreService>();
             services.AddSingleton<IAdoptionService, AdoptionService>();
             services.AddSingleton<IAdoptionRequestService, AdoptionRequestService>();
+            services.AddSingleton<IAnimalService, AnimalService>();
         });
 
         return host;
