@@ -47,7 +47,6 @@ public class AnimalHelpViewModelFactory
         _createFeedViewModel = createFeedViewModel;
         _createApprovePostsViewModel = createApprovePostsViewModel;
     }
-
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
         return viewType switch
