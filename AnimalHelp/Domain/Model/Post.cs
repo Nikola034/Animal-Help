@@ -34,7 +34,7 @@ namespace AnimalHelp.Domain.Model
             Animal = new Animal();
         }
 
-        public Post(string description, List<Comment> comments, List<Photo> photos, Animal animal)
+        public Post(string description, List<Photo> photos, Animal animal)
         {
             Id = "0";
             State = PostState.AvailableToAdopt;
@@ -42,12 +42,12 @@ namespace AnimalHelp.Domain.Model
             Status = PostStatus.PendingApproval;
             Description = description;
             Likes = 0;
-            Comments = comments;
+            Comments = null;
             Photos = photos;
             Animal = animal;
         }
 
-        public Post(string id, string description, List<Comment> comments, List<Photo> photos, Animal animal)
+        public Post(string id, string description, List<Photo> photos, Animal animal)
         {
             Id = id;
             State = PostState.AvailableToAdopt;
@@ -55,7 +55,7 @@ namespace AnimalHelp.Domain.Model
             Status = PostStatus.PendingApproval;
             Description = description;
             Likes = 0;
-            Comments = comments;
+            Comments = null;
             Photos = photos;
             Animal = animal;
         }
