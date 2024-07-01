@@ -27,6 +27,17 @@ public class Adoption : IEntity
         Postid = "";
         UserId = "";
     }
+    // Add new adoption sets ratings to 0
+    public Adoption(AdoptionType type, bool isActive, string postid, string userId)
+    {
+        Id = "";
+        Type = type;
+        IsActive = isActive;
+        AnimalRating = 0;
+        MemberRating = 0;
+        Postid = postid;
+        UserId = userId;
+    }
     public Adoption(AdoptionType type, bool isActive, int animalRating, int memberRating, string postid, string userId)
     {
         Id = "";
@@ -51,6 +62,15 @@ public class Adoption : IEntity
     public void ChangeAdoptionState(bool isActive)
     {
         IsActive = isActive;
+    }
+
+    public void RateAnimal(int rating)
+    {
+        AnimalRating = rating;
+    }
+    public void RateMember(int rating)
+    {
+        MemberRating = rating;
     }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AnimalHelp.Domain.RepositoryInterfaces;
 
-internal interface IAdoptionRequestRepository : IRepository<AdoptionRequest>
+public interface IAdoptionRequestRepository : IRepository<AdoptionRequest>
 {
     public List<AdoptionRequest> GetByUserId(string id);
     public List<AdoptionRequest> GetByPostId(string id);

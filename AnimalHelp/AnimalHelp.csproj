@@ -173,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\Services\AdoptionServices\AdoptionRequestService.cs" />
+    <Compile Include="Application\Services\AdoptionServices\AdoptionService.cs" />
+    <Compile Include="Application\Services\AdoptionServices\IAdoptionRequestService.cs" />
+    <Compile Include="Application\Services\AdoptionServices\IAdoptionService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
@@ -315,8 +319,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Data\Members.json" />
-    <None Include="Data\Posts.json" />
-    <None Include="Data\Profiles.json" />
     <None Include="Data\Admin.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
@@ -357,9 +359,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\PostId.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +367,9 @@
   <ItemGroup>
     <Resource Include="Data\Id\AdminId.txt" />
     <Resource Include="Data\Id\UserId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Id\PostId.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

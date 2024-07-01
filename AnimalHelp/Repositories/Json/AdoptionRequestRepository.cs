@@ -4,64 +4,63 @@ using AnimalHelp.Domain.Model;
 using AnimalHelp.Domain.RepositoryInterfaces;
 using System.Collections.Generic;
 
-namespace AnimalHelp.Repositories.Json
+namespace AnimalHelp.Repositories.Json;
+
+public class AdoptionRequestRepository : AutoIdRepository<AdoptionRequest>, IAdoptionRequestRepository
 {
-    public class AdoptionRequestRepository : AutoIdRepository<AdoptionRequest>, IAdoptionRequestRepository
+    public AdoptionRequestRepository(string filepath, string lastIdFilePath) : base(filepath, lastIdFilePath)
     {
-        public AdoptionRequestRepository(string filepath, string lastIdFilePath) : base(filepath, lastIdFilePath)
-        {
-        }
+    }
 
-        public List<AdoptionRequest> GetByPostId(string id)
+    public List<AdoptionRequest> GetByPostId(string id)
+    {
+        List<AdoptionRequest> requests = new();
+        foreach(AdoptionRequest request in GetAll())
         {
-            List<AdoptionRequest> requests = new();
-            foreach(AdoptionRequest request in GetAll())
+            if(request.PostId == id)
             {
-                if(request.PostId == id)
-                {
-                    requests.Add(request);
-                }
+                requests.Add(request);
             }
-            return requests;
         }
+        return requests;
+    }
 
-        public List<AdoptionRequest> GetByStatus(AdoptionRequestStatus status)
+    public List<AdoptionRequest> GetByStatus(AdoptionRequestStatus status)
+    {
+        List<AdoptionRequest> requests = new();
+        foreach (AdoptionRequest request in GetAll())
         {
-            List<AdoptionRequest> requests = new();
-            foreach (AdoptionRequest request in GetAll())
+            if (request.Status == status)
             {
-                if (request.Status == status)
-                {
-                    requests.Add(request);
-                }
+                requests.Add(request);
             }
-            return requests;
         }
+        return requests;
+    }
 
-        public List<AdoptionRequest> GetByType(AdoptionType type)
+    public List<AdoptionRequest> GetByType(AdoptionType type)
+    {
+        List<AdoptionRequest> requests = new();
+        foreach (AdoptionRequest request in GetAll())
         {
-            List<AdoptionRequest> requests = new();
-            foreach (AdoptionRequest request in GetAll())
+            if (request.Type == type)
             {
-                if (request.Type == type)
-                {
-                    requests.Add(request);
-                }
+                requests.Add(request);
             }
-            return requests;
         }
+        return requests;
+    }
 
-        public List<AdoptionRequest> GetByUserId(string id)
+    public List<AdoptionRequest> GetByUserId(string id)
+    {
+        List<AdoptionRequest> requests = new();
+        foreach (AdoptionRequest request in GetAll())
         {
-            List<AdoptionRequest> requests = new();
-            foreach (AdoptionRequest request in GetAll())
+            if (request.UserId == id)
             {
-                if (request.UserId == id)
-                {
-                    requests.Add(request);
-                }
+                requests.Add(request);
             }
-            return requests;
         }
+        return requests;
     }
 }
