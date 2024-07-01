@@ -1,4 +1,6 @@
-﻿using AnimalHelp.Application.UseCases.Authentication;
+using AnimalHelp.Application.Services.Post;
+using AnimalHelp.Application.Services.DonationServices;
+using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Application.Utility.Validators;
@@ -18,11 +20,10 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IUserValidator, UserValidator>();
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<INavigationService, NavigationService>();
-
-
             services.AddSingleton<IMemberService, MemberService>();
             services.AddSingleton<IVolunteerService, VolunteerService>();
-
+            services.AddSingleton<IPostService, PostService>();
+            services.AddSingleton<IDonationService, DonationService>();
         });
 
         return host;

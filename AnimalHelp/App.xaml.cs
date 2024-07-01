@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using AnimalHelp.HostBuilders;
-using AnimalHelp.WPF.Views;
 using AnimalHelp.WPF.Views.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

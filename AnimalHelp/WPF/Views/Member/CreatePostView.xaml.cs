@@ -10,21 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AnimalHelp.WPF.Views.LoggedUser
+namespace AnimalHelp.WPF.Views.Member
 {
     /// <summary>
-    /// Interaction logic for CreatePostWindow.xaml
+    /// Interaction logic for CreatePostView.xaml
     /// </summary>
-    public partial class CreatePostWindow : Window
+    public partial class CreatePostView : UserControl
     {
-        public CreatePostWindow()
+        public CreatePostView()
         {
             InitializeComponent();
+            DataContextChanged += new DependencyPropertyChangedEventHandler(SubscribeToEvents);
         }
-
-        private void SavePostButton_Click(object sender, RoutedEventArgs e)
+        public void SubscribeToEvents(object sender, DependencyPropertyChangedEventArgs e)
         {
 
         }
