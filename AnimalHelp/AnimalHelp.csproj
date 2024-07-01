@@ -231,7 +231,6 @@
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
-    <Compile Include="Domain\RepositoryInterfaces\IPersonProfileMappingRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
@@ -245,10 +244,7 @@
     <Compile Include="Repositories\Constants.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
-    <Compile Include="Repositories\Json\DirectorRepository.cs" />
     <Compile Include="Repositories\Json\DonationRepository.cs" />
-    <Compile Include="Repositories\Json\PersonProfileMappingRepository.cs" />
-    <Compile Include="Repositories\Json\ProfileRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
     <Compile Include="Repositories\Util\JsonUtil.cs" />
@@ -311,7 +307,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Data\Members.json" />
-    <None Include="Data\PersonProfile.json" />
     <None Include="Data\Posts.json" />
     <None Include="Data\Profiles.json" />
     <None Include="Data\Admin.json" />
@@ -365,10 +360,6 @@
   <ItemGroup>
     <Resource Include="Data\Id\AdminId.txt" />
     <Resource Include="Data\Id\UserId.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Data\Donations.json" />
-    <Content Include="Data\Id\DonationId.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
