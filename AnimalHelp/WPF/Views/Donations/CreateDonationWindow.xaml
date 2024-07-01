@@ -1,0 +1,38 @@
+﻿<mvvm:NavigableWindow x:Class="AnimalHelp.WPF.Views.Donations.CreateDonationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM"
+        xmlns:donations="clr-namespace:AnimalHelp.WPF.ViewModels.Donations"
+        d:DataContext="{d:DesignInstance Type=donations:CreateDonationViewModel}"
+        mc:Ignorable="d"
+        Title="Create Donation" Height="300" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Description" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+        
+        <TextBlock Grid.Row="2" Text="From" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="3" Text="{Binding From, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+        
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,10">
+            <CheckBox Content="Is Anonymous" IsChecked="{Binding IsAnonymous}" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <TextBlock Grid.Row="5" Text="Select Post" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="6" ItemsSource="{Binding Posts}" SelectedItem="{Binding SelectedPost}" DisplayMemberPath="PostTitle" Margin="0,0,0,10"/>
+        
+        <Button Grid.Row="7" Content="Save" Command="{Binding SaveCommand}" Width="Auto" Margin="0,0,0,10"/>
+    </Grid>
+</mvvm:NavigableWindow>
