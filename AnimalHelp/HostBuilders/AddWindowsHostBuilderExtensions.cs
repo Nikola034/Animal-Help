@@ -1,6 +1,7 @@
 ﻿using AnimalHelp.WPF.Views;
 using AnimalHelp.WPF.Views.Common;
 using AnimalHelp.WPF.Views.Factories;
+using AnimalHelp.WPF.Views.Member;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,6 +15,7 @@ public static class AddWindowsHostBuilderExtensions
         {
             services.AddSingleton<IAnimalHelpWindowFactory, AnimalHelpWindowFactory>();
             services.AddTransient<LoginWindow>();
+            services.AddTransient<MemberMenuWindow>();
         });
         
         return host;

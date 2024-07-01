@@ -2,7 +2,6 @@
 using AnimalHelp.Domain.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace AnimalHelp.Application.UseCases.User
