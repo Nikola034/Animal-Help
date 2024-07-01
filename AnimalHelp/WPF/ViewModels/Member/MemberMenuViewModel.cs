@@ -47,6 +47,21 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
 
+        private FeedViewModel? feedViewModel;
+
+        private FeedViewModel FeedViewModel
+        {
+            get
+            {
+                if (feedViewModel == null)
+                {
+                    feedViewModel = (FeedViewModel)_viewModelFactory.CreateViewModel(ViewType.Feed);
+                }
+
+                return feedViewModel;
+            }
+        }
+
         public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
         {
             _memberService = memberService;
@@ -62,6 +77,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             CurrentViewModel = destination switch
             {
                 "posts" => CreatePostViewModel,
+                "feed" => FeedViewModel,
                 _ => CurrentViewModel
             };
         }

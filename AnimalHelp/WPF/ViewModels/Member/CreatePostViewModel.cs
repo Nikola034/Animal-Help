@@ -42,7 +42,16 @@ namespace AnimalHelp.WPF.ViewModels.Member
         private readonly INavigationService _navigationService;
         private readonly IAuthenticationStore _authenticationStore;
 
-        public ObservableCollection<Post> Posts { get; set; }
+        private ObservableCollection<Post> _posts;
+        public ObservableCollection<Post> Posts
+        {
+            get => _posts;
+            set
+            {
+                _posts = value;
+                OnPropertyChanged(nameof(Posts));
+            }
+        }
 
         public ObservableCollection<Animal> Animals { get; set; }
         public ObservableCollection<Photo> ChosenPhotos { get; set; }

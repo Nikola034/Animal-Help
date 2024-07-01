@@ -44,6 +44,21 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             }
         }
 
+        private FeedViewModel? feedViewModel;
+
+        private FeedViewModel FeedViewModel
+        {
+            get
+            {
+                if (feedViewModel == null)
+                {
+                    feedViewModel = (FeedViewModel)_viewModelFactory.CreateViewModel(ViewType.Feed);
+                }
+
+                return feedViewModel;
+            }
+        }
+
         public VolounteerMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
         {
             _memberService = memberService;
@@ -59,6 +74,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             CurrentViewModel = destination switch
             {
                 "posts" => CreatePostViewModel,
+                "feed" => FeedViewModel,
                 _ => CurrentViewModel
             };
         }

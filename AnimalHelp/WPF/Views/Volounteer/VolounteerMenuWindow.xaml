@@ -6,11 +6,16 @@
         xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
         xmlns:createPost="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
         xmlns:createPostView="clr-namespace:AnimalHelp.WPF.Views.Member"
+        xmlns:feed="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
+        xmlns:feedView="clr-namespace:AnimalHelp.WPF.Views.Member"
         mc:Ignorable="d"
         Title="VolounteerMenuWindow" Height="450" Width="800">
     <mvvm:NavigableWindow.Resources>
         <DataTemplate DataType="{x:Type createPost:CreatePostViewModel}">
             <createPostView:CreatePostView></createPostView:CreatePostView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type feed:FeedViewModel}">
+            <feedView:FeedView />
         </DataTemplate>
     </mvvm:NavigableWindow.Resources>
     <Grid>
@@ -40,6 +45,12 @@
             Command="{Binding NavCommand}" 
             Grid.Row="1"
             />
+                <Button Content="Feed" 
+Margin="20,10,20,10" 
+CommandParameter = "feed" 
+Command="{Binding NavCommand}" 
+Grid.Row="2"
+/>
                 <Button Content="Logout" Margin="20,10,20,10" Height="35"  Command="{Binding LogoutCommand}" Grid.Row="7" />
             </Grid>
 

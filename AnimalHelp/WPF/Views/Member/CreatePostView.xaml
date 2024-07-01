@@ -64,7 +64,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,0,0,75" Grid.RowSpan="3">
                         <Label Content="Photo URL:"/>
-                        <TextBox Margin="5,0,0,0" Name="tbPhotoUrl"  Text="{Binding Url}" Height="24" />
+                        <TextBox Margin="5,0,0,0" Name="tbPhotoUrl"  Text="{Binding PhotoURL}" Height="24" />
                         <Label Content="Photo description:"/>
                         <TextBox Margin="5,0,0,0" Name="tbPhotoDescription"  Text="{Binding PhotoDescription}" Height="27" />
                         <Button HorizontalAlignment="Left" Margin="5" Content="Add photo" Width="70" Command="{Binding AddPhotoCommand}" />

@@ -83,7 +83,7 @@ namespace AnimalHelp.WPF.ViewModels.Common
                     case UserType.Volunteer:
                         MessageBox.Show("Volunteer", "Success");
 
-                        //_navigationService.Navigate(ViewType.volunteer);
+                        _navigationService.Navigate(ViewType.VolounteerMenu);
                         break;
                     case UserType.Member:
                         MessageBox.Show("Member", "Success");
