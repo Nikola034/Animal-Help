@@ -17,14 +17,21 @@ public static class AddRepositoriesHostBuilderExtensions
             services.AddSingleton<IVolunteerRepository, VolunteerRepository>(_ =>
                 new VolunteerRepository(Constants.VolunteerFilePath, Constants.UserIdFilePath));
             services.AddSingleton<IAdminRepository, AdminRepository>(_ =>
-                new AdminRepository(Constants.AdminFilePath, Constants.AdminIdFilePath)); 
+                new AdminRepository(Constants.AdminFilePath, Constants.AdminIdFilePath));
+            services.AddSingleton<IPostRepository, PostRepository>(_ =>
+                new PostRepository(Constants.PostFilePath, Constants.PostIdFilePath));
+            services.AddSingleton<IDonationRepository, DonationRepository>(_ =>
+                new DonationRepository(Constants.DonationFilePath, Constants.DonationIdFilePath));
+            services.AddSingleton<IAdoptionCentreRepository, AdoptionCentreRepository>(_ =>
+                new AdoptionCentreRepository(Constants.AdoptionCentreFilePath, Constants.AdoptionCentreIdFilePath));
+            services.AddSingleton<IAdoptionRepository, AdoptionRepository>(_ =>
+                new AdoptionRepository(Constants.AdoptionFilePath, Constants.AdoptionIdFilePath));
+            services.AddSingleton<IAdoptionRequestRepository, AdoptionRequestRepository>(_ =>
+                new AdoptionRequestRepository(Constants.AdoptionRequestFilePath, Constants.AdoptionRequestFilePath));
             services.AddSingleton<IVolunteeringApplicationRepository, VolunteeringApplicationRepository>(_ =>
                 new VolunteeringApplicationRepository(Constants.VolunteeringApplicationFilePath, Constants.VolunteeringApplicationIdFilePath));
             services.AddSingleton<IVoteRepository, VoteRepository>(_ =>
                 new VoteRepository(Constants.VoteFilePath, Constants.VoteIdFilePath));
-
-
-
         });
 
         return host;

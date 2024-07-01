@@ -1,7 +1,7 @@
-﻿using System;
-using AnimalHelp.Domain.RepositoryInterfaces;
-using AnimalHelp.Application.DTO;
+﻿using AnimalHelp.Application.DTO;
 using AnimalHelp.Domain.Model;
+using AnimalHelp.Domain.RepositoryInterfaces;
+using System;
 
 
 namespace AnimalHelp.Application.UseCases.User
@@ -25,18 +25,19 @@ namespace AnimalHelp.Application.UseCases.User
 
         public bool IsEmailTaken(string email)
         {
-            bool found = _memberRepository.GetByEmail(email) != null;
-            found = _volunteerRepository.GetByEmail(email) != null;
-            found = _adminRepository.GetByEmail(email) != null;
-            return found;
+            bool found_member = _memberRepository.GetByEmail(email) != null;
+            var found_volunteer = _volunteerRepository.GetByEmail(email) != null;
+            var found_admin = _adminRepository.GetByEmail(email) != null;
+            return found_member || found_volunteer || found_admin;
         }
 
         public UserDto GetPerson(Profile profile)
         {
-            if(profile.UserType == UserType.Member)
+            if (profile.UserType == UserType.Member)
             {
                 return new UserDto(_memberRepository.GetByEmail(profile.Email), UserType.Member);
-            }else if(profile.UserType == UserType.Volunteer)
+            }
+            else if (profile.UserType == UserType.Volunteer)
             {
                 return new UserDto(_volunteerRepository.GetByEmail(profile.Email), UserType.Volunteer);
             }
@@ -49,7 +50,7 @@ namespace AnimalHelp.Application.UseCases.User
         public UserDto GetPerson(string email)
         {
             Volunteer volunteer = _volunteerRepository.GetByEmail(email);
-            if(volunteer != null)
+            if (volunteer != null)
             {
                 return new UserDto(volunteer, UserType.Volunteer);
             }
@@ -68,10 +69,12 @@ namespace AnimalHelp.Application.UseCases.User
 
         public string GetEmailByUserId(string userId, UserType userType)
         {
-            if(userType == UserType.Admin)
+            if (userType == UserType.Admin)
             {
                 return _adminRepository.Get(userId).Profile.Email;
-            }else if(userType == UserType.Member) {
+            }
+            else if (userType == UserType.Member)
+            {
                 return _memberRepository.Get(userId).Profile.Email;
             }
             return _volunteerRepository.Get(userId).Profile.Email;
@@ -108,14 +111,14 @@ namespace AnimalHelp.Application.UseCases.User
             );
             volunteer.AddProfile(registerDto.Email, registerDto.Password, UserType.Volunteer);
             _volunteerService.AddVolunteer(volunteer);
-           
+
             return volunteer;
         }
-        public Volunteer UpdateVolunteer(string volunteerId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined)
+        public Volunteer UpdateVolunteer(string volunteerId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined, string email)
         {
             Volunteer volunteer = _volunteerService.GetVolunteerById(volunteerId)!;
             volunteer.ChangePassword(password);
-            _volunteerService.UpdateVolunteer(volunteer, name, surname, birthDate, gender, phoneNumber, dateJoined);
+            _volunteerService.UpdateVolunteer(volunteer, name, surname, birthDate, gender, phoneNumber, dateJoined, email);
 
             return volunteer;
         }

@@ -21,6 +21,43 @@ namespace AnimalHelp.Domain.Model
 
         public Animal Animal { get; set; }
 
-        public List<Transaction> Transactions { get; set; }
+        public Post()
+        {
+            Id = "0";
+            State = PostState.AvailableToAdopt;
+            PublishDate = DateTime.Now;
+            Status = PostStatus.PendingApproval;
+            Description = "";
+            Likes = 0;
+            Comments = new List<Comment>();
+            Photos = new List<Photo>();
+            Animal = new Animal();
+        }
+
+        public Post(string description, List<Photo> photos, Animal animal)
+        {
+            Id = "0";
+            State = PostState.AvailableToAdopt;
+            PublishDate = DateTime.Now;
+            Status = PostStatus.PendingApproval;
+            Description = description;
+            Likes = 0;
+            Comments = null;
+            Photos = photos;
+            Animal = animal;
+        }
+
+        public Post(string id, string description, List<Photo> photos, Animal animal)
+        {
+            Id = id;
+            State = PostState.AvailableToAdopt;
+            PublishDate = DateTime.Now;
+            Status = PostStatus.PendingApproval;
+            Description = description;
+            Likes = 0;
+            Comments = null;
+            Photos = photos;
+            Animal = animal;
+        }
     }
 }

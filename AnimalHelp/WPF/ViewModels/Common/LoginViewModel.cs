@@ -1,15 +1,16 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Windows;
-using System.Windows.Input;
-using AnimalHelp.Application.DTO;
+﻿using AnimalHelp.Application.DTO;
+using AnimalHelp.Application.Services.AdoptionCentre;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Factories;
+using System;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Windows;
+using System.Windows.Input;
 
 namespace AnimalHelp.WPF.ViewModels.Common
 {
@@ -21,13 +22,11 @@ namespace AnimalHelp.WPF.ViewModels.Common
 
         private readonly ILoginService _loginService;
         private readonly INavigationService _navigationService;
-
         public NavigationStore NavigationStore { get; }
 
         public ICommand LoginCommand { get; }
         public ICommand SwitchToRegisterCommand { get; }
-
-        public LoginViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore)
+        public LoginViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore, IAdoptionCentreService adoptionCentreService)
         {
             _loginService = loginService;
             _navigationService = navigationService;
@@ -78,9 +77,8 @@ namespace AnimalHelp.WPF.ViewModels.Common
                 switch (loginResult.UserType)
                 {
                     case UserType.Admin:
-                        MessageBox.Show("Admin", "Success");
-
-                        //_navigationService.Navigate(ViewType.admin);
+                        //MessageBox.Show("Admin", "Success");
+                        _navigationService.Navigate(ViewType.Admin);
                         break;
                     case UserType.Volunteer:
                         MessageBox.Show("Volunteer", "Success");
@@ -90,7 +88,7 @@ namespace AnimalHelp.WPF.ViewModels.Common
                     case UserType.Member:
                         MessageBox.Show("Member", "Success");
 
-                        //_navigationService.Navigate(ViewType.Member);
+                        _navigationService.Navigate(ViewType.MemberMenu);
                         break;
                     default:
                         throw new ArgumentException("No available window for current user type");
