@@ -1,11 +1,5 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Windows;
-using System.Windows.Input;
-using AnimalHelp.Application.DTO;
-using AnimalHelp.Application.Services.Post;
 ﻿using AnimalHelp.Application.DTO;
+using AnimalHelp.Application.Services.AdoptionCentre;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.Utility.Navigation;
@@ -32,8 +26,7 @@ namespace AnimalHelp.WPF.ViewModels.Common
 
         public ICommand LoginCommand { get; }
         public ICommand SwitchToRegisterCommand { get; }
-
-        public LoginViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore)
+        public LoginViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore, IAdoptionCentreService adoptionCentreService)
         {
             _loginService = loginService;
             _navigationService = navigationService;

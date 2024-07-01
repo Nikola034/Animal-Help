@@ -173,11 +173,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\Services\AdoptionCentre\AdoptionCentreService.cs" />
+    <Compile Include="Application\Services\AdoptionCentre\IAdoptionCentreService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Domain\Model\AdoptionCentre.cs" />
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
     <Compile Include="Domain\Model\Comment.cs" />
@@ -229,6 +232,7 @@
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdoptionCentreRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
@@ -240,6 +244,7 @@
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
+    <Compile Include="Repositories\Json\AdoptionCentreRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />
@@ -307,8 +312,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Data\Members.json" />
-    <None Include="Data\Posts.json" />
-    <None Include="Data\Profiles.json" />
     <None Include="Data\Admin.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
@@ -349,16 +352,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\PostId.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Id\UserId.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\AdminId.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
