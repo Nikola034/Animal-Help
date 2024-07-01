@@ -10,7 +10,7 @@ public class AdoptionRequest : IEntity
 {
     public string Id { get; set; }
     public string Message { get; set; }
-    public AdoptionRequestStatus State { get; set; }
+    public AdoptionRequestStatus Status { get; set; }
     public AdoptionType Type { get; set; }
     public string PostId { get; set; }
     public string UserId { get; set; }
@@ -19,32 +19,32 @@ public class AdoptionRequest : IEntity
     {
         Id = "";
         Message = "";
-        State = AdoptionRequestStatus.InReview;
+        Status = AdoptionRequestStatus.InReview;
         Type = AdoptionType.ForeverHome;
         PostId = "";
         UserId = "";
     }
-    public AdoptionRequest(string message, AdoptionRequestStatus state, AdoptionType type, string postId, string userId)
+    public AdoptionRequest(string message, AdoptionRequestStatus status, AdoptionType type, string postId, string userId)
     {
         Id = "";
         Message = message;
-        State = state;
+        Status = status;
         Type = type;
         PostId = postId;
         UserId = userId;
     }
-    public AdoptionRequest(string id, string message, AdoptionRequestStatus state, AdoptionType type, string postId, string userId)
+    public AdoptionRequest(string id, string message, AdoptionRequestStatus status, AdoptionType type, string postId, string userId)
     {
         Id = id;
         Message = message;
-        State = state;
+        Status = status;
         Type = type;
         PostId = postId;
         UserId = userId;
     }
-    public void ChangeRequestState(AdoptionRequestStatus state)
+    public void ChangeRequestState(AdoptionRequestStatus status)
     {
-        State = state;
+        Status = status;
     }
 
 

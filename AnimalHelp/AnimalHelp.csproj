@@ -222,6 +222,8 @@
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdoptionRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdoptionRequestRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
@@ -231,6 +233,8 @@
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
+    <Compile Include="Repositories\Json\AdoptionRepository.cs" />
+    <Compile Include="Repositories\Json\AdoptionRequestRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
