@@ -1,8 +1,10 @@
 ﻿using System.Windows;
 using AnimalHelp.HostBuilders;
+using AnimalHelp.WPF.ViewModels.Volounteer;
 using AnimalHelp.WPF.Views;
 using AnimalHelp.WPF.Views.Common;
 using AnimalHelp.WPF.Views.Member;
+using AnimalHelp.WPF.Views.Volounteer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +27,7 @@ namespace AnimalHelp
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            Window window = _host.Services.GetRequiredService<MemberMenuWindow>();
+            Window window = _host.Services.GetRequiredService<VolounteerMenuWindow>();
             window.Show();
             
             base.OnStartup(e);
