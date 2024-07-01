@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Admin"
         xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM"
-        xmlns:volunteer="clr-namespace:AnimalHelp.WPF.ViewModels.Admin"
-        xmlns:volunteerView="clr-namespace:AnimalHelp.WPF.Views.Admin"
+        xmlns:admin="clr-namespace:AnimalHelp.WPF.ViewModels.Admin"
+        xmlns:adminView="clr-namespace:AnimalHelp.WPF.Views.Admin"
+        
         Title="AdminWindow" Height="770" Width="1030" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         >
     <mvvm:NavigableWindow.Resources>
-        <DataTemplate DataType="{x:Type volunteer:VolunteerRegistrationViewModel}">
-            <volunteerView:VolunteerRegistrationView></volunteerView:VolunteerRegistrationView>
+        <DataTemplate DataType="{x:Type admin:VolunteerRegistrationViewModel}">
+            <adminView:VolunteerRegistrationView></adminView:VolunteerRegistrationView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type admin:AgencyInformationViewModel}">
+            <adminView:AgencyInformationView></adminView:AgencyInformationView>
         </DataTemplate>
     </mvvm:NavigableWindow.Resources>
     <Grid>
@@ -43,9 +47,9 @@
                     Command="{Binding NavCommand}" 
                     Grid.Row="1"
                     />
-                <Button Content = "Change agency data" 
+                <Button Content = "Change agency info" 
                 Command = "{Binding NavCommand}"
-                CommandParameter = "courses" 
+                CommandParameter = "agencyInfo" 
                 Grid.Row = "2"
                  Margin="20,10,20,10"
             />

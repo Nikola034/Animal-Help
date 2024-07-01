@@ -277,6 +277,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WPF\ViewModels\Admin\AdminMenuViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Admin\AgencyInformationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Admin\VolunteerRegistrationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\LoginViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
@@ -292,6 +293,9 @@
     <Compile Include="WPF\ViewModels\Volounteer\VolounteerMenuViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
       <DependentUpon>AdminMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Admin\AgencyInformationView.xaml.cs">
+      <DependentUpon>AgencyInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Admin\VolunteerRegistrationView.xaml.cs">
       <DependentUpon>VolunteerRegistrationView.xaml</DependentUpon>
@@ -338,6 +342,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="WPF\Views\Admin\AdminMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Admin\AgencyInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

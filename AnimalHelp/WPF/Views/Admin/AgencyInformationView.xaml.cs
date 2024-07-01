@@ -3,15 +3,13 @@
 namespace AnimalHelp.WPF.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for VolunteerRegistrationView.xaml
+    /// Interaction logic for AgencyInformationView.xaml
     /// </summary>
-    public partial class VolunteerRegistrationView : UserControl
+    public partial class AgencyInformationView : UserControl
     {
-        public VolunteerRegistrationView()
+        public AgencyInformationView()
         {
             InitializeComponent();
         }
-
-
     }
 }

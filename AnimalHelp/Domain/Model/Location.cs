@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AnimalHelp.Domain.Model
+﻿namespace AnimalHelp.Domain.Model
 {
-    public class Location : IEntity
+    public class Location
     {
-        public string Id {  get; set; }
-        public string City {  get; set; }
+        public Location(string city, string street, string streetNumber)
+        {
+            City = city;
+            Street = street;
+            StreetNumber = streetNumber;
+        }
+
+        public string City { get; set; }
         public string Street { get; set; }
-        public string StreetNumber {  get; set; }
+        public string StreetNumber { get; set; }
     }
 }

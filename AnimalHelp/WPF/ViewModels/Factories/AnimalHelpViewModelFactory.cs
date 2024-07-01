@@ -1,10 +1,10 @@
-﻿using System;
-using AnimalHelp.WPF.MVVM;
+﻿using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Common;
 using AnimalHelp.WPF.ViewModels.Donations;
 using AnimalHelp.WPF.ViewModels.Member;
 using AnimalHelp.WPF.ViewModels.Volounteer;
+using System;
 
 namespace AnimalHelp.WPF.ViewModels.Factories;
 
@@ -21,6 +21,7 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
     private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
     private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
+    private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
@@ -29,8 +30,9 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
         CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
         CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
-        CreateViewModel<CreateDonationViewModel>  createDonationViewModel,
-        CreateViewModel<FeedViewModel> createFeedViewModel
+        CreateViewModel<CreateDonationViewModel> createDonationViewModel,
+        CreateViewModel<FeedViewModel> createFeedViewModel,
+        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel
         )
     {
         _createMainViewModel = createMainViewModel;
@@ -43,6 +45,7 @@ public class AnimalHelpViewModelFactory
         _createMemberMenuViewModel = createMemberMenuViewModel;
         _createDonationViewModel = createDonationViewModel;
         _createFeedViewModel = createFeedViewModel;
+        _agencyInformationViewModel = agencyInformationViewModel;
     }
 
 
@@ -60,6 +63,7 @@ public class AnimalHelpViewModelFactory
             ViewType.MemberMenu => _createMemberMenuViewModel(),
             ViewType.CreateDonation => _createDonationViewModel(),
             ViewType.Feed => _createFeedViewModel(),
+            ViewType.AgencyInfo => _agencyInformationViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

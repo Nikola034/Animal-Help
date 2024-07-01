@@ -28,6 +28,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<VolounteerMenuViewModel>();
             services.AddTransient<CreateDonationViewModel>();
             services.AddTransient<FeedViewModel>();
+            services.AddScoped<AgencyInformationViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -59,12 +60,15 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<CreateViewModel<VolounteerMenuViewModel>>(
                 servicesProvider => servicesProvider.GetRequiredService<VolounteerMenuViewModel>
             );
-            
+
             services.AddScoped<CreateViewModel<CreateDonationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<CreateDonationViewModel>
             );
             services.AddScoped<CreateViewModel<FeedViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<FeedViewModel>
+            );
+            services.AddScoped<CreateViewModel<AgencyInformationViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AgencyInformationViewModel>
             );
         });
 
