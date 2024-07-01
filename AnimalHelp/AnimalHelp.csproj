@@ -179,10 +179,12 @@
     <Compile Include="Application\Services\AdoptionServices\AdoptionService.cs" />
     <Compile Include="Application\Services\AdoptionServices\IAdoptionRequestService.cs" />
     <Compile Include="Application\Services\AdoptionServices\IAdoptionService.cs" />
+    <Compile Include="Application\Services\IVolunteeringApplicationService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
+    <Compile Include="Application\Services\VolunteeringApplicationService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Domain\Model\AdoptionCentre.cs" />
     <Compile Include="Domain\Model\Adoption.cs" />
@@ -239,6 +241,8 @@
     <Compile Include="Domain\Model\Users\UserType.cs" />
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
+    <Compile Include="Domain\Model\Users\VolunteeringApplication.cs" />
+    <Compile Include="Domain\Model\Users\Vote.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionCentreRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
@@ -248,7 +252,9 @@
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IVolunteeringApplicationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IVolunteerRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IVoteRepository.cs" />
     <Compile Include="HostBuilders\AddRepositoriesHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddServicesHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
@@ -263,6 +269,8 @@
     <Compile Include="Repositories\Json\AdminRepository.cs" />
     <Compile Include="Repositories\Json\DonationRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
+    <Compile Include="Repositories\Json\VolunteeringApplicationRepository.cs" />
+    <Compile Include="Repositories\Json\VoteRepository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
     <Compile Include="Repositories\Util\JsonUtil.cs" />
     <Compile Include="Repositories\Json\MemberRepository.cs" />
