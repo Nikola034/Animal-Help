@@ -4,5 +4,6 @@ public enum ViewType
 {
     Login,
     Register,
-    Main
+    Main,
+    CreatePost
 }

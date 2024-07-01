@@ -220,7 +220,6 @@
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
-    <Compile Include="Domain\RepositoryInterfaces\IPersonProfileMappingRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
@@ -233,10 +232,7 @@
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
-    <Compile Include="Repositories\Json\DirectorRepository.cs" />
-    <Compile Include="Repositories\Json\PersonProfileMappingRepository.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />
-    <Compile Include="Repositories\Json\ProfileRepository.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
@@ -258,6 +254,7 @@
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Common\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -268,7 +265,7 @@
     <Compile Include="WPF\Views\Factories\IAnimalHelpWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\AnimalHelpWindowFactory.cs" />
-    <Compile Include="WPF\Views\LoggedUser\CreatePostWindow.xaml.cs">
+    <Compile Include="WPF\Views\Member\CreatePostWindow.xaml.cs">
       <DependentUpon>CreatePostWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\MainWindow.xaml.cs">
@@ -308,7 +305,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="WPF\Views\LoggedUser\CreatePostWindow.xaml">
+    <Page Include="WPF\Views\Member\CreatePostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -322,6 +319,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
