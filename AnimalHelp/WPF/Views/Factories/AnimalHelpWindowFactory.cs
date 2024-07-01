@@ -2,10 +2,12 @@
 using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Common;
 using AnimalHelp.WPF.ViewModels.Member;
+using AnimalHelp.WPF.ViewModels.Volounteer;
 using AnimalHelp.WPF.Views.Admin;
 using AnimalHelp.WPF.ViewModels.Donations;
 using AnimalHelp.WPF.Views.Common;
 using AnimalHelp.WPF.Views.Member;
+using AnimalHelp.WPF.Views.Volounteer;
 using System;
 using System.Windows;
 
@@ -21,6 +23,7 @@ public class AnimalHelpWindowFactory : IAnimalHelpWindowFactory
             RegisterViewModel registerViewModel => new RegisterWindow(registerViewModel, this),
             AdminMenuViewModel adminMenuViewModel => new AdminMenuWindow(adminMenuViewModel, this),
             MemberMenuViewModel memberMenuViewModel => new MemberMenuWindow(memberMenuViewModel, this),
+            VolounteerMenuViewModel volounteerMenuViewModel => new VolounteerMenuWindow(volounteerMenuViewModel, this),
             CreateDonationViewModel createDonationViewModel => new Donations.CreateDonationWindow(createDonationViewModel, this),
             _ => throw new ArgumentOutOfRangeException(nameof(viewModel), viewModel,
                 "No Window exists for the given ViewModel: " + viewModel.GetType())

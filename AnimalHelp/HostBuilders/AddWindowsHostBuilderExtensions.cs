@@ -1,5 +1,7 @@
 ﻿using AnimalHelp.WPF.Views.Common;
 using AnimalHelp.WPF.Views.Factories;
+using AnimalHelp.WPF.Views.Member;
+using AnimalHelp.WPF.Views.Volounteer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

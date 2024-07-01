@@ -24,6 +24,10 @@ public static class AddRepositoriesHostBuilderExtensions
                 new DonationRepository(Constants.DonationFilePath, Constants.DonationIdFilePath));
             services.AddSingleton<IAdoptionCentreRepository, AdoptionCentreRepository>(_ =>
                 new AdoptionCentreRepository(Constants.AdoptionCentreFilePath, Constants.AdoptionCentreIdFilePath));
+            services.AddSingleton<IAdoptionRepository, AdoptionRepository>(_ =>
+                new AdoptionRepository(Constants.AdoptionFilePath, Constants.AdoptionIdFilePath));
+            services.AddSingleton<IAdoptionRequestRepository, AdoptionRequestRepository>(_ =>
+                new AdoptionRequestRepository(Constants.AdoptionRequestFilePath, Constants.AdoptionRequestFilePath));
         });
 
         return host;

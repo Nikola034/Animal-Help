@@ -1,4 +1,4 @@
-﻿using AnimalHelp.HostBuilders;
+using AnimalHelp.HostBuilders;
 using AnimalHelp.WPF.Views.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
