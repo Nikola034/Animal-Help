@@ -6,6 +6,7 @@ namespace AnimalHelp.Domain.Model
     public class Volunteer : User, IEntity
     {
         public string Id { get; set; }
+
         public DateTime DateJoined { get; set; }
 
         public Volunteer() : base("", "", DateTime.Now, Gender.Other, "")
