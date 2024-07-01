@@ -14,6 +14,6 @@ public interface IVolunteerService
 
     public void DeleteAccount(Volunteer volunteer);
 
-    public bool UpdateVolunteer(Volunteer volunteer, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined);
-    
- }
+    public bool UpdateVolunteer(Volunteer volunteer, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined, string email);
+
+}

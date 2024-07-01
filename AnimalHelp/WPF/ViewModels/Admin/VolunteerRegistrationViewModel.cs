@@ -160,14 +160,14 @@ namespace AnimalHelp.WPF.ViewModels.Admin
         {
             if (SelectedItem == null)
                 return;
-
-            bool errored = ErrorInvalidVolunteer(true);
+            var oldVolunteer = _volunteerService.GetVolunteerById(SelectedItem.Id);
+            bool errored = ErrorInvalidVolunteer(true, oldVolunteer.Profile.Email);
             if (errored)
                 return;
 
 
 
-            Domain.Model.Volunteer volunteer = _accountService.UpdateVolunteer(SelectedItem.Id, Password, Name, Surname, (DateTime)BirthDate!, SelectedGender, PhoneNumber, (DateTime)DateJoined);
+            Domain.Model.Volunteer volunteer = _accountService.UpdateVolunteer(SelectedItem.Id, Password, Name, Surname, (DateTime)BirthDate!, SelectedGender, PhoneNumber, (DateTime)DateJoined, Email);
             Volunteers.Remove(SelectedItem);
             Volunteers.Add(volunteer);
             RemoveInputs();
@@ -207,13 +207,18 @@ namespace AnimalHelp.WPF.ViewModels.Admin
         }
 
 
-        private bool ErrorInvalidVolunteer(bool updating)
+        private bool ErrorInvalidVolunteer(bool updating, string? oldEmail = null)
         {
             ValidationError error = ValidationError.None;
             error |= _userValidator.CheckUserData(Email, Password, Name, Surname, PhoneNumber, BirthDate);
-            if (!updating)
+            if (updating && oldEmail != null && oldEmail != Email)
+            {
                 error |= _userValidator.EmailTaken(Email);
-
+            }
+            else if (!updating)
+            {
+                error |= _userValidator.EmailTaken(Email);
+            }
 
             if (error == ValidationError.None)
                 return false;

@@ -114,11 +114,11 @@ namespace AnimalHelp.Application.UseCases.User
 
             return volunteer;
         }
-        public Volunteer UpdateVolunteer(string volunteerId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined)
+        public Volunteer UpdateVolunteer(string volunteerId, string password, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, DateTime dateJoined, string email)
         {
             Volunteer volunteer = _volunteerService.GetVolunteerById(volunteerId)!;
             volunteer.ChangePassword(password);
-            _volunteerService.UpdateVolunteer(volunteer, name, surname, birthDate, gender, phoneNumber, dateJoined);
+            _volunteerService.UpdateVolunteer(volunteer, name, surname, birthDate, gender, phoneNumber, dateJoined, email);
 
             return volunteer;
         }
