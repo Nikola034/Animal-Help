@@ -20,17 +20,11 @@ namespace AnimalHelp.WPF.ViewModels.Admin
 
         public NavigationStore NavigationStore { get; }
 
-        public RelayCommand AddKnownLangaugeCommand { get; }
-        public RelayCommand ChangeLanguageCommand { get; }
-        public RelayCommand ChangeLevelCommand { get; }
-        public RelayCommand DeleteKnownLanguageCommand { get; }
         public RelayCommand RefreshSelectionCommand { get; }
         public RelayCommand AddVolunteerCommand { get; }
         public RelayCommand DeleteVolunteerCommand { get; }
         public RelayCommand UpdateVolunteerCommand { get; }
-        public RelayCommand ClearFiltersCommand { get; }
-        public RelayCommand PreviousPageCommand { get; }
-        public RelayCommand NextPageCommand { get; }
+
 
         public ObservableCollection<Volunteer> Volunteers { get; set; }
         public ObservableCollection<Gender> Genders { get; set; }
@@ -209,7 +203,7 @@ namespace AnimalHelp.WPF.ViewModels.Admin
                 PhoneNumber));
             Volunteers.Add(volunteer);
             RemoveInputs();
-            MessageBox.Show("The tutor was added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("The volunteer was added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
