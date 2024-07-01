@@ -16,13 +16,15 @@ public class AnimalHelpViewModelFactory : IAnimalHelpViewModelFactory
     private readonly CreateViewModel<AdminMenuViewModel> _createAdminViewModel;
     private readonly CreateViewModel<VolunteerRegistrationViewModel> _createVolunteerRegistrationViewModel;
     private readonly CreateViewModel<VolounteerMenuViewModel> _createVolunteerMenuViewModel;
+    private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
         CreateViewModel<RegisterViewModel> createRegisterViewModel, CreateViewModel<CreatePostViewModel> createPostViewModel,
         CreateViewModel<AdminMenuViewModel> createAdminViewModel,
         CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
-        CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel
+        CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
+        CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel
         )
     {
         _createMainViewModel = createMainViewModel;
@@ -32,6 +34,7 @@ public class AnimalHelpViewModelFactory : IAnimalHelpViewModelFactory
         _createAdminViewModel = createAdminViewModel;
         _createVolunteerRegistrationViewModel = createVolunteerRegistrationViewModel;
         _createVolunteerMenuViewModel = createVolunteerMenuViewModel;
+        _createMemberMenuViewModel = createMemberMenuViewModel;
     }
 
     public ViewModelBase CreateViewModel(ViewType viewType)
@@ -45,6 +48,7 @@ public class AnimalHelpViewModelFactory : IAnimalHelpViewModelFactory
             ViewType.Admin => _createAdminViewModel(),
             ViewType.VolunteerTable => _createVolunteerRegistrationViewModel(),
             ViewType.VolounteerMenu => _createVolunteerMenuViewModel(),
+            ViewType.MemberMenu => _createMemberMenuViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

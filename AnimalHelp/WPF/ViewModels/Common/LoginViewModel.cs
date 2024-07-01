@@ -95,7 +95,7 @@ namespace AnimalHelp.WPF.ViewModels.Common
                     case UserType.Member:
                         MessageBox.Show("Member", "Success");
 
-                        //_navigationService.Navigate(ViewType.Member);
+                        _navigationService.Navigate(ViewType.MemberMenu);
                         break;
                     default:
                         throw new ArgumentException("No available window for current user type");

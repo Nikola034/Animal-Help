@@ -8,5 +8,6 @@ public enum ViewType
     CreatePost,
     Admin,
     VolunteerTable,
-    VolounteerMenu
+    VolounteerMenu,
+    MemberMenu
 }

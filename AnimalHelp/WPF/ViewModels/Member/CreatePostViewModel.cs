@@ -1,6 +1,7 @@
 ﻿using AnimalHelp.Application.Services.Post;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
+using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Application.Utility.Validators;
 using AnimalHelp.Domain.Model;
@@ -11,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ValidationError = AnimalHelp.Domain.Model.ValidationError;
@@ -35,8 +37,10 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
         public RelayCommand AddPhotoCommand { get; }
 
+        private readonly IMemberService _memberService;
         private readonly IPostService _postService;
         private readonly INavigationService _navigationService;
+        private readonly IAuthenticationStore _authenticationStore;
 
         public ObservableCollection<Post> Posts { get; set; }
 
@@ -71,12 +75,15 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
         public NavigationStore NavigationStore { get; }
 
-        public CreatePostViewModel(IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
+
+        public CreatePostViewModel(IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
         {
+            _authenticationStore = authenticationStore;
+            _memberService = memberService;
             _postService = postService;
             _navigationService = navigationService;
             NavigationStore = navigationStore;
-
+            
             Posts = new();
             Animals = new();
             ChosenPhotos = new();
@@ -181,8 +188,18 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
 
             Post newPost = new Post(Description, photos, animal);
+
+            if(_authenticationStore.CurrentUser.UserType == UserType.Member) 
+            {
+                newPost.Status = PostStatus.PendingApproval;
+            }
+            else if(_authenticationStore.CurrentUser.UserType == UserType.Volunteer)
+            {
+                newPost.Status = PostStatus.Approved;
+                Posts.Add(newPost);
+            }
+
             _postService.Add(newPost);
-            Posts.Add(newPost);
             RemoveInputs();
         }
 
@@ -191,9 +208,19 @@ namespace AnimalHelp.WPF.ViewModels.Member
             if (SelectedItem == null)
                 return;
 
-            Domain.Model.Post volunteer = _postService.Update(SelectedItem.Id, new Post(SelectedItem.Id, Description, ChosenPhotos.ToList(), Animal));
-            Posts.Remove(SelectedItem);
-            Posts.Add(volunteer);
+            Domain.Model.Post post = _postService.Update(SelectedItem.Id, new Post(SelectedItem.Id, Description, ChosenPhotos.ToList(), Animal));
+
+            if (_authenticationStore.CurrentUser.UserType == UserType.Member)
+            {
+                post.Status = PostStatus.PendingApproval;
+            }
+            else if (_authenticationStore.CurrentUser.UserType == UserType.Volunteer)
+            {
+                post.Status = PostStatus.Approved;
+                Posts.Remove(SelectedItem);
+                Posts.Add(post);
+            }
+
             RemoveInputs();
         }
 

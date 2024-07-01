@@ -16,7 +16,7 @@ public static class AddWindowsHostBuilderExtensions
         {
             services.AddSingleton<IAnimalHelpWindowFactory, AnimalHelpWindowFactory>();
             services.AddTransient<LoginWindow>();
-            services.AddTransient<VolounteerMenuWindow>();
+            services.AddTransient<MemberMenuWindow>();
         });
         
         return host;
