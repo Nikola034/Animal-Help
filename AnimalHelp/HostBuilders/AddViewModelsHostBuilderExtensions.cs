@@ -57,7 +57,8 @@ public static class AddViewModelsHostBuilderExtensions
             );
             services.AddScoped<CreateViewModel<VolounteerMenuViewModel>>(
                 servicesProvider => servicesProvider.GetRequiredService<VolounteerMenuViewModel>
-            
+                );
+
             services.AddScoped<CreateViewModel<CreateDonationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<CreateDonationViewModel>
             );

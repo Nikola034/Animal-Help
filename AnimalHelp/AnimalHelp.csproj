@@ -173,6 +173,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\Services\AdoptionCentre\AdoptionCentreService.cs" />
+    <Compile Include="Application\Services\AdoptionCentre\IAdoptionCentreService.cs" />
     <Compile Include="Application\Services\AdoptionServices\AdoptionRequestService.cs" />
     <Compile Include="Application\Services\AdoptionServices\AdoptionService.cs" />
     <Compile Include="Application\Services\AdoptionServices\IAdoptionRequestService.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Domain\Model\AdoptionCentre.cs" />
     <Compile Include="Domain\Model\Adoption.cs" />
     <Compile Include="Domain\Model\AdoptionRequest.cs" />
     <Compile Include="Domain\Model\AdoptionRequestStatus.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAdoptionCentreRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionRepository.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="HostBuilders\AddStoresHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtensions.cs" />
     <Compile Include="HostBuilders\AddWindowsHostBuilderExtensions.cs" />
+    <Compile Include="Repositories\Json\AdoptionCentreRepository.cs" />
     <Compile Include="Repositories\Json\AdoptionRepository.cs" />
     <Compile Include="Repositories\Json\AdoptionRequestRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
@@ -367,17 +372,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\UserId.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\AdminId.txt" />
-    <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\PostId.txt" />
+    <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
