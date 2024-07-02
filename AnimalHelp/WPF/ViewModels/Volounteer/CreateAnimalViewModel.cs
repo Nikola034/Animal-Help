@@ -21,6 +21,17 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         private readonly INavigationService _navigationService;
         private readonly IAuthenticationStore _authenticationStore;
 
+        private ObservableCollection<HealthState> _healthStates;
+        public ObservableCollection<HealthState> HealthStates
+        {
+            get => _healthStates;
+            set
+            {
+                _healthStates = value;
+                OnPropertyChanged(nameof(HealthState));
+            }
+        }
+
         private ObservableCollection<Animal> _animals;
         public ObservableCollection<Animal> Animals
         {
@@ -41,10 +52,115 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             _navigationService = navigationService;
             NavigationStore = navigationStore;
             Animals = new();
+            HealthStates = new();
 
             AddAnimalCommand = new RelayCommand(AddAnimal!);
 
             LoadAnimals();
+            LoadHealthStates();
+        }
+
+        private void LoadHealthStates()
+        {
+            foreach (HealthState healthState in Enum.GetValues(typeof(HealthState)))
+                HealthStates.Add(healthState);
+        }
+        //public bool selectingAnimal;
+        //private Post? _selectedItem;
+        //public Post? SelectedItem
+        //{
+        //    get => _selectedItem;
+        //    set
+        //    {
+        //        _selectedItem = value;
+        //        selectingAnimal = true;
+        //        if (_selectedItem != null)
+        //        {
+        //            Domain.Model.Animal? animal = _animalService.GetById(_selectedItem.Id);
+        //            if (animal == null)
+        //                return;
+        //            Description = animal.Description;
+        //            Animal = animal.Animal;
+        //        }
+        //        selectingAnimal = false;
+        //        OnPropertyChanged();
+        //    }
+        //}
+        private string? _birthYear;
+        public string? BirthYear
+        {
+            get => _birthYear;
+            set => SetField(ref _birthYear, value);
+        }
+
+        private string? _foundLocationCity;
+        public string? FoundLocationCity
+        {
+            get => _foundLocationCity;
+            set => SetField(ref _foundLocationCity, value);
+        }
+
+        private string? _foundLocationStreet;
+        public string? FoundLocationStreet
+        {
+            get => _foundLocationStreet;
+            set => SetField(ref _foundLocationStreet, value);
+        }
+
+        private string? _foundLocationStreetNumber;
+        public string? FoundLocationStreetNumber
+        {
+            get => _foundLocationStreetNumber;
+            set => SetField(ref _foundLocationStreetNumber, value);
+        }
+
+        private string? _currentLocationCity;
+        public string? CurrentLocationCity
+        {
+            get => _currentLocationCity;
+            set => SetField(ref _currentLocationCity, value);
+        }
+
+        private string? _currentLocationStreet;
+        public string? CurrentLocationStreet
+        {
+            get => _currentLocationStreet;
+            set => SetField(ref _currentLocationStreet, value);
+        }
+
+        private string? _currentLocationStreetNumber;
+        public string? CurrentLocationStreetNumber
+        {
+            get => _currentLocationStreetNumber;
+            set => SetField(ref _currentLocationStreetNumber, value);
+        }
+
+        private string? _healthConditionDescription;
+        public string? HealthConditionDescription
+        {
+            get => _healthConditionDescription;
+            set => SetField(ref _healthConditionDescription, value);
+        }
+
+        private HealthState _healthConditionHealthState;
+        public HealthState HealthConditionHealthState
+        {
+            get => _healthConditionHealthState;
+            set => SetField(ref _healthConditionHealthState, value);
+        }
+
+        private string? _animalTypeName;
+        public string? AnimalTypeName
+        {
+            get => _animalTypeName;
+            set => SetField(ref _animalTypeName, value);
+        }
+
+        private string? _animalTypeBreed;
+        public string? AnimalTypeBreed
+        {
+            get => _animalTypeBreed;
+            set => SetField(ref _animalTypeBreed, value);
         }
 
         private void LoadAnimals()
@@ -59,7 +175,35 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
 
         private void AddAnimal(object parameter)
         {
+            if (BirthYear == null || !int.TryParse(BirthYear, out int x) || FoundLocationCity == null || FoundLocationStreet == null || FoundLocationStreetNumber == null ||
+                CurrentLocationCity == null || CurrentLocationStreet == null || CurrentLocationStreetNumber == null ||
+                HealthConditionDescription == null || HealthConditionHealthState == null || AnimalTypeName == null ||
+                AnimalTypeBreed == null)
+            {
+                return;
+            }
 
+            Animal newAnimal = new Animal(int.Parse(BirthYear), new Location(FoundLocationCity, FoundLocationStreet, FoundLocationStreetNumber),
+                new Location(CurrentLocationCity, CurrentLocationStreet, CurrentLocationStreetNumber),
+                new HealthCondition(HealthConditionDescription, HealthConditionHealthState), new AnimalType(AnimalTypeName, AnimalTypeBreed));
+
+            Animals.Add(newAnimal);
+            _animalService.Add(newAnimal);
+            RemoveInputs();
+        }
+
+        private void RemoveInputs()
+        {
+            BirthYear = "";
+            FoundLocationCity = "";
+            FoundLocationStreet = "";
+            FoundLocationStreetNumber = "";
+            CurrentLocationCity = "";
+            CurrentLocationStreetNumber = "";
+            CurrentLocationStreet = "";
+            HealthConditionDescription = "";            
+            AnimalTypeName = "";
+            AnimalTypeBreed = "";
         }
     }
 }

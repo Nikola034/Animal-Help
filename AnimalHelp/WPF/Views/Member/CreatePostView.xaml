@@ -70,9 +70,9 @@
                         <Button HorizontalAlignment="Left" Margin="5" Content="Add photo" Width="70" Command="{Binding AddPhotoCommand}" />
                         <ListBox Height="57" ItemsSource="{Binding ChosenPhotos}"></ListBox>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,74,0,75" Grid.RowSpan="2">
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,74,0,55" Grid.RowSpan="2">
                         <Label Content="Animal:"/>
-                        <ComboBox Margin="5,0,0,0" Name="cbAnimal" SelectedItem="{Binding SelectedAnimal}" ItemsSource="{Binding Animals}" />
+                        <ComboBox Margin="5,0,0,0" Name="cbAnimal" SelectedItem="{Binding SelectedAnimal}" ItemsSource="{Binding Animals}" Height="60" />
                     </StackPanel>
                 </Grid>
             </StackPanel>

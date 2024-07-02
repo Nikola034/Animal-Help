@@ -24,7 +24,7 @@ namespace AnimalHelp.Domain.Model
 
         public string Id {  get; set; }
         public string Description { get; set; }
-        public HealthState HealthState { get; set; }
+        public HealthState? HealthState { get; set; }
 
         public override string ToString()
         {
