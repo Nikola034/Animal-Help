@@ -13,7 +13,8 @@
                        
         xmlns:viewModels="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
         mc:Ignorable="d"
-        Title="MemberMenuWindow" Height="450" Width="800">
+        Title="MemberMenuWindow" Height="691" Width="1167"
+        WindowStartupLocation="CenterScreen">
     <mvvm:NavigableWindow.Resources>
         <DataTemplate DataType="{x:Type createPost:CreatePostViewModel}">
             <createPostView:CreatePostView></createPostView:CreatePostView>
@@ -27,15 +28,25 @@
         <DataTemplate DataType="{x:Type animals:CreateAnimalViewModel}">
             <animalsView:CreateAnimalView />
         </DataTemplate>
+
+        <SolidColorBrush x:Key="BlueBtnColor" Color="#34a0a4" />
+        <SolidColorBrush x:Key="RedBtnColor" Color="#91261f" />
+        <SolidColorBrush x:Key="GrayBtnColor" Color="Gray" />
+        <SolidColorBrush x:Key="YellowBtnColor" Color="#c9c30a" />
     </mvvm:NavigableWindow.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="814*"/>
+            <ColumnDefinition Width="63*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid x:Name = "NavBar">
+        <Grid x:Name = "NavBar" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width = "200" />
-                <ColumnDefinition Width = "800" />
+                <ColumnDefinition Width = "516.4" />
+                <ColumnDefinition Width="283.6"/>
             </Grid.ColumnDefinitions>
             <Grid Background="LightGray">
                 <Grid.RowDefinitions>
@@ -45,8 +56,9 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="47"/>
+                    <RowDefinition Height="53"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Button Content="Posts CRUD" 
@@ -62,6 +74,63 @@
                 Grid.Row="2"
                 />
                 <Button Content="Animals" 
+Margin="20,10,20,10" 
+CommandParameter = "animals" 
+Command="{Binding NavCommand}" 
+Grid.Row="3"
+/>
+                <Button Content="Logout"
+                    FontSize="14"
+                    Foreground="White"
+                    Background="{StaticResource GrayBtnColor}"
+                    Height="40"
+                    Width="150"
+                    BorderThickness="0"
+                    Margin="2"
+                    Command="{Binding LogoutCommand}"
+                        Grid.Row="8"
+                    >
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <Button Content="Apply to volunteer"
+                        Grid.Row="7"
+                    FontSize="14"
+                    Foreground="White"
+                    Background="{StaticResource BlueBtnColor}"
+                    Height="40"
+                    Width="150"
+                    BorderThickness="0"
+                    Margin="2"
+                    Command="{Binding ApplyForVolunteeringCommand}"
+                    >
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
                 Margin="20,10,20,10" 
                 CommandParameter = "animals" 
                 Command="{Binding NavCommand}" 
@@ -78,7 +147,7 @@
 
 
 
-            <ContentControl Grid.Column="2" Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}"/>
+            <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="0,0,-37,0"/>
 
 
         </Grid>

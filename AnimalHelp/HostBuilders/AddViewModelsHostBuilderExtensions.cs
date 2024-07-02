@@ -33,9 +33,11 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<CreateAnimalViewModel>();
             services.AddScoped<AgencyInformationViewModel>();
             services.AddTransient<ImportTransactionsViewModel>();
+            services.AddTransient<VotingViewModel>();
             services.AddTransient<AdoptionRequestViewModel>();
             services.AddTransient<AdoptionsOverviewViewModel>();
             services.AddTransient<RateAnimalViewModel>();
+
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -96,6 +98,9 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<CreateViewModel<RateAnimalViewModel>>(
                                serviceProvider => serviceProvider.GetRequiredService<RateAnimalViewModel>
             );
+            services.AddScoped<CreateViewModel<VotingViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<VotingViewModel>
+);
         });
 
         return host;

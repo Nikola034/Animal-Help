@@ -21,6 +21,7 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
     private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
     private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
+    private readonly CreateViewModel<VotingViewModel> _createVotingViewModel;
     private readonly CreateViewModel<ApprovePostsViewModel> _createApprovePostsViewModel;
     private readonly CreateViewModel<CreateAnimalViewModel> _createAnimalViewModel;
     private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
@@ -30,7 +31,8 @@ public class AnimalHelpViewModelFactory
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
-        CreateViewModel<RegisterViewModel> createRegisterViewModel, CreateViewModel<CreatePostViewModel> createPostViewModel,
+        CreateViewModel<RegisterViewModel> createRegisterViewModel, 
+        CreateViewModel<CreatePostViewModel> createPostViewModel,
         CreateViewModel<AdminMenuViewModel> createAdminViewModel,
         CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
         CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
@@ -43,6 +45,8 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
         CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
         CreateViewModel<RateAnimalViewModel> rateAnimalViewModel
+        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
+        CreateViewModel<VotingViewModel> votingViewModel
         )
     {
         _createMainViewModel = createMainViewModel;
@@ -61,6 +65,7 @@ public class AnimalHelpViewModelFactory
         _adoptionRequestViewModel = adoptionRequestViewModel;
         _adoptionsOverviewViewModel = adoptionOverviewViewModel;
         _rateAnimalViewModel = rateAnimalViewModel;
+        _createVotingViewModel = votingViewModel;
     }
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
@@ -72,6 +77,7 @@ public class AnimalHelpViewModelFactory
             ViewType.CreatePost => _createPostViewModel(),
             ViewType.Admin => _createAdminViewModel(),
             ViewType.VolunteerTable => _createVolunteerRegistrationViewModel(),
+            ViewType.VotingVolunteer => _createVotingViewModel(),
             ViewType.VolounteerMenu => _createVolunteerMenuViewModel(),
             ViewType.MemberMenu => _createMemberMenuViewModel(),
             ViewType.CreateDonation => _createDonationViewModel(),

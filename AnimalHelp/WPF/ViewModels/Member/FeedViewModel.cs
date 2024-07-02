@@ -4,7 +4,6 @@ using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

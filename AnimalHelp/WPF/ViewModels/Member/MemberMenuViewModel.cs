@@ -1,17 +1,14 @@
-﻿using AnimalHelp.Application.Services.Post;
+﻿using AnimalHelp.Application.Services;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
+using AnimalHelp.Domain.RepositoryInterfaces;
 using AnimalHelp.WPF.MVVM;
-using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Volounteer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using System.Windows;
 using System.Windows.Input;
 
 namespace AnimalHelp.WPF.ViewModels.Member
@@ -21,8 +18,16 @@ namespace AnimalHelp.WPF.ViewModels.Member
         public RelayCommand NavCommand { get; set; }
 
         private readonly IMemberService _memberService;
+        private readonly IAuthenticationStore _authenticationStore;
+        private readonly IMemberRepository _memberRepository;
+        private readonly IVolunteeringApplicationService _volunteeringApplicationService;
         private readonly INavigationService _navigationService;
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
+        private readonly ILoginService _loginService;
+        public RelayCommand LogoutCommand { get; set; }
+ 
+        public RelayCommand ApplyForVolunteeringCommand { get; set; }
+
 
         public NavigationStore NavigationStore { get; }
 
@@ -93,11 +98,19 @@ namespace AnimalHelp.WPF.ViewModels.Member
         public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
         {
             _memberService = memberService;
+            _authenticationStore = authenticationStore;
+            _memberRepository = memberRepository;
+            _volunteeringApplicationService = applicationService;
             _navigationService = navigationService;
             NavigationStore = navigationStore;
             NavCommand = new RelayCommand(execute => OnNav(execute as string));
             _viewModelFactory = viewModelFactory;
             currentViewModel = CreatePostViewModel;
+            LogoutCommand = new RelayCommand(execute => Logout());
+            ApplyForVolunteeringCommand = new RelayCommand(execute => ApplyForVolunteering());
+
+            _loginService = loginService;
+
         }
 
         private void OnNav(string? destination)
@@ -110,6 +123,29 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 "adoptions" => AdoptionsOverviewViewModel,
                 _ => CurrentViewModel
             };
+        }
+
+        
+
+        private void Logout()
+        {
+            _loginService.LogOut();
+            _navigationService.Navigate(ViewType.Login);
+        }
+
+        private void ApplyForVolunteering()
+        {
+            Domain.Model.Member member = _memberRepository.GetByEmail(_authenticationStore.CurrentUser.Person.Profile.Email);
+            bool success = _volunteeringApplicationService.ApplyForVolunteering(member);
+            if (!success)
+            {
+                MessageBox.Show("You already applied to be a volunteer, cant apply twice.", "Fail");
+            }
+            else
+            {
+                MessageBox.Show("Your application has been sent!", "Sucess");
+            }
+
         }
     }
 }
