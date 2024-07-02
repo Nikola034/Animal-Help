@@ -1,4 +1,4 @@
-﻿using AnimalHelp.Domain.Model;
+﻿using AnimalHelp.Domain.Model.Donations;
 
 namespace AnimalHelp.Application.Services.DonationServices;
 

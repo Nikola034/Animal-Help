@@ -8,6 +8,8 @@
         xmlns:createPostView="clr-namespace:AnimalHelp.WPF.Views.Member"
         xmlns:feed="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
         xmlns:feedView="clr-namespace:AnimalHelp.WPF.Views.Member"
+        xmlns:animals="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer"
+        xmlns:animalsView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
                        
         xmlns:viewModels="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
         mc:Ignorable="d"
@@ -21,6 +23,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:AdoptionsOverviewViewModel}">
             <local:AdoptionsOverviewView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type animals:CreateAnimalViewModel}">
+            <animalsView:CreateAnimalView />
         </DataTemplate>
     </mvvm:NavigableWindow.Resources>
     <Grid>
@@ -51,6 +56,17 @@
                 Grid.Row="1" RenderTransformOrigin="0.488,2.668"
                 />
                 <Button Content="Feed" 
+        Margin="20,10,20,10" 
+        CommandParameter = "feed" 
+        Command="{Binding NavCommand}" 
+        Grid.Row="2"
+        />
+                <Button Content="Animals" 
+Margin="20,10,20,10" 
+CommandParameter = "animals" 
+Command="{Binding NavCommand}" 
+Grid.Row="3"
+/>
                 Margin="20,10,20,10" 
                 CommandParameter = "feed" 
                 Command="{Binding NavCommand}" 

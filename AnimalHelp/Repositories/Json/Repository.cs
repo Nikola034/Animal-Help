@@ -48,13 +48,13 @@ public abstract class Repository<T> where T : class
         return item;
     }
 
-    public T? Update(string id, T user)
+    public T? Update(string id, T item)
     {
         var items = Load();
         if (!items.ContainsKey(id)) return null;
-        items[id] = user;
+        items[id] = item;
         Save(items);
-        return user;
+        return item;
     }
 
     public void Delete(string id)

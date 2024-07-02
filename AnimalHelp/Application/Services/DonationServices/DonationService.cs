@@ -1,5 +1,5 @@
 ﻿using System;
-using AnimalHelp.Domain.Model;
+using AnimalHelp.Domain.Model.Donations;
 using AnimalHelp.Domain.RepositoryInterfaces;
 
 namespace AnimalHelp.Application.Services.DonationServices;

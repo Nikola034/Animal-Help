@@ -21,6 +21,8 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
     private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
     private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
+    private readonly CreateViewModel<ApprovePostsViewModel> _createApprovePostsViewModel;
+    private readonly CreateViewModel<CreateAnimalViewModel> _createAnimalViewModel;
     private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
     private readonly CreateViewModel<AdoptionRequestViewModel> _adoptionRequestViewModel;
     private readonly CreateViewModel<AdoptionsOverviewViewModel> _adoptionsOverviewViewModel;
@@ -33,8 +35,11 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
         CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
         CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
-        CreateViewModel<CreateDonationViewModel> createDonationViewModel,
+        CreateViewModel<CreateDonationViewModel>  createDonationViewModel,
         CreateViewModel<FeedViewModel> createFeedViewModel,
+        CreateViewModel<ApprovePostsViewModel> createApprovePostsViewModel,
+        CreateViewModel<CreateAnimalViewModel> createAnimalViewModel,
+        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel
         CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
         CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
         CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
@@ -51,13 +56,13 @@ public class AnimalHelpViewModelFactory
         _createMemberMenuViewModel = createMemberMenuViewModel;
         _createDonationViewModel = createDonationViewModel;
         _createFeedViewModel = createFeedViewModel;
+        _createApprovePostsViewModel = createApprovePostsViewModel;
+        _createAnimalViewModel = createAnimalViewModel;
         _agencyInformationViewModel = agencyInformationViewModel;
         _adoptionRequestViewModel = adoptionRequestViewModel;
         _adoptionsOverviewViewModel = adoptionOverviewViewModel;
         _rateAnimalViewModel = rateAnimalViewModel;
     }
-
-
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
         return viewType switch
@@ -72,6 +77,8 @@ public class AnimalHelpViewModelFactory
             ViewType.MemberMenu => _createMemberMenuViewModel(),
             ViewType.CreateDonation => _createDonationViewModel(),
             ViewType.Feed => _createFeedViewModel(),
+            ViewType.ApprovePosts => _createApprovePostsViewModel(),
+            ViewType.Animals => _createAnimalViewModel(),
             ViewType.AgencyInfo => _agencyInformationViewModel(),
             ViewType.AdoptionRequest => _adoptionRequestViewModel(),
             ViewType.AdoptionsOverview => _adoptionsOverviewViewModel(),

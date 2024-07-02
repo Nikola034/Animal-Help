@@ -10,6 +10,7 @@ namespace AnimalHelp.Domain.Model
     {
         Approved,
         PendingApproval,
+        PendingUpdate,
         Denied
     }
 }

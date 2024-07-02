@@ -6,6 +6,7 @@ using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Factories;
+using AnimalHelp.WPF.ViewModels.Volounteer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +62,21 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 return feedViewModel;
             }
         }
+        private CreateAnimalViewModel? createAnimalViewModel;
         private AdoptionsOverviewViewModel? adoptionsOverviewViewModel;
 
+        private CreateAnimalViewModel CreateAnimalViewModel
+        {
+            get
+            {
+                if (createAnimalViewModel == null)
+                {
+                    createAnimalViewModel = (CreateAnimalViewModel)_viewModelFactory.CreateViewModel(ViewType.Animals);
+                }
+
+                return createAnimalViewModel;
+            }
+        }
         private AdoptionsOverviewViewModel AdoptionsOverviewViewModel
         {
             get
@@ -92,6 +106,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             {
                 "posts" => CreatePostViewModel,
                 "feed" => FeedViewModel,
+                "animals" => CreateAnimalViewModel,
                 "adoptions" => AdoptionsOverviewViewModel,
                 _ => CurrentViewModel
             };

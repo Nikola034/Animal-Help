@@ -164,6 +164,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -173,12 +174,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\DTO\TransactionDto.cs" />
     <Compile Include="Application\Services\AdoptionCentre\AdoptionCentreService.cs" />
+    <Compile Include="Application\Services\AdoptionCentre\AnimalService.cs" />
     <Compile Include="Application\Services\AdoptionCentre\IAdoptionCentreService.cs" />
+    <Compile Include="Application\Services\AdoptionCentre\IAnimalService.cs" />
     <Compile Include="Application\Services\AdoptionServices\AdoptionRequestService.cs" />
     <Compile Include="Application\Services\AdoptionServices\AdoptionService.cs" />
     <Compile Include="Application\Services\AdoptionServices\IAdoptionRequestService.cs" />
     <Compile Include="Application\Services\AdoptionServices\IAdoptionService.cs" />
+    <Compile Include="Application\Services\DonationServices\ITransactionParser.cs" />
+    <Compile Include="Application\Services\DonationServices\ITransactionService.cs" />
+    <Compile Include="Application\Services\DonationServices\TransactionService.cs" />
     <Compile Include="Application\Services\IVolunteeringApplicationService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
@@ -187,6 +194,7 @@
     <Compile Include="Application\Services\VolunteeringApplicationService.cs" />
     <Compile Include="Application\Stores\CurrentPostStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
+    <Compile Include="Application\Utility\XmlServices\XmlTransactionParser.cs" />
     <Compile Include="Domain\Model\AdoptionCentre.cs" />
     <Compile Include="Domain\Model\Adoption.cs" />
     <Compile Include="Domain\Model\AdoptionRequest.cs" />
@@ -195,7 +203,9 @@
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
     <Compile Include="Domain\Model\Comment.cs" />
-    <Compile Include="Domain\Model\Donation.cs" />
+    <Compile Include="Domain\Model\Donations\BankAccount.cs" />
+    <Compile Include="Domain\Model\Donations\Donation.cs" />
+    <Compile Include="Domain\Model\Donations\Transaction.cs" />
     <Compile Include="Domain\Model\HealthCondition.cs" />
     <Compile Include="Domain\Model\HealthState.cs" />
     <Compile Include="Domain\Model\Location.cs" />
@@ -238,7 +248,6 @@
     <Compile Include="Domain\Model\Users\User.cs" />
     <Compile Include="Domain\Model\Users\Profile.cs" />
     <Compile Include="Domain\Model\Users\Member.cs" />
-    <Compile Include="Domain\Model\Transaction.cs" />
     <Compile Include="Domain\Model\Users\UserType.cs" />
     <Compile Include="Domain\Model\Users\ValidationError.cs" />
     <Compile Include="Domain\Model\Users\Volunteer.cs" />
@@ -246,6 +255,7 @@
     <Compile Include="Domain\Model\Users\Vote.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionCentreRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IAnimalRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionRepository.cs" />
@@ -253,6 +263,7 @@
     <Compile Include="Domain\RepositoryInterfaces\IProfileRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IMemberRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\ITransactionRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IVolunteeringApplicationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IVolunteerRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IVoteRepository.cs" />
@@ -264,12 +275,14 @@
     <Compile Include="Repositories\Json\AdoptionCentreRepository.cs" />
     <Compile Include="Repositories\Json\AdoptionRepository.cs" />
     <Compile Include="Repositories\Json\AdoptionRequestRepository.cs" />
+    <Compile Include="Repositories\Json\AnimalRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
     <Compile Include="Repositories\Json\DonationRepository.cs" />
     <Compile Include="Repositories\Json\Repository.cs" />
+    <Compile Include="Repositories\Json\TransactionRepository.cs" />
     <Compile Include="Repositories\Json\VolunteeringApplicationRepository.cs" />
     <Compile Include="Repositories\Json\VoteRepository.cs" />
     <Compile Include="Repositories\Util\DateTimeMillisecondsConverter.cs" />
@@ -285,6 +298,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WPF\Util\FileDialogService.cs" />
     <Compile Include="WPF\ViewModels\Admin\AdminMenuViewModel.cs" />
     <Compile Include="WPF\ViewModels\Admin\AgencyInformationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Admin\VolunteerRegistrationViewModel.cs" />
@@ -292,6 +306,8 @@
     <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\CreateDonationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\DonationViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Donations\IFileDialogService.cs" />
+    <Compile Include="WPF\ViewModels\Donations\ImportTransactionsViewModel.cs" />
     <Compile Include="WPF\ViewModels\Factories\IAnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
@@ -302,6 +318,8 @@
     <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\ApprovePostsViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\CreateAnimalViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\RateAnimalViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VolounteerMenuViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
@@ -315,6 +333,9 @@
     </Compile>
     <Compile Include="WPF\Views\Donations\CreateDonationWindow.xaml.cs">
       <DependentUpon>CreateDonationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Donations\ImportTransactionsWindow.xaml.cs">
+      <DependentUpon>ImportTransactionsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Common\LoginWindow.xaml.cs">
@@ -347,6 +368,12 @@
     </Compile>
     <Compile Include="WPF\Views\Member\MemberMenuWindow.xaml.cs">
       <DependentUpon>MemberMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Volounteer\ApprovePosts.xaml.cs">
+      <DependentUpon>ApprovePosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Volounteer\CreateAnimalView.xaml.cs">
+      <DependentUpon>CreateAnimalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Member\RateAnimalWindow.xaml.cs">
       <DependentUpon>RateAnimalWindow.xaml</DependentUpon>
@@ -394,6 +421,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF\Views\Donations\ImportTransactionsWindow.xaml" />
     <Page Include="WPF\Views\Member\CreatePostView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -412,6 +440,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\Views\Member\MemberMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Volounteer\ApprovePosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Volounteer\CreateAnimalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -437,6 +473,16 @@
   <ItemGroup>
     <Resource Include="Data\Id\AdoptionId.txt" />
     <Resource Include="Data\Id\AdoptionRequestId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Images\beaver.jpg" />
+    <Resource Include="Data\Images\famnut.jpg" />
+    <Resource Include="Data\Images\nut.jpg" />
+    <Resource Include="Data\Images\pigs.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Images\zolika.jpg" />
+    <Content Include="Data\bank-statement.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

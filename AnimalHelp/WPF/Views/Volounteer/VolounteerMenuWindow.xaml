@@ -8,6 +8,10 @@
         xmlns:createPostView="clr-namespace:AnimalHelp.WPF.Views.Member"
         xmlns:feed="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
         xmlns:feedView="clr-namespace:AnimalHelp.WPF.Views.Member"
+        xmlns:approve="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer"
+        xmlns:approveView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
+        xmlns:animals="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer"
+        xmlns:animalsView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
         mc:Ignorable="d"
         Title="VolounteerMenuWindow" Height="450" Width="800">
     <mvvm:NavigableWindow.Resources>
@@ -16,6 +20,12 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type feed:FeedViewModel}">
             <feedView:FeedView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type approve:ApprovePostsViewModel}">
+            <approveView:ApprovePosts />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type animals:CreateAnimalViewModel}">
+            <animalsView:CreateAnimalView />
         </DataTemplate>
     </mvvm:NavigableWindow.Resources>
     <Grid>
@@ -50,6 +60,18 @@ Margin="20,10,20,10"
 CommandParameter = "feed" 
 Command="{Binding NavCommand}" 
 Grid.Row="2"
+/>
+                <Button Content="Approve/Deny Posts" 
+Margin="20,10,20,10" 
+CommandParameter = "approve" 
+Command="{Binding NavCommand}" 
+Grid.Row="3"
+/>
+                <Button Content="Animals" 
+Margin="20,10,20,10" 
+CommandParameter = "animals" 
+Command="{Binding NavCommand}" 
+Grid.Row="4"
 />
                 <Button Content="Logout" Margin="20,10,20,10" Height="35"  Command="{Binding LogoutCommand}" Grid.Row="7" />
             </Grid>
