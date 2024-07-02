@@ -1,3 +1,4 @@
+using AnimalHelp.Application.Services;
 using AnimalHelp.Application.Services.AdoptionCentre;
 using AnimalHelp.Application.Services.AdoptionServices;
 using AnimalHelp.Application.Services.DonationServices;
@@ -29,6 +30,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IAdoptionCentreService, AdoptionCentreService>();
             services.AddSingleton<IAdoptionService, AdoptionService>();
             services.AddSingleton<IAdoptionRequestService, AdoptionRequestService>();
+            services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
         });
 
         return host;
