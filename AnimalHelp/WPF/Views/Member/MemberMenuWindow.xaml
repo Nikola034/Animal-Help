@@ -23,6 +23,11 @@
         <DataTemplate DataType="{x:Type animals:CreateAnimalViewModel}">
             <animalsView:CreateAnimalView />
         </DataTemplate>
+
+        <SolidColorBrush x:Key="BlueBtnColor" Color="#34a0a4" />
+        <SolidColorBrush x:Key="RedBtnColor" Color="#91261f" />
+        <SolidColorBrush x:Key="GrayBtnColor" Color="Gray" />
+        <SolidColorBrush x:Key="YellowBtnColor" Color="#c9c30a" />
     </mvvm:NavigableWindow.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -46,8 +51,9 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="47"/>
+                    <RowDefinition Height="53"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Button Content="Posts CRUD" 
@@ -68,7 +74,58 @@ CommandParameter = "animals"
 Command="{Binding NavCommand}" 
 Grid.Row="3"
 />
-                <Button Content="Logout" Margin="20,10,20,10" Height="35"  Command="{Binding LogoutCommand}" Grid.Row="7" />
+                <Button Content="Logout"
+                    FontSize="14"
+                    Foreground="White"
+                    Background="{StaticResource GrayBtnColor}"
+                    Height="40"
+                    Width="150"
+                    BorderThickness="0"
+                    Margin="2"
+                    Command="{Binding LogoutCommand}"
+                        Grid.Row="8"
+                    >
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <Button Content="Apply to volunteer"
+                        Grid.Row="7"
+                    FontSize="14"
+                    Foreground="White"
+                    Background="{StaticResource BlueBtnColor}"
+                    Height="40"
+                    Width="150"
+                    BorderThickness="0"
+                    Margin="2"
+                    Command="{Binding ApplyForVolunteeringCommand}"
+                    >
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
 
 
