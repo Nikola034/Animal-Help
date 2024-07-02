@@ -34,6 +34,8 @@ public static class AddRepositoriesHostBuilderExtensions
                 new VolunteeringApplicationRepository(Constants.VolunteeringApplicationFilePath, Constants.VolunteeringApplicationIdFilePath));
             services.AddSingleton<IVoteRepository, VoteRepository>(_ =>
                 new VoteRepository(Constants.VoteFilePath, Constants.VoteIdFilePath));
+            services.AddSingleton<ITransactionRepository, TransactionRepository>(_ =>
+                new TransactionRepository(Constants.TransactionFilePath));
         });
 
         return host;
