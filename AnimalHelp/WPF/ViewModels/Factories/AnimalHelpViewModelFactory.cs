@@ -22,6 +22,9 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
     private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
     private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
+    private readonly CreateViewModel<AdoptionRequestViewModel> _adoptionRequestViewModel;
+    private readonly CreateViewModel<AdoptionsOverviewViewModel> _adoptionsOverviewViewModel;
+    private readonly CreateViewModel<RateAnimalViewModel> _rateAnimalViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
@@ -32,7 +35,10 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
         CreateViewModel<CreateDonationViewModel> createDonationViewModel,
         CreateViewModel<FeedViewModel> createFeedViewModel,
-        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel
+        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
+        CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
+        CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
+        CreateViewModel<RateAnimalViewModel> rateAnimalViewModel
         )
     {
         _createMainViewModel = createMainViewModel;
@@ -46,6 +52,9 @@ public class AnimalHelpViewModelFactory
         _createDonationViewModel = createDonationViewModel;
         _createFeedViewModel = createFeedViewModel;
         _agencyInformationViewModel = agencyInformationViewModel;
+        _adoptionRequestViewModel = adoptionRequestViewModel;
+        _adoptionsOverviewViewModel = adoptionOverviewViewModel;
+        _rateAnimalViewModel = rateAnimalViewModel;
     }
 
 
@@ -64,6 +73,9 @@ public class AnimalHelpViewModelFactory
             ViewType.CreateDonation => _createDonationViewModel(),
             ViewType.Feed => _createFeedViewModel(),
             ViewType.AgencyInfo => _agencyInformationViewModel(),
+            ViewType.AdoptionRequest => _adoptionRequestViewModel(),
+            ViewType.AdoptionsOverview => _adoptionsOverviewViewModel(),
+            ViewType.RateAnimal => _rateAnimalViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

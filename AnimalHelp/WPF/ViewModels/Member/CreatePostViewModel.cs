@@ -189,6 +189,11 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
             string? description = Description;
             List<Photo>? photos = ChosenPhotos.ToList();
+            Animal = new Animal();
+            Animal.AnimalType = new AnimalType();
+            Animal.AnimalType.Id = "1";
+            Animal.AnimalType.Name = "Dog";
+            Animal.AnimalType.Breed = "Golden Retriever";
             Animal? animal = Animal;
 
             if(Description == null || Animal == null)

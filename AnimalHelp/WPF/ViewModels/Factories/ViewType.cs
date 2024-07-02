@@ -12,5 +12,8 @@ public enum ViewType
     MemberMenu,
     CreateDonation,
     Feed,
-    AgencyInfo
+    AgencyInfo,
+    AdoptionRequest,
+    AdoptionsOverview,
+    RateAnimal
 }
