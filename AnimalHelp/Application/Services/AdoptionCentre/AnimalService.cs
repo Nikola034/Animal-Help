@@ -11,10 +11,12 @@ namespace AnimalHelp.Application.Services.AdoptionCentre
     public class AnimalService : IAnimalService
     {
         private readonly IAnimalRepository _animalRepository;
+        private readonly IPostRepository _postRepository;
 
-        public AnimalService(IAnimalRepository animalRepository)
+        public AnimalService(IAnimalRepository animalRepository, IPostRepository postRepository)
         {
             _animalRepository = animalRepository;
+            _postRepository = postRepository;
         }
 
         public void Add(Domain.Model.Animal animal)
@@ -30,6 +32,27 @@ namespace AnimalHelp.Application.Services.AdoptionCentre
         public List<Domain.Model.Animal> GetAll()
         {
             return _animalRepository.GetAll();
+        }
+
+        public List<Domain.Model.Animal> GetAnimalsWithoutPost()
+        {
+            List<Domain.Model.Animal> animals = new List<Animal>(); 
+            foreach (var animal in _animalRepository.GetAll())
+            {
+                var x = 0;
+                foreach(var post in _postRepository.GetAll())
+                {
+                    if(post.Animal.Id == animal.Id)
+                    {
+                        x++;
+                    }
+                }
+                if(x == 0)
+                {
+                    animals.Add(animal);
+                }
+            }
+            return animals;
         }
 
         public Domain.Model.Animal GetById(string id)

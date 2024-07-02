@@ -96,6 +96,8 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                     HealthConditionHealthState = (HealthState)animal.HealthCondition.HealthState;
                     AnimalTypeName = animal.AnimalType.Name;
                     AnimalTypeBreed = animal.AnimalType.Breed;
+                    Name = animal.Name;
+                    Description = animal.Description;
                 }
                 selectingAnimal = false;
                 OnPropertyChanged();
@@ -106,6 +108,18 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         {
             get => _birthYear;
             set => SetField(ref _birthYear, value);
+        }
+        private string? _name;
+        public string? Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
+        }
+        private string? _description;
+        public string? Description
+        {
+            get => _description;
+            set => SetField(ref _description, value);
         }
 
         private string? _foundLocationCity;
@@ -190,15 +204,15 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
 
         private void AddAnimal(object parameter)
         {
-            if (BirthYear == null || !int.TryParse(BirthYear, out int x) || FoundLocationCity == null || FoundLocationStreet == null || FoundLocationStreetNumber == null ||
+            if (BirthYear == null || !int.TryParse(BirthYear, out int x) || Name == null || Description == null || FoundLocationCity == null || FoundLocationStreet == null || FoundLocationStreetNumber == null ||
                 CurrentLocationCity == null || CurrentLocationStreet == null || CurrentLocationStreetNumber == null ||
-                HealthConditionDescription == null || HealthConditionHealthState == null || AnimalTypeName == null ||
+                HealthConditionDescription == null || AnimalTypeName == null ||
                 AnimalTypeBreed == null)
             {
                 return;
             }
 
-            Animal newAnimal = new Animal(int.Parse(BirthYear), new Location(FoundLocationCity, FoundLocationStreet, FoundLocationStreetNumber),
+            Animal newAnimal = new Animal(int.Parse(BirthYear), Name, Description, new Location(FoundLocationCity, FoundLocationStreet, FoundLocationStreetNumber),
                 new Location(CurrentLocationCity, CurrentLocationStreet, CurrentLocationStreetNumber),
                 new HealthCondition(HealthConditionDescription, HealthConditionHealthState), new AnimalType(AnimalTypeName, AnimalTypeBreed));
 
@@ -214,7 +228,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 return;
 
             Domain.Model.Animal animal = _animalService.Update(SelectedItem.Id,
-                new Animal(SelectedItem.Id, int.Parse(BirthYear), new Location(FoundLocationCity, FoundLocationStreet, FoundLocationStreetNumber),
+                new Animal(SelectedItem.Id, int.Parse(BirthYear), Name, Description, new Location(FoundLocationCity, FoundLocationStreet, FoundLocationStreetNumber),
                 new Location(CurrentLocationCity, CurrentLocationStreet, CurrentLocationStreetNumber),
                 new HealthCondition(HealthConditionDescription, HealthConditionHealthState), new AnimalType(AnimalTypeName, AnimalTypeBreed)));
 
@@ -248,6 +262,8 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             HealthConditionDescription = "";            
             AnimalTypeName = "";
             AnimalTypeBreed = "";
+            Name = "";
+            Description = "";
         }
     }
 }

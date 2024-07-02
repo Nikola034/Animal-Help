@@ -11,6 +11,5 @@ namespace AnimalHelp.Repositories.Json
     public class AnimalRepository : AutoIdRepository<Animal>, IAnimalRepository
     {
         public AnimalRepository(string filepath, string lastIdFilePath) : base(filepath, lastIdFilePath) { }
-
     }
 }

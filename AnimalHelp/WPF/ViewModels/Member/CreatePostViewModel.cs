@@ -33,7 +33,6 @@ namespace AnimalHelp.WPF.ViewModels.Member
         private string? _errorAnimalRequired;
 
         public RelayCommand AddPostCommand { get; }
-        public RelayCommand DeletePostCommand { get; }
         public RelayCommand UpdatePostCommand { get; }
 
         public RelayCommand AddPhotoCommand { get; }
@@ -110,7 +109,6 @@ namespace AnimalHelp.WPF.ViewModels.Member
             LoadCollections();
 
             AddPostCommand = new RelayCommand(AddPost!);
-            DeletePostCommand = new RelayCommand(DeletePost!);
             UpdatePostCommand = new RelayCommand(UpdatePost!);
             AddPhotoCommand = new RelayCommand(AddPhoto!);
         }
@@ -127,7 +125,12 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
             posts = _postService.GetAll();
             foreach (Domain.Model.Post post in posts)
-                Posts.Add(post);
+            {
+                if(post.Status == PostStatus.Approved)
+                {
+                    Posts.Add(post);
+                }
+            }
         }
 
         private void LoadAnimals()
@@ -135,7 +138,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             Animals.Clear();
             List<Domain.Model.Animal> animals;
 
-            animals = _animalService.GetAll();
+            animals = _animalService.GetAnimalsWithoutPost();
             foreach (Domain.Model.Animal animal in animals)
                 Animals.Add(animal);
         }
@@ -244,18 +247,6 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 Posts.Add(post);
             }
 
-            RemoveInputs();
-        }
-
-        private void DeletePost (object parameter)
-        {
-            if (SelectedItem == null)
-                return;
-            Domain.Model.Post? post = _postService.GetById(SelectedItem.Id);
-            if (post == null)
-                return;
-            _postService.Delete(post.Id);
-            Posts.Remove(SelectedItem);
             RemoveInputs();
         }
 

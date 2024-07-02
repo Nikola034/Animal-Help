@@ -13,6 +13,6 @@ public enum ViewType
     CreateDonation,
     Feed,
     ApprovePosts,
-    Animals
+    Animals,
     AgencyInfo
 }

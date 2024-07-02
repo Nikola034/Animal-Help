@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Height="467">
     <Border  Padding="10" >
-        <Grid>
+        <Grid Margin="0,0,-64,-92">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400*"/>
                 <ColumnDefinition Width="250"/>
@@ -43,6 +42,8 @@
           SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Birth Year" Width="1*" Binding="{Binding BirthYear}"/>
+                        <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Description" Width="1*" Binding="{Binding Description}"/>
 
                         <DataGridTemplateColumn Header="Found Location" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
@@ -94,7 +95,10 @@
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
                 <TextBlock Text="Birth Year" />
                 <TextBox Text="{Binding BirthYear, UpdateSourceTrigger=PropertyChanged}" />
-
+                <TextBlock Text="Name" />
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Description" />
+                <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Text="Found Location City" />
                 <TextBox Text="{Binding FoundLocationCity, UpdateSourceTrigger=PropertyChanged}" />
 

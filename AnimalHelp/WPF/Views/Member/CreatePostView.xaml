@@ -97,7 +97,6 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <Button Margin="5" Content="Add" Width="70" Command="{Binding AddPostCommand}" />
                 <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdatePostCommand}"/>
-                <Button Margin="5" Content="Delete" Width="70"  Command="{Binding DeletePostCommand}"/>
             </StackPanel>
         </Grid>
     </Border>

@@ -19,5 +19,7 @@ namespace AnimalHelp.Application.Services.AdoptionCentre
         public void Delete(string id);
 
         public Domain.Model.Animal Update(string id, Domain.Model.Animal animal);
+
+        public List<Domain.Model.Animal> GetAnimalsWithoutPost();
     }
 }
