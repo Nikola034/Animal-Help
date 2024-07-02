@@ -1,4 +1,4 @@
-﻿namespace AnimalHelp.Domain.Model;
+﻿namespace AnimalHelp.Domain.Model.Donations;
 
 public class Donation(string id, string description, string from, bool isAnonymous, string? postId = null) : IEntity
 {
