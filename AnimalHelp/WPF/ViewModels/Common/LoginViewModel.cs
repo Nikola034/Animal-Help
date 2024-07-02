@@ -9,7 +9,6 @@ using AnimalHelp.WPF.ViewModels.Factories;
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Windows;
 using System.Windows.Input;
 
 namespace AnimalHelp.WPF.ViewModels.Common
@@ -77,17 +76,12 @@ namespace AnimalHelp.WPF.ViewModels.Common
                 switch (loginResult.UserType)
                 {
                     case UserType.Admin:
-                        //MessageBox.Show("Admin", "Success");
                         _navigationService.Navigate(ViewType.Admin);
                         break;
                     case UserType.Volunteer:
-                        MessageBox.Show("Volunteer", "Success");
-
                         _navigationService.Navigate(ViewType.VolounteerMenu);
                         break;
                     case UserType.Member:
-                        MessageBox.Show("Member", "Success");
-
                         _navigationService.Navigate(ViewType.MemberMenu);
                         break;
                     default:

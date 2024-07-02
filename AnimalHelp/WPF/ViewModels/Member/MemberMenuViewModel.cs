@@ -23,6 +23,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
         private readonly IMemberService _memberService;
         private readonly INavigationService _navigationService;
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
+        private readonly ILoginService _loginService;
+        public RelayCommand LogoutCommand { get; set; }
+
 
         public NavigationStore NavigationStore { get; }
 
@@ -76,7 +79,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 return createAnimalViewModel;
             }
         }
-        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
+        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore, ILoginService loginService)
         {
             _memberService = memberService;
             _navigationService = navigationService;
@@ -84,6 +87,8 @@ namespace AnimalHelp.WPF.ViewModels.Member
             NavCommand = new RelayCommand(execute => OnNav(execute as string));
             _viewModelFactory = viewModelFactory;
             currentViewModel = CreatePostViewModel;
+            LogoutCommand = new RelayCommand(execute => Logout());
+
         }
 
         private void OnNav(string? destination)
@@ -95,6 +100,11 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 "animals" => CreateAnimalViewModel,
                 _ => CurrentViewModel
             };
+        }
+        private void Logout()
+        {
+            _loginService.LogOut();
+            _navigationService.Navigate(ViewType.Login);
         }
     }
 }

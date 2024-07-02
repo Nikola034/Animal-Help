@@ -13,7 +13,8 @@
         xmlns:animals="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer"
         xmlns:animalsView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
         mc:Ignorable="d"
-        Title="VolounteerMenuWindow" Height="450" Width="800">
+        Title="VolounteerMenuWindow" Height="691" Width="1167"
+        WindowStartupLocation="CenterScreen">
     <mvvm:NavigableWindow.Resources>
         <DataTemplate DataType="{x:Type createPost:CreatePostViewModel}">
             <createPostView:CreatePostView></createPostView:CreatePostView>

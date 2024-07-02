@@ -370,8 +370,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\Animals.json" />
     <None Include="Data\Members.json" />
     <None Include="Data\Admin.json" />
+    <None Include="Data\Posts.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
