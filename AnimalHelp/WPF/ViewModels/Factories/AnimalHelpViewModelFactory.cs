@@ -44,8 +44,7 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
         CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
         CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
-        CreateViewModel<RateAnimalViewModel> rateAnimalViewModel
-        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
+        CreateViewModel<RateAnimalViewModel> rateAnimalViewModel,
         CreateViewModel<VotingViewModel> votingViewModel
         )
     {
