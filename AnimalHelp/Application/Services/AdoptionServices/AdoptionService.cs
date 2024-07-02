@@ -57,9 +57,9 @@ public class AdoptionService : IAdoptionService
         return _adoptionRepository.GetByType(type);
     }
 
-    public List<Adoption> GetByUserId(string id)
+    public List<Adoption> GetByUserEmail(string email)
     {
-        return _adoptionRepository.GetByUserId(id);
+        return _adoptionRepository.GetByUserEmail(email);
     }
 
     public void RateAnimal(string id, int rating)

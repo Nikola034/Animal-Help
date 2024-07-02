@@ -14,7 +14,7 @@ public interface IAdoptionService
     public Adoption UpdateAdoption(Adoption adoption);
 
     public void DeleteAdoption(string id);
-    public List<Adoption> GetByUserId(string id);
+    public List<Adoption> GetByUserEmail(string id);
     public List<Adoption> GetByPostId(string id);
     public List<Adoption> GetByType(AdoptionType type);
     public List<Adoption> GetActive();

@@ -14,13 +14,31 @@ public class AdoptionRequestService : IAdoptionRequestService
         _adoptionRequestRepository = adoptionRequestRepository;
     }
 
-    public AdoptionRequest AddAdoptionRequest(AdoptionType type, AdoptionRequestStatus status, Domain.Model.Post post, string userId, string message)
+    public AdoptionRequest? AddAdoptionRequest(AdoptionType type, AdoptionRequestStatus status, Domain.Model.Post post, string userId, string message)
     {
         if(userId == "" || message == "")
         {
             throw new ArgumentException("Description and donor required for donation");
         }
-        return _adoptionRequestRepository.Add(new AdoptionRequest(message, status, type, post.Id, userId));
+        var request = new AdoptionRequest(message, status, type, post.Id, userId);
+        if (IsAlreadyAdded(request))
+        {
+            return null;
+        }
+        return _adoptionRequestRepository.Add(request);
+    }
+
+    private bool IsAlreadyAdded(AdoptionRequest request)
+    {
+        var requests = _adoptionRequestRepository.GetAll();
+        foreach(var addedRequest in requests)
+        {
+            if(addedRequest.PostId == request.PostId && addedRequest.UserEmail == request.UserEmail)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void DeleteAdoptionRequest(string id)
@@ -59,9 +77,9 @@ public class AdoptionRequestService : IAdoptionRequestService
         return _adoptionRequestRepository.GetByType(type);
     }
 
-    public List<AdoptionRequest> GetByUserId(string id)
+    public List<AdoptionRequest> GetByUserEmail(string email)
     {
-        return _adoptionRequestRepository.GetByUserId(id);
+        return _adoptionRequestRepository.GetByUserEmail(email);
     }
 
     public AdoptionRequest UpdateAdoptionRequest(AdoptionRequest adoption)
