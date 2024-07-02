@@ -92,28 +92,11 @@
                 <ComboBox Margin="5,0,0,0" Name="cbGender" SelectedItem="{Binding SelectedGender}" ItemsSource="{Binding Genders}" />
                 <Label Content="Date joined:"/>
                 <DatePicker Margin="5,0,0,0" Name="dpDateAdded" SelectedDate="{Binding DateJoined, UpdateSourceTrigger=PropertyChanged}" />
-                <Grid Margin="10,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="20"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <ItemsControl HorizontalContentAlignment="Stretch" Margin="5,0,0,0" x:Name="knownLanguagesHolder">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="20"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </ItemsControl>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"/>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <Button Margin="5" Content="Add" Width="70" Command="{Binding AddVolunteerCommand}" />
                 <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdateVolunteerCommand}"/>
-                <Button Margin="5" Content="Delete" Width="70"  Command="{Binding DeleteTutorCommand}"/>
             </StackPanel>
         </Grid>
     </Border>

@@ -29,6 +29,20 @@ namespace AnimalHelp.WPF.ViewModels.Admin
                 return volunteerRegistrationViewModel;
             }
         }
+        private AgencyInformationViewModel? agencyInformationViewModel;
+
+        private AgencyInformationViewModel AgencyInformationViewModel
+        {
+            get
+            {
+                if (agencyInformationViewModel == null)
+                {
+                    agencyInformationViewModel = (AgencyInformationViewModel)_viewModelFactory.CreateViewModel(ViewType.AgencyInfo);
+                }
+
+                return agencyInformationViewModel;
+            }
+        }
 
 
 
@@ -60,6 +74,7 @@ namespace AnimalHelp.WPF.ViewModels.Admin
             CurrentViewModel = destination switch
             {
                 "volunteers" => VolunteerRegistrationViewModel,
+                "agencyInfo" => AgencyInformationViewModel,
                 _ => CurrentViewModel
             };
         }

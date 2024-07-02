@@ -15,6 +15,8 @@
         public const string AdoptionFilePath = "../../Data/Adoption.json";
         public const string AdoptionRequestFilePath = "../../Data/AdoptionRequest.json";
         public const string AnimalsFilePath = "../../Data/Animals.json";
+        public const string VoteFilePath = "../../Data/Vote.json";
+        public const string VolunteeringApplicationFilePath = "../../Data/VolunteeringApplication.json";
 
         public const string PostIdFilePath = "../../Data/Id/PostId.txt";
         public const string AdminIdFilePath = "../../Data/Id/AdminId.txt";
@@ -24,6 +26,8 @@
         public const string AdoptionIdFilePath = "../../Data/Id/AdoptionId.txt";
         public const string AdoptionRequestIdFilePath = "../../Data/Id/AdoptionRequestId.txt";
         public const string AnimalsIdFilePath = "../../Data/Id/AnimalsId.txt";
+        public const string VoteIdFilePath = "../../Data/Id/VoteId.txt";
+        public const string VolunteeringApplicationIdFilePath = "../../Data/Id/VoteId.txt";
     }
 }
 
