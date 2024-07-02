@@ -36,6 +36,8 @@ namespace AnimalHelp.WPF.ViewModels.Member
         public RelayCommand UpdatePostCommand { get; }
 
         public RelayCommand AddPhotoCommand { get; }
+        public RelayCommand RemovePhotoCommand { get; }
+
 
         private readonly IMemberService _memberService;
         private readonly IPostService _postService;
@@ -55,7 +57,17 @@ namespace AnimalHelp.WPF.ViewModels.Member
         }
 
         public ObservableCollection<Animal> Animals { get; set; }
-        public ObservableCollection<Photo> ChosenPhotos { get; set; }
+
+        private ObservableCollection<Photo> _chosenPhotos;
+        public ObservableCollection<Photo> ChosenPhotos
+        {
+            get => _chosenPhotos;
+            set
+            {
+                _chosenPhotos = value;
+                OnPropertyChanged(nameof(ChosenPhotos));
+            }
+        }
 
         public bool selectingPost;
         private Post? _selectedItem;
@@ -111,6 +123,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             AddPostCommand = new RelayCommand(AddPost!);
             UpdatePostCommand = new RelayCommand(UpdatePost!);
             AddPhotoCommand = new RelayCommand(AddPhoto!);
+            RemovePhotoCommand = new RelayCommand(RemovePhoto!);
         }
 
         private void LoadCollections()
@@ -126,7 +139,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             posts = _postService.GetAll();
             foreach (Domain.Model.Post post in posts)
             {
-                if(post.Status == PostStatus.Approved)
+                if(post.Status == PostStatus.Approved || post.Status == PostStatus.PendingUpdate)
                 {
                     Posts.Add(post);
                 }
@@ -197,7 +210,17 @@ namespace AnimalHelp.WPF.ViewModels.Member
             get => _animal;
             set => SetField(ref _animal, value);
         }
+        private Photo _selectedPhoto;
 
+        public Photo SelectedPhoto
+        {
+            get => _selectedPhoto;
+            set
+            {
+                _selectedPhoto = value;
+                OnPropertyChanged(nameof(SelectedPhoto));
+            }
+        }
         private void AddPost(object parameter)
         {
             ErrorDescriptionRequired = "";
@@ -234,19 +257,21 @@ namespace AnimalHelp.WPF.ViewModels.Member
             if (SelectedItem == null)
                 return;
 
-            Domain.Model.Post post = _postService.Update(SelectedItem.Id, new Post(SelectedItem.Id, Description, ChosenPhotos.ToList(), SelectedAnimal));
+            Domain.Model.Post post = new Post(SelectedItem.Id, Description, ChosenPhotos.ToList(), SelectedItem.Animal);
 
             if (_authenticationStore.CurrentUser.UserType == UserType.Member)
             {
-                post.Status = PostStatus.PendingApproval;
+                post.Status = PostStatus.PendingUpdate;
+                _postService.Update(SelectedItem.Id, post);
             }
             else if (_authenticationStore.CurrentUser.UserType == UserType.Volunteer)
             {
                 post.Status = PostStatus.Approved;
+                _postService.Update(SelectedItem.Id, post);
                 Posts.Remove(SelectedItem);
                 Posts.Add(post);
             }
-
+    
             RemoveInputs();
         }
 
@@ -265,8 +290,21 @@ namespace AnimalHelp.WPF.ViewModels.Member
             string? photoDescription = PhotoDescription;
             string? photoURL = PhotoURL;
 
+            if(photoDescription == null || photoURL == null)
+            {
+                return;
+            }
+
             Photo photo = new Photo(photoURL, photoDescription);
             ChosenPhotos.Add(photo);
+        }
+        
+        private void RemovePhoto(object parameter)
+        {
+            if (SelectedPhoto != null)
+            {
+                ChosenPhotos.Remove(SelectedPhoto);
+            }
         }
     }
 }

@@ -67,7 +67,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             posts = _postService.GetAll();
             foreach (Domain.Model.Post post in posts)
             {
-                if (post.Status == PostStatus.PendingApproval)
+                if (post.Status == PostStatus.PendingApproval || post.Status == PostStatus.PendingUpdate)
                 {
                     Posts.Add(post);
                 }
@@ -88,6 +88,11 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         {
             if (SelectedItem == null) 
                 return;
+
+            if (SelectedItem.Status == PostStatus.PendingUpdate)
+            {
+                return;
+            }
 
             SelectedItem.Status = PostStatus.Denied;
             Domain.Model.Post post = _postService.Update(SelectedItem.Id, SelectedItem);
