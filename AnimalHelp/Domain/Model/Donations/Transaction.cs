@@ -7,23 +7,25 @@ public class Transaction : IEntity, IEquatable<Transaction>
     public string Id { get; set; }
     public DateTime DateTime { get; set; }
     public float Amount {  get; set; }
+    public string Note { get; set; }
     public BankAccount Receiver { get; set; }
     public BankAccount Sender {  get; set; }
     public bool IsAnonymous {  get; set; }
     public Post? Post { get; set; }
 
-    public Transaction(string id, DateTime dateTime, float amount, BankAccount receiver, BankAccount sender, bool isAnonymous = false, Post? post = null)
+    public Transaction(string id, DateTime dateTime, float amount, string note, BankAccount receiver, BankAccount sender, bool isAnonymous = false, Post? post = null)
     {
         Id = id;
         DateTime = dateTime;
         Amount = amount;
+        Note = note;
         Receiver = receiver;
         Sender = sender;
         IsAnonymous = isAnonymous;
         Post = post;
     }
 
-    public Transaction() : this("", DateTime.MinValue, 0.0f, new(), new())
+    public Transaction() : this("", DateTime.MinValue, 0.0f, "", new(), new())
     {
     }
 

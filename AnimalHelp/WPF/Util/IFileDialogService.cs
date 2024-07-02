@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AnimalHelp.WPF.ViewModels.Donations;
+namespace AnimalHelp.WPF.Util;
 
 public interface IFileDialogService
 {

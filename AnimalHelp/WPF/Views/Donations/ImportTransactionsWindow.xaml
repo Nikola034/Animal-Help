@@ -37,6 +37,7 @@
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" />
                 <DataGridTextColumn Header="Receiver" Binding="{Binding Receiver.Owner}" />
                 <DataGridTextColumn Header="Sender" Binding="{Binding Sender.Owner}" />
+                <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -62,6 +63,10 @@
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <TextBlock Text="Sender:" Width="80"/>
                 <TextBox Text="{Binding SelectedTransaction.Sender.Owner}" IsReadOnly="True" Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="Note:" Width="80"/>
+                <TextBlock Text="{Binding SelectedTransaction.Note}" Width="200" TextWrapping="Wrap" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <TextBlock Text="Anonymous:" Width="80"/>
