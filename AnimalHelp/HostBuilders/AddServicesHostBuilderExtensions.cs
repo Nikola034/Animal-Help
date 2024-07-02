@@ -7,6 +7,7 @@ using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Application.Utility.Validators;
+using AnimalHelp.Application.Utility.XmlServices;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -31,6 +32,8 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IAdoptionService, AdoptionService>();
             services.AddSingleton<IAdoptionRequestService, AdoptionRequestService>();
             services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
+            services.AddSingleton<ITransactionService, TransactionService>();
+            services.AddSingleton<ITransactionParser, XmlTransactionParser>();
         });
 
         return host;
