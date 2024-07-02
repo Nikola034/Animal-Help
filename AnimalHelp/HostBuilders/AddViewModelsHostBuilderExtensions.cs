@@ -8,6 +8,7 @@ using AnimalHelp.WPF.ViewModels.Member;
 using AnimalHelp.WPF.ViewModels.Volounteer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace AnimalHelp.HostBuilders;
 
@@ -29,6 +30,9 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<CreateDonationViewModel>();
             services.AddTransient<FeedViewModel>();
             services.AddScoped<AgencyInformationViewModel>();
+            services.AddTransient<AdoptionRequestViewModel>();
+            services.AddTransient<AdoptionsOverviewViewModel>();
+            services.AddTransient<RateAnimalViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -69,6 +73,15 @@ public static class AddViewModelsHostBuilderExtensions
             );
             services.AddScoped<CreateViewModel<AgencyInformationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AgencyInformationViewModel>
+            );
+            services.AddScoped<CreateViewModel<AdoptionRequestViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AdoptionRequestViewModel>
+            );
+            services.AddScoped<CreateViewModel<AdoptionsOverviewViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AdoptionsOverviewViewModel>
+            );
+            services.AddScoped<CreateViewModel<RateAnimalViewModel>>(
+                               serviceProvider => serviceProvider.GetRequiredService<RateAnimalViewModel>
             );
         });
 
