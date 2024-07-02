@@ -8,6 +8,7 @@ using AnimalHelp.Application.Stores;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.Domain.Model.Donations;
 using AnimalHelp.WPF.MVVM;
+using AnimalHelp.WPF.Util;
 
 namespace AnimalHelp.WPF.ViewModels.Donations;
 
