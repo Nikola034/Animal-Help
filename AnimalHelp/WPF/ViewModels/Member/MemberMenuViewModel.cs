@@ -88,6 +88,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             _viewModelFactory = viewModelFactory;
             currentViewModel = CreatePostViewModel;
             LogoutCommand = new RelayCommand(execute => Logout());
+            _loginService = loginService;
 
         }
 

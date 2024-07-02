@@ -315,6 +315,7 @@
     <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\ApprovePostsViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\VotingViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\CreateAnimalViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VolounteerMenuViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
@@ -358,6 +359,9 @@
     <Compile Include="WPF\Views\Member\MemberMenuWindow.xaml.cs">
       <DependentUpon>MemberMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Views\Volounteer\VotingView.xaml.cs">
+      <DependentUpon>VotingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Views\Volounteer\ApprovePosts.xaml.cs">
       <DependentUpon>ApprovePosts.xaml</DependentUpon>
     </Compile>
@@ -374,6 +378,7 @@
     <None Include="Data\Members.json" />
     <None Include="Data\Admin.json" />
     <None Include="Data\Posts.json" />
+    <None Include="Data\VolunteeringApplication.json" />
     <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -419,6 +424,10 @@
     <Page Include="WPF\Views\Member\MemberMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Volounteer\VotingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WPF\Views\Volounteer\ApprovePosts.xaml">
       <SubType>Designer</SubType>

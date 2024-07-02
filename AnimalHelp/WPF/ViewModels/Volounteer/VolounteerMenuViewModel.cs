@@ -5,11 +5,6 @@ using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Member;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimalHelp.WPF.ViewModels.Volounteer
 {
@@ -34,6 +29,20 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             get => currentViewModel;
             private set => SetField(ref currentViewModel, value);
         }
+
+
+        private VotingViewModel? votingViewModel;
+
+        private VotingViewModel VotingViewModel
+        {
+            get
+            {
+                votingViewModel = (VotingViewModel)_viewModelFactory.CreateViewModel(ViewType.VotingVolunteer);
+                return votingViewModel;
+            }
+        }
+
+
 
         private CreatePostViewModel? createPostViewModel;
 
@@ -114,6 +123,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 "feed" => FeedViewModel,
                 "approve" => ApprovePostsViewModel,
                 "animals" => CreateAnimalViewModel,
+                "voting" => VotingViewModel,
                 _ => CurrentViewModel
             };
         }
