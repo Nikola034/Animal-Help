@@ -31,6 +31,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IAdoptionCentreService, AdoptionCentreService>();
             services.AddSingleton<IAdoptionService, AdoptionService>();
             services.AddSingleton<IAdoptionRequestService, AdoptionRequestService>();
+            services.AddSingleton<IAnimalService, AnimalService>();
             services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
             services.AddSingleton<ITransactionService, TransactionService>();
             services.AddSingleton<ITransactionParser, XmlTransactionParser>();

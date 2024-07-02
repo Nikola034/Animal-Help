@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AnimalHelp.WPF.Views.Member
+namespace AnimalHelp.WPF.Views.Volounteer
 {
     /// <summary>
-    /// Interaction logic for CreatePostView.xaml
+    /// Interaction logic for ApprovePosts.xaml
     /// </summary>
-    public partial class CreatePostView : UserControl
+    public partial class ApprovePosts : UserControl
     {
-        public CreatePostView()
+        public ApprovePosts()
         {
             InitializeComponent();
             DataContextChanged += new DependencyPropertyChangedEventHandler(SubscribeToEvents);
@@ -29,6 +29,5 @@ namespace AnimalHelp.WPF.Views.Member
         {
 
         }
-
     }
 }

@@ -41,12 +41,29 @@
                IsReadOnly="True"
                AutoGenerateColumns="False"
                SelectionMode="Single"
-               >
+               ScrollViewer.VerticalScrollBarVisibility="Visible"
+               HorizontalScrollBarVisibility="Visible" Height="500"
+                              >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="PostId" Width="1*" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="State" Width="1*" Binding="{Binding State}"/>
                         <DataGridTextColumn Header="Description" Width="1*" Binding="{Binding Description}"/>
                         <DataGridTextColumn Header="Animal" Width="1.6*" Binding="{Binding Animal}"/>
-                        <DataGridTextColumn Header="Photos" Width="1*" Binding="{Binding Photos}"/>
+                        <DataGridTemplateColumn Header="Photos" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Photos}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Image Source="{Binding Url}" Width="50" Height="50" />
+                                                    <TextBlock Text="{Binding Description}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
@@ -67,12 +84,15 @@
                         <TextBox Margin="5,0,0,0" Name="tbPhotoUrl"  Text="{Binding PhotoURL}" Height="24" />
                         <Label Content="Photo description:"/>
                         <TextBox Margin="5,0,0,0" Name="tbPhotoDescription"  Text="{Binding PhotoDescription}" Height="27" />
-                        <Button HorizontalAlignment="Left" Margin="5" Content="Add photo" Width="70" Command="{Binding AddPhotoCommand}" />
-                        <ListBox Height="57" ItemsSource="{Binding ChosenPhotos}"></ListBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button HorizontalAlignment="Left" Margin="5" Content="Add photo" Width="70" Command="{Binding AddPhotoCommand}" />
+                            <Button Margin="5" Content="Remove photo" Width="89" Command="{Binding RemovePhotoCommand}" />
+                        </StackPanel>
+                        <ListBox Height="57" ItemsSource="{Binding ChosenPhotos}" SelectedItem="{Binding SelectedPhoto}"></ListBox>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,74,0,75" Grid.RowSpan="2">
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,74,0,55" Grid.RowSpan="2">
                         <Label Content="Animal:"/>
-                        <ComboBox Margin="5,0,0,0" Name="cbAnimal" SelectedItem="{Binding SelectedAnimal}" ItemsSource="{Binding Animals}" />
+                        <ComboBox Margin="5,0,0,0" Name="cbAnimal" SelectedItem="{Binding SelectedAnimal}" ItemsSource="{Binding Animals}" Height="60" />
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -80,7 +100,6 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <Button Margin="5" Content="Add" Width="70" Command="{Binding AddPostCommand}" />
                 <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdatePostCommand}"/>
-                <Button Margin="5" Content="Delete" Width="70"  Command="{Binding DeletePostCommand}"/>
             </StackPanel>
         </Grid>
     </Border>

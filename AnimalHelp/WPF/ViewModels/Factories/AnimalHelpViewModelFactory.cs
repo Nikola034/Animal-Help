@@ -21,6 +21,8 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
     private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
     private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
+    private readonly CreateViewModel<ApprovePostsViewModel> _createApprovePostsViewModel;
+    private readonly CreateViewModel<CreateAnimalViewModel> _createAnimalViewModel;
     private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
@@ -30,8 +32,10 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
         CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
         CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
-        CreateViewModel<CreateDonationViewModel> createDonationViewModel,
+        CreateViewModel<CreateDonationViewModel>  createDonationViewModel,
         CreateViewModel<FeedViewModel> createFeedViewModel,
+        CreateViewModel<ApprovePostsViewModel> createApprovePostsViewModel,
+        CreateViewModel<CreateAnimalViewModel> createAnimalViewModel,
         CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel
         )
     {
@@ -45,10 +49,10 @@ public class AnimalHelpViewModelFactory
         _createMemberMenuViewModel = createMemberMenuViewModel;
         _createDonationViewModel = createDonationViewModel;
         _createFeedViewModel = createFeedViewModel;
+        _createApprovePostsViewModel = createApprovePostsViewModel;
+        _createAnimalViewModel = createAnimalViewModel;
         _agencyInformationViewModel = agencyInformationViewModel;
     }
-
-
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
         return viewType switch
@@ -63,6 +67,8 @@ public class AnimalHelpViewModelFactory
             ViewType.MemberMenu => _createMemberMenuViewModel(),
             ViewType.CreateDonation => _createDonationViewModel(),
             ViewType.Feed => _createFeedViewModel(),
+            ViewType.ApprovePosts => _createApprovePostsViewModel(),
+            ViewType.Animals => _createAnimalViewModel(),
             ViewType.AgencyInfo => _agencyInformationViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
