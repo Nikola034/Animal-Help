@@ -14,7 +14,6 @@ public enum ViewType
     Feed,
     ApprovePosts,
     Animals,
-    AgencyInfo
     AgencyInfo,
     AdoptionRequest,
     AdoptionsOverview,

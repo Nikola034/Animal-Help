@@ -27,10 +27,9 @@ public static class AddRepositoriesHostBuilderExtensions
             services.AddSingleton<IAdoptionRepository, AdoptionRepository>(_ =>
                 new AdoptionRepository(Constants.AdoptionFilePath, Constants.AdoptionIdFilePath));
             services.AddSingleton<IAdoptionRequestRepository, AdoptionRequestRepository>(_ =>
-                new AdoptionRequestRepository(Constants.AdoptionRequestFilePath, Constants.AdoptionRequestFilePath));
+                new AdoptionRequestRepository(Constants.AdoptionRequestFilePath, Constants.AdoptionRequestIdFilePath));
             services.AddSingleton<IAnimalRepository, AnimalRepository>(_ =>
                 new AnimalRepository(Constants.AnimalsFilePath, Constants.AnimalsIdFilePath));
-                new AdoptionRequestRepository(Constants.AdoptionRequestFilePath, Constants.AdoptionRequestIdFilePath));
             services.AddSingleton<IVolunteeringApplicationRepository, VolunteeringApplicationRepository>(_ =>
                 new VolunteeringApplicationRepository(Constants.VolunteeringApplicationFilePath, Constants.VolunteeringApplicationIdFilePath));
             services.AddSingleton<IVoteRepository, VoteRepository>(_ =>

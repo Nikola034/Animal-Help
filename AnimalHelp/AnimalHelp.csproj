@@ -465,24 +465,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\AdminId.txt" />
-    <Resource Include="Data\Id\UserId.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Id\PostId.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Data\Id\AdoptionId.txt" />
     <Resource Include="Data\Id\AdoptionRequestId.txt" />
+    <Resource Include="Data\Id\PostId.txt" />
+    <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Images\beaver.jpg" />
     <Resource Include="Data\Images\famnut.jpg" />
     <Resource Include="Data\Images\nut.jpg" />
     <Resource Include="Data\Images\pigs.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Data\Images\zolika.jpg" />
-    <Content Include="Data\bank-statement.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

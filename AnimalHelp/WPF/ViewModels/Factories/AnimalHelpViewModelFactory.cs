@@ -39,7 +39,6 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<FeedViewModel> createFeedViewModel,
         CreateViewModel<ApprovePostsViewModel> createApprovePostsViewModel,
         CreateViewModel<CreateAnimalViewModel> createAnimalViewModel,
-        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel
         CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
         CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
         CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
