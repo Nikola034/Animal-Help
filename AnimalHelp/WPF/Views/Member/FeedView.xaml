@@ -38,9 +38,9 @@
                                 <ItemsControl ItemsSource="{Binding Photos}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Margin="5,0,0,0">
-                                                <TextBlock Text="{Binding Url}" />
-                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                            <StackPanel>
+                                                <Image Source="{Binding Url}" Width="50" Height="50" />
+                                                <TextBlock Text="{Binding Description}" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

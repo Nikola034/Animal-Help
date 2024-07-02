@@ -130,9 +130,6 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 Posts.Add(post);
         }
 
-        private void RefreshSelection() => SelectedItem = _selectedItem;
-
-
         private void LoadAnimals()
         {
             Animals.Clear();
@@ -177,6 +174,13 @@ namespace AnimalHelp.WPF.ViewModels.Member
         {
             get => _photoDescription;
             set => SetField(ref _photoDescription, value);
+        }
+
+        private PostState? _postState;
+        public PostState? PostState
+        {
+            get => _postState;
+            set => SetField(ref _postState, value);
         }
 
         public string? PhotoURL
@@ -250,6 +254,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             Domain.Model.Post? post = _postService.GetById(SelectedItem.Id);
             if (post == null)
                 return;
+            _postService.Delete(post.Id);
             Posts.Remove(SelectedItem);
             RemoveInputs();
         }

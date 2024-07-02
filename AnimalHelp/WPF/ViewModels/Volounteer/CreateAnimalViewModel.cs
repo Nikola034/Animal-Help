@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace AnimalHelp.WPF.ViewModels.Volounteer
 {
@@ -44,6 +45,9 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         }
 
         public RelayCommand AddAnimalCommand { get; }
+        public RelayCommand UpdateAnimalCommand { get; }
+        public RelayCommand DeleteAnimalCommand { get; }
+
         public NavigationStore NavigationStore { get; }
         public CreateAnimalViewModel(IAuthenticationStore authenticationStore, IAnimalService animalService, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
         {
@@ -55,6 +59,8 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             HealthStates = new();
 
             AddAnimalCommand = new RelayCommand(AddAnimal!);
+            UpdateAnimalCommand = new RelayCommand(UpdateAnimal!);
+            DeleteAnimalCommand = new RelayCommand(DeleteAnimal!);
 
             LoadAnimals();
             LoadHealthStates();
@@ -65,27 +71,36 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             foreach (HealthState healthState in Enum.GetValues(typeof(HealthState)))
                 HealthStates.Add(healthState);
         }
-        //public bool selectingAnimal;
-        //private Post? _selectedItem;
-        //public Post? SelectedItem
-        //{
-        //    get => _selectedItem;
-        //    set
-        //    {
-        //        _selectedItem = value;
-        //        selectingAnimal = true;
-        //        if (_selectedItem != null)
-        //        {
-        //            Domain.Model.Animal? animal = _animalService.GetById(_selectedItem.Id);
-        //            if (animal == null)
-        //                return;
-        //            Description = animal.Description;
-        //            Animal = animal.Animal;
-        //        }
-        //        selectingAnimal = false;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        public bool selectingAnimal;
+        private Animal? _selectedItem;
+        public Animal? SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                selectingAnimal = true;
+                if (_selectedItem != null)
+                {
+                    Domain.Model.Animal? animal = _animalService.GetById(_selectedItem.Id);
+                    if (animal == null)
+                        return;
+                    BirthYear = animal.BirthYear.ToString();
+                    FoundLocationCity = animal.FoundLocation.City;
+                    FoundLocationStreet = animal.FoundLocation.Street;
+                    FoundLocationStreetNumber = animal.FoundLocation.StreetNumber;
+                    CurrentLocationCity = animal.CurrentLocation.City;
+                    CurrentLocationStreetNumber = animal.CurrentLocation.StreetNumber;
+                    CurrentLocationStreet = animal.CurrentLocation.Street;
+                    HealthConditionDescription = animal.HealthCondition.Description;
+                    HealthConditionHealthState = (HealthState)animal.HealthCondition.HealthState;
+                    AnimalTypeName = animal.AnimalType.Name;
+                    AnimalTypeBreed = animal.AnimalType.Breed;
+                }
+                selectingAnimal = false;
+                OnPropertyChanged();
+            }
+        }
         private string? _birthYear;
         public string? BirthYear
         {
@@ -189,6 +204,35 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
 
             Animals.Add(newAnimal);
             _animalService.Add(newAnimal);
+
+            RemoveInputs();
+        }
+
+        private void UpdateAnimal(object parameter)
+        {
+            if (SelectedItem == null)
+                return;
+
+            Domain.Model.Animal animal = _animalService.Update(SelectedItem.Id,
+                new Animal(SelectedItem.Id, int.Parse(BirthYear), new Location(FoundLocationCity, FoundLocationStreet, FoundLocationStreetNumber),
+                new Location(CurrentLocationCity, CurrentLocationStreet, CurrentLocationStreetNumber),
+                new HealthCondition(HealthConditionDescription, HealthConditionHealthState), new AnimalType(AnimalTypeName, AnimalTypeBreed)));
+
+            Animals.Remove(SelectedItem);
+            Animals.Add(animal);
+           
+            RemoveInputs();
+        }
+
+        private void DeleteAnimal(object parameter)
+        {
+            if (SelectedItem == null)
+                return;
+            Domain.Model.Animal? animal = _animalService.GetById(SelectedItem.Id);
+            if (animal == null)
+                return;
+            _animalService.Delete(animal.Id);
+            Animals.Remove(SelectedItem);
             RemoveInputs();
         }
 

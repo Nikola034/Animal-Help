@@ -30,7 +30,7 @@
                     <StackPanel Orientation="Vertical" Grid.Column="0"/>
                     <StackPanel Grid.Column="4" VerticalAlignment="Bottom"/>
                 </Grid>
-                <DataGrid CanUserAddRows="False" 
+                    <DataGrid CanUserAddRows="False" 
                HeadersVisibility = "Column"
                ItemsSource="{Binding Posts}" 
                SelectedItem="{Binding SelectedItem}"
@@ -41,12 +41,29 @@
                IsReadOnly="True"
                AutoGenerateColumns="False"
                SelectionMode="Single"
-               >
+               ScrollViewer.VerticalScrollBarVisibility="Visible"
+               HorizontalScrollBarVisibility="Visible" Height="500"
+                              >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="PostId" Width="1*" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="State" Width="1*" Binding="{Binding State}"/>
                         <DataGridTextColumn Header="Description" Width="1*" Binding="{Binding Description}"/>
                         <DataGridTextColumn Header="Animal" Width="1.6*" Binding="{Binding Animal}"/>
-                        <DataGridTextColumn Header="Photos" Width="1*" Binding="{Binding Photos}"/>
+                        <DataGridTemplateColumn Header="Photos" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Photos}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Image Source="{Binding Url}" Width="50" Height="50" />
+                                                    <TextBlock Text="{Binding Description}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
