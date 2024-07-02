@@ -22,6 +22,7 @@ public class AdoptionRequestViewModel:ViewModelBase, INavigableDataContext
     private readonly IAdoptionRequestService _adoptionRequestService;
     private readonly CurrentPostStore _currentPostStore;
     private readonly IAuthenticationStore _authenticationStore;
+    private readonly IAdoptionService _adoptionService;
 
     private string message = "";
     public string Message
@@ -56,13 +57,14 @@ public class AdoptionRequestViewModel:ViewModelBase, INavigableDataContext
         }
     }
     public AdoptionRequestViewModel(NavigationStore navigationStore, IAdoptionRequestService adoptionRequestService, 
-        CurrentPostStore currentPostStore, IAuthenticationStore authenticationStore)
+        CurrentPostStore currentPostStore, IAuthenticationStore authenticationStore, IAdoptionService adoptionService)
     {
         NavigationStore = navigationStore;
         _adoptionRequestService = adoptionRequestService;
         ApplyCommand = new RelayCommand(_ => ApplyForAdoption());
         _currentPostStore = currentPostStore;
         _authenticationStore = authenticationStore;
+        _adoptionService = adoptionService;
     }
 
     private void ApplyForAdoption()
@@ -72,6 +74,12 @@ public class AdoptionRequestViewModel:ViewModelBase, INavigableDataContext
             MessageBox.Show("Message must be entered!");
             return;
         }
+        if (IsAlreadyAdopted())
+        {
+            MessageBox.Show("This post is already adopted!");
+            return;
+        }
+
         var request = _adoptionRequestService.AddAdoptionRequest(SelectedAdoptionType,AdoptionRequestStatus.InReview, 
             _currentPostStore.CurrentPost, _authenticationStore.CurrentUserProfile.Email, Message);
         if (request != null)
@@ -82,5 +90,19 @@ public class AdoptionRequestViewModel:ViewModelBase, INavigableDataContext
             return;
         }
         MessageBox.Show("Request already exists!");
+    }
+
+    private bool IsAlreadyAdopted()
+    {
+        var adoptions = _adoptionService.GetByPostId(_currentPostStore.CurrentPost.Id);
+        foreach (var adoption in adoptions)
+        {
+            if (adoption.IsActive == true)
+            {
+                return true;
+            }
+
+        }
+        return false;
     }
 }

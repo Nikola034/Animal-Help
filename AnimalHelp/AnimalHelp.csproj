@@ -192,6 +192,7 @@
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
     <Compile Include="Application\Services\VolunteeringApplicationService.cs" />
+    <Compile Include="Application\Stores\CurrentAdoptionStore.cs" />
     <Compile Include="Application\Stores\CurrentPostStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Application\Utility\XmlServices\XmlTransactionParser.cs" />

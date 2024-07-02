@@ -22,6 +22,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
@@ -53,15 +55,15 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Yes"
-                            FontSize="14"
-                            Foreground="White"
-                            Background="{StaticResource BlueBtnColor}"
-                            Height="25"
-                            Width="80"
-                            BorderThickness="0"
-                            Margin="2"
-                            Command="{Binding DataContext.PositiveApplicationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                            CommandParameter="{Binding Id}">
+                                                FontSize="14"
+                                                Foreground="White"
+                                                Background="{StaticResource BlueBtnColor}"
+                                                Height="25"
+                                                Width="80"
+                                                BorderThickness="0"
+                                                Margin="2"
+                                                Command="{Binding DataContext.PositiveApplicationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding Id}">        
                                             <Button.Template>
                                                 <ControlTemplate TargetType="{x:Type Button}">
                                                     <Border CornerRadius="10" Background="{TemplateBinding Background}">
@@ -131,6 +133,89 @@
 
 
 
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                <Label FontSize="20" FontFamily="Roboto" Margin="3,0,0,0" Content="Adoption requests"/>
+
+
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="3" ItemsSource="{Binding AdoptionRequests}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="10">
+                        <DataGrid.Columns>
+
+
+
+                            <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*" />
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="50" />
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="100" />
+                            <DataGridTextColumn Header="PostId" Binding="{Binding PostId}" Width="60" />
+                            <DataGridTemplateColumn  Width="90">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Yes"
+                FontSize="14"
+                Foreground="White"
+                Background="{StaticResource BlueBtnColor}"
+                Height="25"
+                Width="80"
+                BorderThickness="0"
+                Margin="2"
+                Command="{Binding DataContext.AcceptAdoptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                CommandParameter="{Binding Id}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn  Width="90">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="No"
+                FontSize="14"
+                Foreground="White"
+                Background="{StaticResource RedBtnColor}"
+                Height="25"
+                Width="80"
+                BorderThickness="0"
+                Margin="2"
+                Command="{Binding DataContext.RejectAdoptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                CommandParameter="{Binding Id}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                </Grid>
             </StackPanel>
 
         </Grid>

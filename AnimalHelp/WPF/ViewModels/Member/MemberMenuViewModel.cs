@@ -95,7 +95,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
 
-        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
+        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, 
+            INavigationService navigationService, NavigationStore navigationStore, IAuthenticationStore authenticationStore,
+            IMemberRepository memberRepository, IVolunteeringApplicationService applicationService, ILoginService loginService)
         {
             _memberService = memberService;
             _authenticationStore = authenticationStore;

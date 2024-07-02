@@ -23,6 +23,7 @@ public class AdoptionsOverviewViewModel : ViewModelBase, INavigableDataContext
     private readonly IAuthenticationStore _authenticationStore;
     private readonly IPostService _postService;
     private readonly IPopupNavigationService _popupNavigationService;
+    private readonly CurrentAdoptionStore _currentAdoptionStore;
 
     public ICommand CancelApplicationCommand { get; }
     public ICommand ReturnAnimalCommand { get; }
@@ -47,7 +48,7 @@ public class AdoptionsOverviewViewModel : ViewModelBase, INavigableDataContext
 
     public AdoptionsOverviewViewModel(NavigationStore navigationStore, IAdoptionRequestService adoptionRequestService,
         IAdoptionService adoptionService, IAuthenticationStore authenticationStore, IPostService postService, 
-        IPopupNavigationService popupNavigationService)
+        IPopupNavigationService popupNavigationService, CurrentAdoptionStore currentAdoptionStore)
     {
         NavigationStore = navigationStore;
         _adoptionRequestService = adoptionRequestService;
@@ -55,6 +56,7 @@ public class AdoptionsOverviewViewModel : ViewModelBase, INavigableDataContext
         _authenticationStore = authenticationStore;
         _postService = postService;
         _popupNavigationService = popupNavigationService;
+        _currentAdoptionStore = currentAdoptionStore;
         AppliedPosts = new ObservableCollection<AdoptionRequest>();
         Adoptions = new ObservableCollection<AdoptionViewModel>();
         LoadAdoptions();
@@ -67,7 +69,18 @@ public class AdoptionsOverviewViewModel : ViewModelBase, INavigableDataContext
 
     private void ReturnAnimal(string obj)
     {
+        _currentAdoptionStore.CurrentAdoption = _adoptionService.GetById(obj);
         _popupNavigationService.Navigate(Factories.ViewType.RateAnimal);
+
+        // deactivating the current adoption
+        _adoptionService.DeactivateAdoption(_currentAdoptionStore.CurrentAdoption.Id);
+        LoadAdoptions();
+
+        // changing the post state to available
+        var post = _postService.GetById(_currentAdoptionStore.CurrentAdoption.PostId);
+        post.State = PostState.AvailableToAdopt;
+        _postService.Update(post.Id, post);
+
     }
 
     private void LoadAppliedPosts()
@@ -92,11 +105,12 @@ public class AdoptionsOverviewViewModel : ViewModelBase, INavigableDataContext
 
     private void LoadAdoptions()
     {
+        Adoptions.Clear();
         var userAdoptions = _adoptionService.GetByUserEmail(_authenticationStore.CurrentUserProfile.Email);
         foreach (var adoption in userAdoptions)
         {
             var post = _postService.GetById(adoption.PostId);
-            if(post != null)
+            if(post != null && adoption.IsActive == true)
             {
                 Adoptions.Add(new AdoptionViewModel(post, adoption));
             }
