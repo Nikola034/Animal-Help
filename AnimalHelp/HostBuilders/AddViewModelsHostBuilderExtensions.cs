@@ -8,6 +8,7 @@ using AnimalHelp.WPF.ViewModels.Member;
 using AnimalHelp.WPF.ViewModels.Volounteer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace AnimalHelp.HostBuilders;
 
@@ -28,7 +29,15 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<VolounteerMenuViewModel>();
             services.AddTransient<CreateDonationViewModel>();
             services.AddTransient<FeedViewModel>();
+            services.AddTransient<ApprovePostsViewModel>();
+            services.AddTransient<CreateAnimalViewModel>();
             services.AddScoped<AgencyInformationViewModel>();
+            services.AddTransient<ImportTransactionsViewModel>();
+            services.AddTransient<DonationsListViewModel>();
+            services.AddTransient<VotingViewModel>();
+            services.AddTransient<AdoptionRequestViewModel>();
+            services.AddTransient<AdoptionsOverviewViewModel>();
+            services.AddTransient<RateAnimalViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -67,8 +76,35 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddScoped<CreateViewModel<FeedViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<FeedViewModel>
             );
+            services.AddScoped<CreateViewModel<ApprovePostsViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<ApprovePostsViewModel>
+            );
+            services.AddScoped<CreateViewModel<CreateAnimalViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<CreateAnimalViewModel>
+            );
             services.AddScoped<CreateViewModel<AgencyInformationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AgencyInformationViewModel>
+            );
+            
+            services.AddScoped<CreateViewModel<ImportTransactionsViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<ImportTransactionsViewModel>
+            );
+            
+            services.AddScoped<CreateViewModel<DonationsListViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<DonationsListViewModel>
+            );
+
+            services.AddScoped<CreateViewModel<AdoptionRequestViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AdoptionRequestViewModel>
+            );
+            services.AddScoped<CreateViewModel<AdoptionsOverviewViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AdoptionsOverviewViewModel>
+            );
+            services.AddScoped<CreateViewModel<RateAnimalViewModel>>(
+                               serviceProvider => serviceProvider.GetRequiredService<RateAnimalViewModel>
+            );
+            services.AddScoped<CreateViewModel<VotingViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<VotingViewModel>
             );
         });
 

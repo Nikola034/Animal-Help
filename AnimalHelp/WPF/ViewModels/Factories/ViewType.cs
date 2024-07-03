@@ -12,5 +12,11 @@ public enum ViewType
     MemberMenu,
     CreateDonation,
     Feed,
-    AgencyInfo
+    ApprovePosts,
+    Animals,
+    AgencyInfo,
+    VotingVolunteer,
+    AdoptionRequest,
+    AdoptionsOverview,
+    RateAnimal
 }

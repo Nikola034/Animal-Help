@@ -6,12 +6,19 @@ using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using System.Windows;
+using System.Windows.Input;
+
 
 namespace AnimalHelp.WPF.ViewModels.Member
 {
     public class FeedViewModel : ViewModelBase, INavigableDataContext
     {
+
+        public ICommand ApplyForAdoptionCommand { get; }
+
+
 
         public ObservableCollection<PostViewModel> Posts { get; set; }
 
@@ -96,22 +103,38 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
         public NavigationStore NavigationStore { get; }
 
+
+        private readonly CurrentPostStore _currentPostStore;
         private readonly IMemberService _memberService;
         private readonly IPostService _postService;
         private readonly INavigationService _navigationService;
         private readonly IAuthenticationStore _authenticationStore;
+
         private readonly IAccountService _accountService;
         private readonly ICommentInfoService _commentInfoService;
 
-        public FeedViewModel(ICommentInfoService commentInfoService, IAccountService accountService, IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
+
+        private readonly IPopupNavigationService _popupNavigationService;
+        public FeedViewModel(ICommentInfoService commentInfoService, IAccountService accountService, IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService,
+            INavigationService navigationService, NavigationStore navigationStore, IPopupNavigationService popupNavigationService,
+            CurrentPostStore currentPostStore)
+
         {
             _authenticationStore = authenticationStore;
             _memberService = memberService;
             _postService = postService;
             _navigationService = navigationService;
+
             _accountService = accountService;
             _commentInfoService = commentInfoService;
+
+            _popupNavigationService = popupNavigationService;
+
+
             NavigationStore = navigationStore;
+            _currentPostStore = currentPostStore;
+
+            ApplyForAdoptionCommand = new RelayCommand<string>(OpenAdoptionApplicationWindow);
 
             IsCommentTextBoxVisible = Visibility.Hidden;
             IsAddCommentVisible = Visibility.Hidden;
@@ -128,6 +151,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             LikeCommand = new RelayCommand(LikeComment);
             LoadPosts();
         }
+
 
 
         private void ShowAddComment(object obj)
@@ -199,6 +223,12 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 ShowSelectedPost(postViewModel);
             }
         }
+        private void OpenAdoptionApplicationWindow(string postId)
+        {
+            _currentPostStore.CurrentPost = _postService.GetById(postId);
+            _popupNavigationService.Navigate(Factories.ViewType.AdoptionRequest);
+
+        }
 
         private void LoadPosts()
         {
@@ -207,23 +237,16 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
             posts = _postService.GetAll();
 
-            if (_authenticationStore.CurrentUser.UserType == UserType.Member)
+
+            foreach (Domain.Model.Post post in posts)
             {
-                foreach (Domain.Model.Post post in posts)
-                {
-                    if (post.Status == PostStatus.Approved)
-                    {
-                        Posts.Add(new PostViewModel(post, _commentInfoService));
-                    }
-                }
-            }
-            else if (_authenticationStore.CurrentUser.UserType == UserType.Volunteer)
-            {
-                foreach (Domain.Model.Post post in posts)
+                if (post.Status == PostStatus.Approved)
                 {
                     Posts.Add(new PostViewModel(post, _commentInfoService));
                 }
             }
+
+
         }
     }
 }

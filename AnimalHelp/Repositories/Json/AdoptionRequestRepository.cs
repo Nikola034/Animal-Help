@@ -51,12 +51,12 @@ public class AdoptionRequestRepository : AutoIdRepository<AdoptionRequest>, IAdo
         return requests;
     }
 
-    public List<AdoptionRequest> GetByUserId(string id)
+    public List<AdoptionRequest> GetByUserEmail(string email)
     {
         List<AdoptionRequest> requests = new();
         foreach (AdoptionRequest request in GetAll())
         {
-            if (request.UserId == id)
+            if (request.UserEmail == email)
             {
                 requests.Add(request);
             }

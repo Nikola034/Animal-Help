@@ -1,19 +1,13 @@
-﻿using AnimalHelp.Domain.Model;
+﻿using System;
+using AnimalHelp.Application.DTO;
 
 namespace AnimalHelp.WPF.ViewModels.Donations;
 
-public class DonationViewModel(string description, string from, string postDescription)
+public class DonationViewModel(DonationDto donation)
+    : IDateTimeSortable
 {
-    public string Description { get; } = description;
-    public string From { get; } = from;
-    public string PostDescription { get; } = postDescription;
-
-    public static DonationViewModel FromDonation(Donation donation, Post? post)
-    {
-        return new DonationViewModel(
-            donation.IsAnonymous ? "" : donation.From,
-            donation.Description,
-            donation.PostId == null ? "" : post!.Animal.Id
-        );
-    }
+    public DateTime DateTime { get; } = donation.DateTime;
+    public string From { get; } = donation.IsAnonymous ? "" : donation.From;
+    public string Description { get; } = donation.Description;
+    public string PostDescription { get; } = donation.Post?.Animal.Id ?? "";
 }

@@ -15,6 +15,12 @@ public class VolunteeringApplication : IEntity
 
     public ApplicationState State { get; set; }
 
+    public VolunteeringApplication()
+    {
+
+    }
+
+
     public VolunteeringApplication(Member applicant)
     {
         Applicant = applicant;

@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="AnimalHelp.WPF.Views.Volounteer.CreateAnimalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
+             mc:Ignorable="d" d:DesignWidth="800" Height="467">
+    <Border  Padding="10" >
+        <Grid Margin="0,-35,-64,-92">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="286"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                <Label FontSize="20" FontFamily="Roboto" Margin="3,0,0,0" Content="Animals"/>
+                <DataGrid CanUserAddRows="False" 
+          HeadersVisibility="Column"
+          ItemsSource="{Binding Animals}" 
+          SelectedItem="{Binding SelectedItem}" 
+          x:Name="dgTutors" 
+          CanUserDeleteRows="False" 
+          IsReadOnly="True"
+          AutoGenerateColumns="False"
+          SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Birth Year" Width="1*" Binding="{Binding BirthYear}"/>
+                        <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Description" Width="1*" Binding="{Binding Description}"/>
+
+                        <DataGridTemplateColumn Header="Found Location" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding FoundLocation.City}" />
+                                        <TextBlock Text="{Binding FoundLocation.Street}" />
+                                        <TextBlock Text="{Binding FoundLocation.StreetNumber}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Current Location" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding CurrentLocation.City}" />
+                                        <TextBlock Text="{Binding CurrentLocation.Street}" />
+                                        <TextBlock Text="{Binding CurrentLocation.StreetNumber}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Health Condition" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding HealthCondition.Description}" />
+                                        <TextBlock Text="{Binding HealthCondition.HealthState}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Animal Type" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding AnimalType.Name}" />
+                                        <TextBlock Text="{Binding AnimalType.Breed}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid Margin="5,0,0,0" Width="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="15*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="0"/>
+                    <StackPanel Grid.Column="4" VerticalAlignment="Bottom"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,10,10,10">
+                <TextBlock Text="Birth Year" />
+                <TextBox Text="{Binding BirthYear, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Name" />
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Description" />
+                <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Found Location City" />
+                <TextBox Text="{Binding FoundLocationCity, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Found Location Street" />
+                <TextBox Text="{Binding FoundLocationStreet, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Found Location Street Number" />
+                <TextBox Text="{Binding FoundLocationStreetNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Current Location City" />
+                <TextBox Text="{Binding CurrentLocationCity, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Current Location Street" />
+                <TextBox Text="{Binding CurrentLocationStreet, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Current Location Street Number" />
+                <TextBox Text="{Binding CurrentLocationStreetNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Health Condition Description" />
+                <TextBox Text="{Binding HealthConditionDescription, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Health Condition Health State" />
+                <ComboBox SelectedItem="{Binding HealthConditionHealthState}" ItemsSource="{Binding HealthStates}" />
+
+                <TextBlock Text="Animal Type Name" />
+                <TextBox Text="{Binding AnimalTypeName, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Animal Type Breed" />
+                <TextBox Text="{Binding AnimalTypeBreed, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="0"/>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
+                <Button Margin="5" Content="Add" Width="70" Command="{Binding AddAnimalCommand}" />
+                <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdateAnimalCommand}"/>
+                <Button Margin="5" Content="Delete" Width="70"  Command="{Binding DeleteAnimalCommand}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
