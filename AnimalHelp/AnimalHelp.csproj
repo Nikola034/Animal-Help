@@ -331,7 +331,6 @@
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\CommentViewModel.cs" />
-    <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\PostViewModel.cs" />
@@ -339,8 +338,6 @@
     <Compile Include="WPF\ViewModels\Member\AdoptionsOverviewViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\AdoptionViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
-    <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
-    <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\ApprovePostsViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VotingViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\CreateAnimalViewModel.cs" />
