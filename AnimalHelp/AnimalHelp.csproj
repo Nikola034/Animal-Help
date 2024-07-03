@@ -398,16 +398,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Data\Admin.json" />
     <None Include="Data\Adoption.json" />
+    <None Include="Data\AdoptionCentre.json" />
     <None Include="Data\AdoptionRequest.json" />
     <None Include="Data\Animals.json" />
+    <None Include="Data\Donations.json" />
     <None Include="Data\Members.json" />
     <None Include="Data\Posts.json" />
-    <None Include="Data\Admin.json" />
-    <None Include="Data\Posts.json" />
+    <None Include="Data\Transactions.json" />
     <None Include="Data\VolunteeringApplication.json" />
-    <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -487,11 +486,8 @@
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\AdminId.txt" />
     <Resource Include="Data\Id\AdoptionId.txt" />
     <Resource Include="Data\Id\AdoptionRequestId.txt" />
-    <Resource Include="Data\Id\PostId.txt" />
-    <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Images\beaver.jpg" />
@@ -500,20 +496,10 @@
     <Resource Include="Data\Images\pigs.jpg" />
     <Resource Include="Data\Images\zolika.jpg" />
     <Content Include="Data\Admin.json" />
-    <Content Include="Data\AdoptionCentre.json" />
-    <Content Include="Data\bank-statement.xml" />
-    <Content Include="Data\Donations.json" />
-    <Content Include="Data\Id\AdminId.txt" />
-    <Content Include="Data\Id\AdoptionCentreId.txt" />
-    <Content Include="Data\Id\DonationId.txt" />
-    <Content Include="Data\Id\PostId.txt" />
+    <Resource Include="Data\Id\PostId.txt" />
+    <Resource Include="Data\Id\AdminId.txt" />
     <Content Include="Data\Id\UserId.txt" />
     <Content Include="Data\Members.json" />
-    <Content Include="Data\PersonProfile.json" />
-    <Content Include="Data\Posts.json" />
-    <Content Include="Data\Profiles.json" />
-    <Content Include="Data\Transactions.json" />
-    <Content Include="Data\Volunteers.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
