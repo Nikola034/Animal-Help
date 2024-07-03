@@ -8,11 +8,5 @@ public partial class BlackListView : UserControl
     public BlackListView()
     {
         InitializeComponent();
-        DataContextChanged += new DependencyPropertyChangedEventHandler(SubscribeToEvents);
-    }
-    
-    public void SubscribeToEvents(object sender, DependencyPropertyChangedEventArgs e)
-    {
-
     }
 }

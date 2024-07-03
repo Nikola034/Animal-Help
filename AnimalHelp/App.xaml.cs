@@ -1,9 +1,9 @@
 using AnimalHelp.HostBuilders;
-using AnimalHelp.WPF.Views.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using AnimalHelp.WPF.Views.Default;
 
 namespace AnimalHelp
 {
@@ -23,7 +23,7 @@ namespace AnimalHelp
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            Window window = _host.Services.GetRequiredService<LoginWindow>();
+            Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();
 
             base.OnStartup(e);

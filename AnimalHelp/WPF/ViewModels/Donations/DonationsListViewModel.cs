@@ -6,16 +6,12 @@ using AnimalHelp.WPF.MVVM;
 
 namespace AnimalHelp.WPF.ViewModels.Donations;
 
-public class DonationsListViewModel : ViewModelBase, INavigableDataContext
+public class DonationsListViewModel : ViewModelBase
 {
-    public NavigationStore NavigationStore { get; }
-
     public ObservableCollection<IDateTimeSortable> Donations { get; }
 
-    public DonationsListViewModel(NavigationStore navigationStore, IDonationService donationService, ITransactionService transactionService)
+    public DonationsListViewModel(IDonationService donationService, ITransactionService transactionService)
     {
-        NavigationStore = navigationStore;
-
         var donations = donationService.GetAll()
             .Select(dto => new DonationViewModel(dto)).ToList();
         var transactions = transactionService.GetAll()
