@@ -18,5 +18,7 @@ public enum ViewType
     VotingVolunteer,
     AdoptionRequest,
     AdoptionsOverview,
-    RateAnimal
+    RateAnimal,
+    BlackList,
+    BlackListDiscussion,
 }

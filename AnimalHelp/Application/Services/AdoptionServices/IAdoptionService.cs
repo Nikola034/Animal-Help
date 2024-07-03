@@ -24,4 +24,6 @@ public interface IAdoptionService
 
     public void RateAnimal(string id, int rating);
     public void RateMember(string id, int rating);
+
+    public float GetMemberRating(string email);
 }

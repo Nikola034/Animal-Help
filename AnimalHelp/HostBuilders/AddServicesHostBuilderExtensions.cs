@@ -3,6 +3,7 @@ using AnimalHelp.Application.Services.AdoptionCentre;
 using AnimalHelp.Application.Services.AdoptionServices;
 using AnimalHelp.Application.Services.DonationServices;
 using AnimalHelp.Application.Services.Post;
+using AnimalHelp.Application.Services.User;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
@@ -36,6 +37,8 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<ITransactionService, TransactionService>();
             services.AddSingleton<ITransactionParser, XmlTransactionParser>();
             services.AddSingleton<IPopupNavigationService, PopupNavigationService>();
+            services.AddSingleton<IClosePopupNavigationService, ClosePopupNavigationService>();
+            services.AddSingleton<IBlackListService, BlackListService>();
         });
 
         return host;

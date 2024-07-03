@@ -186,6 +186,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\DTO\DonationDto.cs" />
+    <Compile Include="Application\DTO\BlackListProposalDto.cs" />
     <Compile Include="Application\DTO\TransactionDto.cs" />
     <Compile Include="Application\Services\AdoptionCentre\AdoptionCentreService.cs" />
     <Compile Include="Application\Services\AdoptionCentre\AnimalService.cs" />
@@ -203,9 +204,12 @@
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
+    <Compile Include="Application\Services\User\BlackListService.cs" />
+    <Compile Include="Application\Services\User\IBlackListService.cs" />
     <Compile Include="Application\Services\VolunteeringApplicationService.cs" />
     <Compile Include="Application\Stores\CurrentAdoptionStore.cs" />
     <Compile Include="Application\Stores\CurrentPostStore.cs" />
+    <Compile Include="Application\Stores\CurrentBlackListProposalStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Application\Utility\XmlServices\XmlTransactionParser.cs" />
     <Compile Include="Domain\Model\AdoptionCentre.cs" />
@@ -215,6 +219,8 @@
     <Compile Include="Domain\Model\AdoptionType.cs" />
     <Compile Include="Domain\Model\Animal.cs" />
     <Compile Include="Domain\Model\AnimalType.cs" />
+    <Compile Include="Domain\Model\BlackList\BlackListProposal.cs" />
+    <Compile Include="Domain\Model\BlackList\Message.cs" />
     <Compile Include="Domain\Model\Comment.cs" />
     <Compile Include="Domain\Model\Donations\BankAccount.cs" />
     <Compile Include="Domain\Model\Donations\Donation.cs" />
@@ -269,6 +275,7 @@
     <Compile Include="Domain\RepositoryInterfaces\IAdminRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionCentreRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAnimalRepository.cs" />
+    <Compile Include="Domain\RepositoryInterfaces\IBlackListProposalRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IPostRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IDonationRepository.cs" />
     <Compile Include="Domain\RepositoryInterfaces\IAdoptionRepository.cs" />
@@ -291,6 +298,7 @@
     <Compile Include="Repositories\Json\AnimalRepository.cs" />
     <Compile Include="Repositories\Json\AutoIdRepository.cs" />
     <Compile Include="Repositories\Constants.cs" />
+    <Compile Include="Repositories\Json\BlackListProposalRepository.cs" />
     <Compile Include="Repositories\Json\PostRepository.cs" />
     <Compile Include="Repositories\Json\AdminRepository.cs" />
     <Compile Include="Repositories\Json\DonationRepository.cs" />
@@ -338,6 +346,11 @@
     <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\ApprovePostsViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VotingViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\BlackList\BlackListDiscussionViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\BlackList\BlackListProposalViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\BlackList\BlackListViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\BlackList\MessageViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Volounteer\BlackList\UserViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\CreateAnimalViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\RateAnimalViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VolounteerMenuViewModel.cs" />
@@ -390,6 +403,15 @@
     <Compile Include="WPF\Views\Member\MemberMenuWindow.xaml.cs">
       <DependentUpon>MemberMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Views\Volounteer\BlackList\BlackListDiscussionWindow.xaml.cs">
+      <DependentUpon>BlackListDiscussionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Volounteer\BlackList\BlackListView.xaml.cs">
+      <DependentUpon>BlackListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Volounteer\BlackList\MemberVisibilityConverter.cs" />
+    <Compile Include="WPF\Views\Volounteer\BlackList\RatingToColorConverter.cs" />
+    <Compile Include="WPF\Views\Volounteer\BlackList\UserTypeToColorConverter.cs" />
     <Compile Include="WPF\Views\Volounteer\VotingView.xaml.cs">
       <DependentUpon>VotingView.xaml</DependentUpon>
     </Compile>
@@ -408,15 +430,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Data\Adoption.json" />
-    <None Include="Data\AdoptionCentre.json" />
-    <None Include="Data\AdoptionRequest.json" />
-    <None Include="Data\Animals.json" />
-    <None Include="Data\Donations.json" />
-    <None Include="Data\Members.json" />
-    <None Include="Data\Posts.json" />
-    <None Include="Data\Transactions.json" />
-    <None Include="Data\VolunteeringApplication.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -467,6 +480,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF\Views\Volounteer\BlackList\BlackListDiscussionWindow.xaml" />
+    <Page Include="WPF\Views\Volounteer\BlackList\BlackListView.xaml" />
     <Page Include="WPF\Views\Volounteer\VotingView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -491,7 +506,7 @@
   <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
-  <ItemGroup>
+   <ItemGroup>
     <Resource Include="Data\Id\AdoptionId.txt" />
     <Resource Include="Data\Id\AdoptionRequestId.txt" />
   </ItemGroup>
@@ -510,7 +525,7 @@
     <Resource Include="Data\Id\AdminId.txt" />
     <Content Include="Data\Id\UserId.txt" />
     <Content Include="Data\Members.json" />
-  </ItemGroup>
+  </ItemGroup> 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.1-ci680\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.1-ci680\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

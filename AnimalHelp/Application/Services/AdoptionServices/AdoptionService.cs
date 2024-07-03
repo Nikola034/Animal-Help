@@ -2,6 +2,7 @@
 using AnimalHelp.Domain.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AnimalHelp.Application.Services.AdoptionServices;
 
@@ -99,6 +100,14 @@ public class AdoptionService : IAdoptionService
         }
         adoption.RateMember(rating);
         _adoptionRepository.Update(adoption.Id, adoption);
+    }
+
+    public float GetMemberRating(string email)
+    {
+        var adoptions = GetByUserEmail(email);
+        if (adoptions.Count == 0)
+            return 0.0f;
+        return (float)adoptions.Average(adoption => adoption.MemberRating);
     }
 
     public Adoption UpdateAdoption(Adoption adoption)

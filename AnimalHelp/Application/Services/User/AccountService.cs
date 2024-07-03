@@ -2,6 +2,8 @@
 using AnimalHelp.Domain.Model;
 using AnimalHelp.Domain.RepositoryInterfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace AnimalHelp.Application.UseCases.User
@@ -67,6 +69,17 @@ namespace AnimalHelp.Application.UseCases.User
             return new UserDto((Admin)null, null);
         }
 
+        public UserDto GetUserById(string id)
+        {
+            var volunteer = _volunteerService.GetVolunteerById(id);
+            if (volunteer != null)
+                return new UserDto(volunteer, UserType.Volunteer);
+            var member = _memberService.GetMemberById(id);
+            if (member != null)
+                return new UserDto(member, UserType.Member);
+            return new UserDto((Domain.Model.User?)null, null);
+        }
+
         public string GetEmailByUserId(string userId, UserType userType)
         {
             if (userType == UserType.Admin)
@@ -126,6 +139,40 @@ namespace AnimalHelp.Application.UseCases.User
         public void DeleteMember(Member member)
         {
             _memberService.DeleteAccount(member);
+        }
+        
+        public List<UserDto> GetAllUsers()
+        {
+            var members = _memberRepository.GetAll()
+                .Select(member => new UserDto(member, UserType.Member)).ToList();
+            var volunteers = _volunteerRepository.GetAll()
+                .Select(volunteer => new UserDto(volunteer, UserType.Volunteer));
+            return members.Concat(volunteers).ToList();
+        }
+
+        public void UpdateUser(UserDto user)
+        {
+            if (user.UserType != UserType.Admin && user.Person == null)
+                return;
+            if (user is { UserType: UserType.Admin, Admin: null })
+                return;
+            switch (user.UserType)
+            {
+                case UserType.Volunteer:
+                    if (user.Person == null) return;
+                    _volunteerRepository.Update(user.Person.Id, (Volunteer)user.Person);
+                    break;
+                case UserType.Member:
+                    if (user.Person == null) return;
+                    _memberRepository.Update(user.Person.Id, (Member)user.Person);
+                    break;
+                case UserType.Admin:
+                    if (user.Admin == null) return;
+                    _adminRepository.Update(user.Admin.Id, user.Admin);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
