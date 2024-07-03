@@ -11,14 +11,16 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
     public class VolounteerMenuViewModel : ViewModelBase, INavigableDataContext
     {
         public RelayCommand NavCommand { get; set; }
+        public RelayCommand LogoutCommand { get; set; }
 
+        private readonly ILoginService _loginService;
         private readonly IMemberService _memberService;
         private readonly INavigationService _navigationService;
-        private readonly ILoginService _loginService;
+
 
 
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
-        public RelayCommand LogoutCommand { get; set; }
+
 
 
         public NavigationStore NavigationStore { get; }
@@ -66,15 +68,15 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         {
             get
             {
-                if (feedViewModel == null)
-                {
-                    feedViewModel = (FeedViewModel)_viewModelFactory.CreateViewModel(ViewType.Feed);
-                }
+
+                feedViewModel = (FeedViewModel)_viewModelFactory.CreateViewModel(ViewType.Feed);
+
 
                 return feedViewModel;
             }
         }
         private ApprovePostsViewModel? approvePostsViewModel;
+
 
         private ApprovePostsViewModel ApprovePostsViewModel
         {
@@ -103,6 +105,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             }
         }
         public VolounteerMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore, ILoginService loginService)
+
         {
             _memberService = memberService;
             _navigationService = navigationService;
@@ -112,6 +115,8 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             currentViewModel = CreatePostViewModel;
             _loginService = loginService;
             LogoutCommand = new RelayCommand(execute => Logout());
+
+
 
         }
 

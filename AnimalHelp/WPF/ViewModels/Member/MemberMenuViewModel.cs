@@ -1,4 +1,4 @@
-﻿using AnimalHelp.Application.Services;
+using AnimalHelp.Application.Services;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
@@ -7,25 +7,24 @@ using AnimalHelp.Domain.RepositoryInterfaces;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Volounteer;
-
 using System.Windows;
-using System.Windows.Input;
 
 namespace AnimalHelp.WPF.ViewModels.Member
 {
     public class MemberMenuViewModel : ViewModelBase, INavigableDataContext
     {
         public RelayCommand NavCommand { get; set; }
+        public RelayCommand LogoutCommand { get; set; }
 
+        private readonly ILoginService _loginService;
         private readonly IMemberService _memberService;
         private readonly IAuthenticationStore _authenticationStore;
         private readonly IMemberRepository _memberRepository;
         private readonly IVolunteeringApplicationService _volunteeringApplicationService;
         private readonly INavigationService _navigationService;
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
-        private readonly ILoginService _loginService;
-        public RelayCommand LogoutCommand { get; set; }
- 
+
+
         public RelayCommand ApplyForVolunteeringCommand { get; set; }
 
 
@@ -70,6 +69,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
         private CreateAnimalViewModel? createAnimalViewModel;
         private AdoptionsOverviewViewModel? adoptionsOverviewViewModel;
 
+
         private CreateAnimalViewModel CreateAnimalViewModel
         {
             get
@@ -95,10 +95,12 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
 
-        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, 
+        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory,
             INavigationService navigationService, NavigationStore navigationStore, IAuthenticationStore authenticationStore,
             IMemberRepository memberRepository, IVolunteeringApplicationService applicationService, ILoginService loginService)
+
         {
+            _loginService = loginService;
             _memberService = memberService;
             _authenticationStore = authenticationStore;
             _memberRepository = memberRepository;
@@ -109,9 +111,8 @@ namespace AnimalHelp.WPF.ViewModels.Member
             _viewModelFactory = viewModelFactory;
             currentViewModel = CreatePostViewModel;
             LogoutCommand = new RelayCommand(execute => Logout());
-            ApplyForVolunteeringCommand = new RelayCommand(execute => ApplyForVolunteering());
 
-            _loginService = loginService;
+            ApplyForVolunteeringCommand = new RelayCommand(execute => ApplyForVolunteering());
 
         }
 
@@ -127,13 +128,12 @@ namespace AnimalHelp.WPF.ViewModels.Member
             };
         }
 
-        
-
         private void Logout()
         {
             _loginService.LogOut();
             _navigationService.Navigate(ViewType.Login);
         }
+
 
         private void ApplyForVolunteering()
         {
@@ -149,5 +149,6 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
 
         }
+
     }
 }
