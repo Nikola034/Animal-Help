@@ -1,21 +1,15 @@
 ﻿using AnimalHelp.Application.Services.AdoptionCentre;
 using AnimalHelp.Application.Services.Post;
 using AnimalHelp.Application.Stores;
-using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
-using AnimalHelp.Application.Utility.Validators;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using ValidationError = AnimalHelp.Domain.Model.ValidationError;
 
 namespace AnimalHelp.WPF.ViewModels.Member
@@ -119,14 +113,13 @@ namespace AnimalHelp.WPF.ViewModels.Member
             ChosenPhotos = new();
 
             LoadCollections();
-
             AddPostCommand = new RelayCommand(AddPost!);
             UpdatePostCommand = new RelayCommand(UpdatePost!);
             AddPhotoCommand = new RelayCommand(AddPhoto!);
             RemovePhotoCommand = new RelayCommand(RemovePhoto!);
         }
 
-        private void LoadCollections()
+        public void LoadCollections()
         {
             LoadPosts();
             LoadAnimals();

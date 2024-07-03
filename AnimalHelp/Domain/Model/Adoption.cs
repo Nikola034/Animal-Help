@@ -14,8 +14,8 @@ public class Adoption : IEntity
     public bool IsActive { get; set; }
     public int AnimalRating { get; set; }
     public int MemberRating { get; set; }
-    public string Postid { get; set; }
-    public string UserId { get; set; }
+    public string PostId { get; set; }
+    public string UserEmail { get; set; }
 
     public Adoption()
     {
@@ -24,40 +24,40 @@ public class Adoption : IEntity
         IsActive = true;
         AnimalRating = 0;
         MemberRating = 0;
-        Postid = "";
-        UserId = "";
+        PostId = "";
+        UserEmail = "";
     }
     // Add new adoption sets ratings to 0
-    public Adoption(AdoptionType type, bool isActive, string postid, string userId)
+    public Adoption(AdoptionType type, bool isActive, string postid, string userEmail)
     {
         Id = "";
         Type = type;
         IsActive = isActive;
         AnimalRating = 0;
         MemberRating = 0;
-        Postid = postid;
-        UserId = userId;
+        PostId = postid;
+        UserEmail = userEmail;
     }
-    public Adoption(AdoptionType type, bool isActive, int animalRating, int memberRating, string postid, string userId)
+    public Adoption(AdoptionType type, bool isActive, int animalRating, int memberRating, string postid, string userEmail)
     {
         Id = "";
         Type = type;
         IsActive = isActive;
         AnimalRating = animalRating;
         MemberRating = memberRating;
-        Postid = postid;
-        UserId = userId;
+        PostId = postid;
+        UserEmail = userEmail;
     }
 
-    public Adoption(string id, AdoptionType type, bool isActive, int animalRating, int memberRating, string postid, string userId)
+    public Adoption(string id, AdoptionType type, bool isActive, int animalRating, int memberRating, string postid, string userEmail)
     {
         Id = id;
         Type = type;
         IsActive = isActive;
         AnimalRating = animalRating;
         MemberRating = memberRating;
-        Postid = postid;
-        UserId = userId;
+        PostId = postid;
+        UserEmail = userEmail;
     }
     public void ChangeAdoptionState(bool isActive)
     {

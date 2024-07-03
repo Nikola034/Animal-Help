@@ -13,7 +13,7 @@ public class AdoptionRequest : IEntity
     public AdoptionRequestStatus Status { get; set; }
     public AdoptionType Type { get; set; }
     public string PostId { get; set; }
-    public string UserId { get; set; }
+    public string UserEmail { get; set; }
 
     public AdoptionRequest()
     {
@@ -22,25 +22,25 @@ public class AdoptionRequest : IEntity
         Status = AdoptionRequestStatus.InReview;
         Type = AdoptionType.ForeverHome;
         PostId = "";
-        UserId = "";
+        UserEmail = "";
     }
-    public AdoptionRequest(string message, AdoptionRequestStatus status, AdoptionType type, string postId, string userId)
+    public AdoptionRequest(string message, AdoptionRequestStatus status, AdoptionType type, string postId, string userEmail)
     {
         Id = "";
         Message = message;
         Status = status;
         Type = type;
         PostId = postId;
-        UserId = userId;
+        UserEmail = userEmail;
     }
-    public AdoptionRequest(string id, string message, AdoptionRequestStatus status, AdoptionType type, string postId, string userId)
+    public AdoptionRequest(string id, string message, AdoptionRequestStatus status, AdoptionType type, string postId, string userEmail)
     {
         Id = id;
         Message = message;
         Status = status;
         Type = type;
         PostId = postId;
-        UserId = userId;
+        UserEmail = userEmail;
     }
     public void ChangeRequestState(AdoptionRequestStatus status)
     {

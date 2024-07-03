@@ -1,28 +1,32 @@
-﻿using AnimalHelp.Application.Services.Post;
+using AnimalHelp.Application.Services;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
+using AnimalHelp.Domain.RepositoryInterfaces;
 using AnimalHelp.WPF.MVVM;
-using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Volounteer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Windows;
 
 namespace AnimalHelp.WPF.ViewModels.Member
 {
     public class MemberMenuViewModel : ViewModelBase, INavigableDataContext
     {
         public RelayCommand NavCommand { get; set; }
+        public RelayCommand LogoutCommand { get; set; }
 
+        private readonly ILoginService _loginService;
         private readonly IMemberService _memberService;
+        private readonly IAuthenticationStore _authenticationStore;
+        private readonly IMemberRepository _memberRepository;
+        private readonly IVolunteeringApplicationService _volunteeringApplicationService;
         private readonly INavigationService _navigationService;
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
+
+
+        public RelayCommand ApplyForVolunteeringCommand { get; set; }
+
 
         public NavigationStore NavigationStore { get; }
 
@@ -63,6 +67,8 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
         private CreateAnimalViewModel? createAnimalViewModel;
+        private AdoptionsOverviewViewModel? adoptionsOverviewViewModel;
+
 
         private CreateAnimalViewModel CreateAnimalViewModel
         {
@@ -76,14 +82,38 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 return createAnimalViewModel;
             }
         }
-        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
+        private AdoptionsOverviewViewModel AdoptionsOverviewViewModel
         {
+            get
+            {
+                if (adoptionsOverviewViewModel == null)
+                {
+                    adoptionsOverviewViewModel = (AdoptionsOverviewViewModel)_viewModelFactory.CreateViewModel(ViewType.AdoptionsOverview);
+                }
+
+                return adoptionsOverviewViewModel;
+            }
+        }
+
+        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory,
+            INavigationService navigationService, NavigationStore navigationStore, IAuthenticationStore authenticationStore,
+            IMemberRepository memberRepository, IVolunteeringApplicationService applicationService, ILoginService loginService)
+
+        {
+            _loginService = loginService;
             _memberService = memberService;
+            _authenticationStore = authenticationStore;
+            _memberRepository = memberRepository;
+            _volunteeringApplicationService = applicationService;
             _navigationService = navigationService;
             NavigationStore = navigationStore;
             NavCommand = new RelayCommand(execute => OnNav(execute as string));
             _viewModelFactory = viewModelFactory;
             currentViewModel = CreatePostViewModel;
+            LogoutCommand = new RelayCommand(execute => Logout());
+
+            ApplyForVolunteeringCommand = new RelayCommand(execute => ApplyForVolunteering());
+
         }
 
         private void OnNav(string? destination)
@@ -93,8 +123,32 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 "posts" => CreatePostViewModel,
                 "feed" => FeedViewModel,
                 "animals" => CreateAnimalViewModel,
+                "adoptions" => AdoptionsOverviewViewModel,
                 _ => CurrentViewModel
             };
         }
+
+        private void Logout()
+        {
+            _loginService.LogOut();
+            _navigationService.Navigate(ViewType.Login);
+        }
+
+
+        private void ApplyForVolunteering()
+        {
+            Domain.Model.Member member = _memberRepository.GetByEmail(_authenticationStore.CurrentUser.Person.Profile.Email);
+            bool success = _volunteeringApplicationService.ApplyForVolunteering(member);
+            if (!success)
+            {
+                MessageBox.Show("You already applied to be a volunteer, cant apply twice.", "Fail");
+            }
+            else
+            {
+                MessageBox.Show("Your application has been sent!", "Sucess");
+            }
+
+        }
+
     }
 }

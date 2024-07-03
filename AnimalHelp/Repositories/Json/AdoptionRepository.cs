@@ -28,7 +28,7 @@ public class AdoptionRepository : AutoIdRepository<Adoption>, IAdoptionRepositor
         List<Adoption> requests = new();
         foreach (Adoption request in GetAll())
         {
-            if (request.Postid == id)
+            if (request.PostId == id)
             {
                 requests.Add(request);
             }
@@ -49,12 +49,12 @@ public class AdoptionRepository : AutoIdRepository<Adoption>, IAdoptionRepositor
         return requests;
     }
 
-    public List<Adoption> GetByUserId(string id)
+    public List<Adoption> GetByUserEmail(string email)
     {
         List<Adoption> requests = new();
         foreach (Adoption request in GetAll())
         {
-            if (request.UserId == id)
+            if (request.UserEmail == email)
             {
                 requests.Add(request);
             }

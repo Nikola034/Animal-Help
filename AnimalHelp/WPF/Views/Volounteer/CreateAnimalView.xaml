@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
              mc:Ignorable="d" d:DesignWidth="800" Height="467">
     <Border  Padding="10" >
-        <Grid Margin="0,0,-64,-92">
+        <Grid Margin="0,-35,-64,-92">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400*"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="286"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -17,26 +17,12 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
                 <Label FontSize="20" FontFamily="Roboto" Margin="3,0,0,0" Content="Animals"/>
-                <Grid Margin="5,0,0,0" Width="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="15*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Orientation="Vertical" Grid.Column="0"/>
-                    <StackPanel Grid.Column="4" VerticalAlignment="Bottom"/>
-                </Grid>
                 <DataGrid CanUserAddRows="False" 
           HeadersVisibility="Column"
           ItemsSource="{Binding Animals}" 
-          SelectedItem="{Binding SelectedItem}"
-          Margin="10,20,4,10" 
+          SelectedItem="{Binding SelectedItem}" 
           x:Name="dgTutors" 
           CanUserDeleteRows="False" 
-          Grid.Column="0" 
           IsReadOnly="True"
           AutoGenerateColumns="False"
           SelectionMode="Single">
@@ -91,8 +77,20 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
+                <Grid Margin="5,0,0,0" Width="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="15*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="0"/>
+                    <StackPanel Grid.Column="4" VerticalAlignment="Bottom"/>
+                </Grid>
             </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,10,10,10">
                 <TextBlock Text="Birth Year" />
                 <TextBox Text="{Binding BirthYear, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Text="Name" />
@@ -129,8 +127,8 @@
                 <TextBlock Text="Animal Type Breed" />
                 <TextBox Text="{Binding AnimalTypeBreed, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"/>
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="0"/>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
                 <Button Margin="5" Content="Add" Width="70" Command="{Binding AddAnimalCommand}" />
                 <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdateAnimalCommand}"/>
                 <Button Margin="5" Content="Delete" Width="70"  Command="{Binding DeleteAnimalCommand}"/>

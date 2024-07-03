@@ -1,0 +1,46 @@
+﻿<mvvm:NavigableWindow xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM" 
+                      x:Class="AnimalHelp.WPF.Views.Member.AdoptionRequestWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Member"
+                      mc:Ignorable="d"
+                      Title="Adoption Request" Height="250" Width="300" 
+                      WindowStartupLocation="CenterScreen"
+                      ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Message Label -->
+        <Label Content="Message:" Grid.Row="0" Grid.Column="0" FontSize="10" FontWeight="Bold" Margin="0,0,0,5"/>
+
+        <!-- Message TextBox -->
+        <TextBox Grid.Row="1" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" 
+                 VerticalScrollBarVisibility="Auto" Height="200"
+                 MaxLength="2000" Margin="0,0,0,10" Text="{Binding Message}"/>
+
+        <!-- Adoption Type Label -->
+        <Label Content="Adoption Type:" Grid.Row="2" Grid.Column="0" FontSize="10" FontWeight="Bold" Margin="0,0,0,5"/>
+
+        <!-- Adoption Type ComboBox -->
+        <ComboBox Grid.Row="3" Grid.Column="0" 
+                  ItemsSource="{Binding AdoptionTypes}" 
+                  SelectedItem="{Binding SelectedAdoptionType}" 
+                   Height="30"/>
+
+        <!-- Apply Button -->
+        <Button Content="Apply" Grid.Row="4" Grid.Column="0" 
+                Command="{Binding ApplyCommand}" Width="100" Height="30" 
+                HorizontalAlignment="Right" Margin="0,10,0,0"/>
+    </Grid>
+</mvvm:NavigableWindow>

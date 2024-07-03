@@ -48,7 +48,7 @@ public class VolunteeringApplicationRepository : AutoIdRepository<VolunteeringAp
         var applications = Load();
         foreach (var application in applications.Values)
         {
-            if (application.Applicant == member)
+            if (application.Applicant.Id == member.Id)
             {
                 return application;
             }
