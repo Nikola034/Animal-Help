@@ -382,9 +382,7 @@
     <Compile Include="WPF\Views\Member\CreatePostView.xaml.cs">
       <DependentUpon>CreatePostView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF\Views\Member\CreatePostWindow.xaml.cs">
-      <DependentUpon>CreatePostWindow.xaml</DependentUpon>
-    </Compile>
+    
     <Compile Include="WPF\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -460,10 +458,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\Views\Donations\CreateDonationWindow.xaml" />
-    <Page Include="WPF\Views\Member\CreatePostWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    
     <Page Include="WPF\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
