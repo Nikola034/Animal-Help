@@ -43,10 +43,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
         {
             get
             {
-                if (createPostViewModel == null)
-                {
-                    createPostViewModel = (CreatePostViewModel)_viewModelFactory.CreateViewModel(ViewType.CreatePost);
-                }
+               
+                createPostViewModel = (CreatePostViewModel)_viewModelFactory.CreateViewModel(ViewType.CreatePost);
+                
 
                 return createPostViewModel;
             }
