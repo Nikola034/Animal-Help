@@ -22,25 +22,23 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Applied posts" HorizontalAlignment="Left" FontSize="24" FontFamily="Roboto" Margin="10,3,0,0"/>
-        <DataGrid Grid.Row="3"  Width="400" ItemsSource="{Binding AppliedPosts}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="-380,0,0,0">
+        <DataGrid Grid.Row="3"  Width="Auto" ItemsSource="{Binding AppliedPosts}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*" />
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="50" />
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="100" />
-                <DataGridTextColumn Header="PostId" Binding="{Binding PostId}" Width="60" />
-                <DataGridTemplateColumn  Width="90">
+                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="0.2*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="0.2*" />
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="0.2*" />
+                <DataGridTextColumn Header="PostId" Binding="{Binding PostId}" Width="0.2*" />
+                <DataGridTemplateColumn  Width="0.2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Cancel"
                                      FontSize="14"
                                      Foreground="White"
                                      Background="{StaticResource RedBtnColor}"
-                                     Height="25"
-                                     Width="80"
                                      BorderThickness="0"
                                      Margin="2"
                                      Command="{Binding DataContext.CancelApplicationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                     CommandParameter="{Binding Id}">   
+                                     CommandParameter="{Binding Id}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Border CornerRadius="10" Background="{TemplateBinding Background}">
@@ -60,27 +58,25 @@
 
         <DockPanel Grid.Row="4">
             <Label Content="Adopted" HorizontalAlignment="Left" FontSize="24" FontFamily="Roboto" Margin="10,3,0,0" DockPanel.Dock="Top"/>
-            <DataGrid ItemsSource="{Binding Adoptions}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="10,10,10,103" Height="61">
+            <DataGrid ItemsSource="{Binding Adoptions}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="10,10,10,103" Height="100">
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
-                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="Height" Value="70"/>
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding AnimalName}" Width="*" />
-                    <DataGridTextColumn Header="Breed" Binding="{Binding AnimalBreed}" Width="*" />
-                    <DataGridTextColumn Header="Post Id" Binding="{Binding PostId}" Width="60" />
-                    <DataGridTextColumn Header="Animal rating" Binding="{Binding AnimalRating}" Width="60" />
-                    <DataGridTextColumn Header="Member rating" Binding="{Binding MemberRating}" Width="60" />
-                    <DataGridTemplateColumn  Width="180">
+                    <DataGridTextColumn Header="Name" Binding="{Binding AnimalName}" Width="0.2*" />
+                    <DataGridTextColumn Header="Breed" Binding="{Binding AnimalBreed}" Width="0.2*" />
+                    <DataGridTextColumn Header="Post Id" Binding="{Binding PostId}" Width="0.2*" />
+                    <DataGridTextColumn Header="Animal rating" Binding="{Binding AnimalRating}" Width="0.2*" />
+                    <DataGridTextColumn Header="Member rating" Binding="{Binding MemberRating}" Width="0.1*" />
+                    <DataGridTemplateColumn  Width="0.1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Return Animal"
                                   FontSize="14"
                                   Foreground="White"
                                   Background="{StaticResource RedBtnColor}"
-                                  Height="30"
-                                  Width="150"
                                   BorderThickness="0"
                                   Margin="2"
                                   Command="{Binding DataContext.ReturnAnimalCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"

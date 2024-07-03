@@ -33,7 +33,16 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
 
-
+        private Visibility _isApplyVisible;
+        public Visibility IsApplyVisible
+        {
+            get => _isApplyVisible;
+            set
+            {
+                _isApplyVisible = value;
+                OnPropertyChanged(nameof(_isApplyVisible));
+            }
+        }
 
 
         private Visibility _isAddCommentVisible;
@@ -141,6 +150,8 @@ namespace AnimalHelp.WPF.ViewModels.Member
             IsCommentVisible = Visibility.Visible;
             IsBackVisible = Visibility.Hidden;
             AreCommentsVisible = Visibility.Collapsed;
+            if (authenticationStore.UserType == UserType.Member) _isApplyVisible = Visibility.Visible;
+            else _isApplyVisible = Visibility.Hidden;
             Posts = new();
             LoggedUserEmail = _authenticationStore.CurrentUser.Person.Profile.Email;
             _likedPosts = new();
