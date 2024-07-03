@@ -1,4 +1,4 @@
-﻿using AnimalHelp.Application.Services.Post;
+﻿using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -21,9 +21,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
 
         public Animal Animal { get; set; }
 
-        private readonly ICommentInfoService _commentInfoService;
+        private readonly IAccountService _accountService;
 
-        public PostViewModel(Post post, ICommentInfoService commentInfoService)
+        public PostViewModel(Post post, IAccountService accountService)
         {
             Id = post.Id;
             State = post.State;
@@ -33,18 +33,18 @@ namespace AnimalHelp.WPF.ViewModels.Member
             Description = post.Description;
             Likes = post.Likes;
             Animal = post.Animal;
-            _commentInfoService = commentInfoService;
+            _accountService = accountService;
             Comments = GetComments(post.Comments);
         }
 
         private ObservableCollection<CommentViewModel> GetComments(List<Comment> comments)
         {
             if (comments == null || comments.Count == 0) return new ObservableCollection<CommentViewModel> { };
-            Dictionary<string, string> authorsEmails = _commentInfoService.GetAuthorsEmail(comments);
+
             ObservableCollection<CommentViewModel> commentViewModels = new ObservableCollection<CommentViewModel>();
             foreach (Comment comment in comments)
             {
-                var commentViewModel = new CommentViewModel(authorsEmails[comment.AuthorId], comment.Content, comment.Created);
+                var commentViewModel = new CommentViewModel(_accountService.GetEmailByUserId(comment.AuthorId, comment.UserType ?? UserType.Member), comment.Content, comment.Created);
                 commentViewModels.Add(commentViewModel);
             }
             return commentViewModels;

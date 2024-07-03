@@ -33,7 +33,6 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IAdoptionRequestService, AdoptionRequestService>();
             services.AddSingleton<IAnimalService, AnimalService>();
             services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
-            services.AddSingleton<ICommentInfoService, CommentInfoService>();
             services.AddSingleton<ITransactionService, TransactionService>();
             services.AddSingleton<ITransactionParser, XmlTransactionParser>();
             services.AddSingleton<IPopupNavigationService, PopupNavigationService>();

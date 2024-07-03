@@ -199,8 +199,6 @@
     <Compile Include="Application\Services\DonationServices\ITransactionService.cs" />
     <Compile Include="Application\Services\DonationServices\TransactionService.cs" />
     <Compile Include="Application\Services\IVolunteeringApplicationService.cs" />
-    <Compile Include="Application\Services\Post\CommentInfoService.cs" />
-    <Compile Include="Application\Services\Post\ICommentInfoService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
@@ -382,7 +380,6 @@
     <Compile Include="WPF\Views\Member\CreatePostView.xaml.cs">
       <DependentUpon>CreatePostView.xaml</DependentUpon>
     </Compile>
-    
     <Compile Include="WPF\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -458,7 +455,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\Views\Donations\CreateDonationWindow.xaml" />
-    
     <Page Include="WPF\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

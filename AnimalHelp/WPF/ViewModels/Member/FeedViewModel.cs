@@ -120,11 +120,10 @@ namespace AnimalHelp.WPF.ViewModels.Member
         private readonly IAuthenticationStore _authenticationStore;
 
         private readonly IAccountService _accountService;
-        private readonly ICommentInfoService _commentInfoService;
 
 
         private readonly IPopupNavigationService _popupNavigationService;
-        public FeedViewModel(ICommentInfoService commentInfoService, IAccountService accountService, IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService,
+        public FeedViewModel(IAccountService accountService, IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService,
             INavigationService navigationService, NavigationStore navigationStore, IPopupNavigationService popupNavigationService,
             CurrentPostStore currentPostStore)
 
@@ -135,7 +134,6 @@ namespace AnimalHelp.WPF.ViewModels.Member
             _navigationService = navigationService;
 
             _accountService = accountService;
-            _commentInfoService = commentInfoService;
 
             _popupNavigationService = popupNavigationService;
 
@@ -180,7 +178,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
         {
             Posts.Clear();
             Post post = _postService.GetById(postViewModel.Id);
-            Posts.Add(new PostViewModel(post, _commentInfoService));
+            Posts.Add(new PostViewModel(post, _accountService));
         }
 
         private void GoBack()
@@ -253,7 +251,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             {
                 if (post.Status == PostStatus.Approved)
                 {
-                    Posts.Add(new PostViewModel(post, _commentInfoService));
+                    Posts.Add(new PostViewModel(post, _accountService));
                 }
             }
 
