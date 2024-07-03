@@ -9,7 +9,9 @@
         xmlns:feed="clr-namespace:AnimalHelp.WPF.ViewModels.Member"
         xmlns:feedView="clr-namespace:AnimalHelp.WPF.Views.Member"
         mc:Ignorable="d"
-        Title="VolounteerMenuWindow" Height="450" Width="800">
+        Title="VolounteerMenuWindow" 
+                       Height="770" Width="1030" ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <mvvm:NavigableWindow.Resources>
         <DataTemplate DataType="{x:Type createPost:CreatePostViewModel}">
             <createPostView:CreatePostView></createPostView:CreatePostView>

@@ -31,6 +31,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IAdoptionService, AdoptionService>();
             services.AddSingleton<IAdoptionRequestService, AdoptionRequestService>();
             services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
+            services.AddSingleton<ICommentInfoService, CommentInfoService>();
         });
 
         return host;

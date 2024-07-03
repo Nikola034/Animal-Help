@@ -1,21 +1,19 @@
 ﻿using AnimalHelp.Application.Stores;
+using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Member;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimalHelp.WPF.ViewModels.Volounteer
 {
     public class VolounteerMenuViewModel : ViewModelBase, INavigableDataContext
     {
         public RelayCommand NavCommand { get; set; }
+        public RelayCommand LogoutCommand { get; set; }
 
+        private readonly ILoginService _loginService;
         private readonly IMemberService _memberService;
         private readonly INavigationService _navigationService;
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
@@ -59,14 +57,16 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
             }
         }
 
-        public VolounteerMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
+        public VolounteerMenuViewModel(ILoginService loginService, IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore)
         {
+            _loginService = loginService;
             _memberService = memberService;
             _navigationService = navigationService;
             NavigationStore = navigationStore;
             NavCommand = new RelayCommand(execute => OnNav(execute as string));
             _viewModelFactory = viewModelFactory;
             currentViewModel = CreatePostViewModel;
+            LogoutCommand = new RelayCommand(execute => Logout());
         }
 
         private void OnNav(string? destination)
@@ -77,6 +77,12 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 "feed" => FeedViewModel,
                 _ => CurrentViewModel
             };
+        }
+
+        private void Logout()
+        {
+            _loginService.LogOut();
+            _navigationService.Navigate(ViewType.Login);
         }
     }
 }
