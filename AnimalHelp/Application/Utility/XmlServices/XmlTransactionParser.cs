@@ -23,6 +23,7 @@ public class XmlTransactionParser : ITransactionParser
                 Id = (string)element.Element("id"),
                 DateTime = DateTime.Parse((string)element.Element("datetime"), null, DateTimeStyles.AdjustToUniversal),
                 Amount = float.Parse((string)element.Element("amount"), CultureInfo.InvariantCulture),
+                Note = (string)element.Element("note"),
                 Sender = new BankAccount
                 {
                     AccountNumber = (string)element.Element("sender")!.Element("account-number"),

@@ -1,0 +1,87 @@
+﻿<mvvm:NavigableWindow x:Class="AnimalHelp.WPF.Views.Donations.DonationListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Donations"
+        xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM"
+        xmlns:donations="clr-namespace:AnimalHelp.WPF.ViewModels.Donations"
+        d:DataContext="{d:DesignInstance Type=donations:DonationsListViewModel}"
+        mc:Ignorable="d"
+        Title="DonationListWindow" Height="450" Width="800">
+    <mvvm:NavigableWindow.Resources>
+        <local:AmountColorConverter x:Key="AmountColorConverter"/>
+        
+        <DataTemplate x:Key="DonationTemplate">
+            <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding DateTime, StringFormat='dd MMM yyyy'}" 
+                               FontWeight="Bold" 
+                               Foreground="DarkSlateGray" 
+                               Grid.Row="0" 
+                               Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding Description}" 
+                               FontSize="14" 
+                               FontWeight="SemiBold" 
+                               Grid.Row="1" 
+                               Margin="0,0,0,5"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock Text="From: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding From}" Foreground="DarkSlateGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <TextBlock Text="Post: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding PostDescription}" Foreground="DarkSlateGray"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TransactionTemplate">
+            <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding DateTime, StringFormat='dd MMM yyyy'}" 
+                               FontWeight="Bold" 
+                               Foreground="DarkSlateGray" 
+                               Grid.Row="0" 
+                               Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding Amount, StringFormat='C'}" 
+                               FontSize="14" 
+                               FontWeight="SemiBold" 
+                               Foreground="{Binding Amount, Converter={StaticResource AmountColorConverter}}" 
+                               Grid.Row="1" 
+                               Margin="0,0,0,5"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock Text="Counterparty: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding CounterParty}" Foreground="DarkSlateGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <TextBlock Text="Note: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding Note}" Foreground="DarkSlateGray"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <local:DonationTemplateSelector x:Key="ItemTemplateSelector"
+                                    DonationTemplate="{StaticResource DonationTemplate}"
+                                    TransactionTemplate="{StaticResource TransactionTemplate}" />
+    </mvvm:NavigableWindow.Resources>
+    <Grid>
+        <ListBox ItemsSource="{Binding Donations}" 
+                 ItemTemplateSelector="{StaticResource ItemTemplateSelector}" 
+                 Margin="10"/>
+    </Grid>
+</mvvm:NavigableWindow>

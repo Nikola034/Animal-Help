@@ -174,6 +174,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\DTO\DonationDto.cs" />
     <Compile Include="Application\DTO\TransactionDto.cs" />
     <Compile Include="Application\Services\AdoptionCentre\AdoptionCentreService.cs" />
     <Compile Include="Application\Services\AdoptionCentre\AnimalService.cs" />
@@ -300,15 +301,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WPF\Util\FileDialogService.cs" />
+    <Compile Include="WPF\Util\IFileDialogService.cs" />
     <Compile Include="WPF\ViewModels\Admin\AdminMenuViewModel.cs" />
     <Compile Include="WPF\ViewModels\Admin\AgencyInformationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Admin\VolunteerRegistrationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\LoginViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\CreateDonationViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Donations\DonationsListViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\DonationViewModel.cs" />
-    <Compile Include="WPF\ViewModels\Donations\IFileDialogService.cs" />
+    <Compile Include="WPF\ViewModels\Donations\IDateTimeSortable.cs" />
     <Compile Include="WPF\ViewModels\Donations\ImportTransactionsViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Donations\TransactionViewModel.cs" />
     <Compile Include="WPF\ViewModels\Factories\IAnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
@@ -333,9 +337,14 @@
     <Compile Include="WPF\Views\Admin\VolunteerRegistrationView.xaml.cs">
       <DependentUpon>VolunteerRegistrationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Views\Donations\AmountColorConverter.cs" />
     <Compile Include="WPF\Views\Donations\CreateDonationWindow.xaml.cs">
       <DependentUpon>CreateDonationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Views\Donations\DonationListWindow.xaml.cs">
+      <DependentUpon>DonationListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Donations\DonationTemplateSelector.cs" />
     <Compile Include="WPF\Views\Donations\ImportTransactionsWindow.xaml.cs">
       <DependentUpon>ImportTransactionsWindow.xaml</DependentUpon>
     </Compile>
@@ -422,6 +431,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WPF\Views\Donations\DonationListWindow.xaml" />
     <Page Include="WPF\Views\Member\AdoptionRequestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -489,6 +499,21 @@
     <Resource Include="Data\Images\nut.jpg" />
     <Resource Include="Data\Images\pigs.jpg" />
     <Resource Include="Data\Images\zolika.jpg" />
+    <Content Include="Data\Admin.json" />
+    <Content Include="Data\AdoptionCentre.json" />
+    <Content Include="Data\bank-statement.xml" />
+    <Content Include="Data\Donations.json" />
+    <Content Include="Data\Id\AdminId.txt" />
+    <Content Include="Data\Id\AdoptionCentreId.txt" />
+    <Content Include="Data\Id\DonationId.txt" />
+    <Content Include="Data\Id\PostId.txt" />
+    <Content Include="Data\Id\UserId.txt" />
+    <Content Include="Data\Members.json" />
+    <Content Include="Data\PersonProfile.json" />
+    <Content Include="Data\Posts.json" />
+    <Content Include="Data\Profiles.json" />
+    <Content Include="Data\Transactions.json" />
+    <Content Include="Data\Volunteers.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
