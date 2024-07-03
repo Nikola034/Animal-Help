@@ -85,8 +85,8 @@
                         <Label Content="Photo description:"/>
                         <TextBox Margin="5,0,0,0" Name="tbPhotoDescription"  Text="{Binding PhotoDescription}" Height="27" />
                         <StackPanel Orientation="Horizontal">
-                            <Button HorizontalAlignment="Left" Margin="5" Content="Add photo" Width="70" Command="{Binding AddPhotoCommand}" />
-                            <Button Margin="5" Content="Remove photo" Width="89" Command="{Binding RemovePhotoCommand}" />
+                            <Button Margin="5" Content="Add photo" Width="101" Command="{Binding AddPhotoCommand}" />
+                            <Button Margin="5" Content="Remove photo" Width="124" Command="{Binding RemovePhotoCommand}" />
                         </StackPanel>
                         <ListBox Height="57" ItemsSource="{Binding ChosenPhotos}" SelectedItem="{Binding SelectedPhoto}"></ListBox>
                     </StackPanel>
@@ -97,9 +97,9 @@
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"/>
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0" Width="180">
                 <Button Margin="5" Content="Add" Width="70" Command="{Binding AddPostCommand}" />
-                <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdatePostCommand}"/>
+                <Button Margin="5" Content="Update" Width="83" Command="{Binding UpdatePostCommand}"/>
             </StackPanel>
         </Grid>
     </Border>
