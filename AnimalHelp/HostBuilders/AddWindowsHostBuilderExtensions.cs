@@ -1,10 +1,6 @@
 ﻿using AnimalHelp.WPF.Util;
-using AnimalHelp.WPF.ViewModels.Donations;
-using AnimalHelp.WPF.Views.Common;
-using AnimalHelp.WPF.Views.Donations;
+using AnimalHelp.WPF.Views.Default;
 using AnimalHelp.WPF.Views.Factories;
-using AnimalHelp.WPF.Views.Member;
-using AnimalHelp.WPF.Views.Volounteer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -17,7 +13,7 @@ public static class AddWindowsHostBuilderExtensions
         host.ConfigureServices(services =>
         {
             services.AddSingleton<IAnimalHelpWindowFactory, AnimalHelpWindowFactory>();
-            services.AddTransient<LoginWindow>();
+            services.AddTransient<MainWindow>();
 
             services.AddSingleton<IFileDialogService, FileDialogService>();
         });

@@ -1,0 +1,86 @@
+﻿<mvvm:NavigableWindow x:Class="AnimalHelp.WPF.Views.Default.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM"
+        xmlns:default="clr-namespace:AnimalHelp.WPF.ViewModels.Default"
+        xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Default"
+        xmlns:donations="clr-namespace:AnimalHelp.WPF.ViewModels.Donations"
+        xmlns:donations1="clr-namespace:AnimalHelp.WPF.Views.Donations"
+        d:DataContext="{d:DesignInstance Type=default:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="820" Width="1100"
+        WindowStartupLocation="CenterScreen">
+    
+    <mvvm:NavigableWindow.Resources>
+        <DataTemplate DataType="{x:Type default:SimpleFeedViewModel}">
+            <local:SimpleFeedView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type donations:DonationsListViewModel}">
+            <donations1:DonationListView/>
+        </DataTemplate>
+	    
+	    <SolidColorBrush x:Key="GrayBtnColor" Color="Gray" />
+    </mvvm:NavigableWindow.Resources>
+    
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="814*"/>
+			<ColumnDefinition Width="63*"/>
+		</Grid.ColumnDefinitions>
+	    <Grid x:Name = "NavBar" Grid.ColumnSpan="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width = "200" />
+				<ColumnDefinition Width = "516.4" />
+				<ColumnDefinition Width="283.6"/>
+			</Grid.ColumnDefinitions>
+			<Grid Background="LightGray">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="90"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<Button Content="Feed"
+	                Margin="20,10,20,10"
+	                CommandParameter = "feed"
+	                Command="{Binding NavCommand}"
+	                Grid.Row="1" RenderTransformOrigin="0.488,2.668"
+                />
+				<Button Content="Donations"
+	                Margin="20,10,20,10"
+	                CommandParameter = "donations"
+	                Command="{Binding NavCommand}"
+	                Grid.Row="2"
+                />
+				<Button Content="LogIn"
+                        FontSize="14"
+                        Foreground="White"
+                        Background="{StaticResource GrayBtnColor}"
+                        Height="40"
+                        Width="150"
+                        BorderThickness="0"
+                        Margin="2"
+                        Command="{Binding LoginCommand}"
+                            Grid.Row="4"
+                        >
+					<Button.Template>
+						<ControlTemplate TargetType="{x:Type Button}">
+							<Border CornerRadius="10" Background="{TemplateBinding Background}">
+								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+		    
+		    
+			<ContentControl Grid.Column="1" Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="0,0,-37,0"/>
+
+			
+		</Grid>
+    </Grid>
+</mvvm:NavigableWindow>

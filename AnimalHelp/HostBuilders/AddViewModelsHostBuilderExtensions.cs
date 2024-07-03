@@ -1,7 +1,7 @@
 ﻿using AnimalHelp.WPF.MVVM;
-using AnimalHelp.WPF.ViewModels;
 using AnimalHelp.WPF.ViewModels.Admin;
 using AnimalHelp.WPF.ViewModels.Common;
+using AnimalHelp.WPF.ViewModels.Default;
 using AnimalHelp.WPF.ViewModels.Donations;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Member;
@@ -40,6 +40,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<RateAnimalViewModel>();
             services.AddTransient<BlackListViewModel>();
             services.AddTransient<BlackListDiscussionViewModel>();
+            services.AddTransient<SimpleFeedViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -115,6 +116,10 @@ public static class AddViewModelsHostBuilderExtensions
             
             services.AddScoped<CreateViewModel<BlackListDiscussionViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<BlackListDiscussionViewModel>
+            );
+            
+            services.AddScoped<CreateViewModel<SimpleFeedViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<SimpleFeedViewModel>
             );
         });
 

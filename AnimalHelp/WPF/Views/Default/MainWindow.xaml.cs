@@ -1,7 +1,7 @@
-﻿using AnimalHelp.WPF.ViewModels;
+﻿using AnimalHelp.WPF.ViewModels.Default;
 using AnimalHelp.WPF.Views.Factories;
 
-namespace AnimalHelp.WPF.Views;
+namespace AnimalHelp.WPF.Views.Default;
 
 public partial class MainWindow
 {

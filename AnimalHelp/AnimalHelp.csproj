@@ -326,6 +326,8 @@
     <Compile Include="WPF\ViewModels\Admin\VolunteerRegistrationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\LoginViewModel.cs" />
     <Compile Include="WPF\ViewModels\Common\RegisterViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Default\MainViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Default\SimpleFeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\CreateDonationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\DonationsListViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\DonationViewModel.cs" />
@@ -335,7 +337,6 @@
     <Compile Include="WPF\ViewModels\Factories\IAnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
-    <Compile Include="WPF\ViewModels\MainViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\CommentViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
@@ -363,12 +364,19 @@
     <Compile Include="WPF\Views\Admin\VolunteerRegistrationView.xaml.cs">
       <DependentUpon>VolunteerRegistrationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Views\Default\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WPF\Views\Default\SimpleFeedView.xaml.cs">
+      <DependentUpon>SimpleFeedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Views\Donations\AmountColorConverter.cs" />
     <Compile Include="WPF\Views\Donations\CreateDonationWindow.xaml.cs">
       <DependentUpon>CreateDonationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPF\Views\Donations\DonationListWindow.xaml.cs">
-      <DependentUpon>DonationListWindow.xaml</DependentUpon>
+    <Compile Include="WPF\Views\Donations\DonationListView.xaml.cs">
+      <DependentUpon>DonationListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Donations\DonationTemplateSelector.cs" />
     <Compile Include="WPF\Views\Donations\ImportTransactionsWindow.xaml.cs">
@@ -392,10 +400,6 @@
     </Compile>
     <Compile Include="WPF\Views\Member\CreatePostView.xaml.cs">
       <DependentUpon>CreatePostView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WPF\Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="WPF\Views\Member\FeedView.xaml.cs">
       <DependentUpon>FeedView.xaml</DependentUpon>
@@ -453,7 +457,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="WPF\Views\Donations\DonationListWindow.xaml" />
+    <Page Include="WPF\Views\Default\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Views\Default\SimpleFeedView.xaml" />
+    <Page Include="WPF\Views\Donations\DonationListView.xaml" />
     <Page Include="WPF\Views\Member\AdoptionRequestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -468,10 +477,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\Views\Donations\CreateDonationWindow.xaml" />
-    <Page Include="WPF\Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="WPF\Views\Member\FeedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -10,7 +10,9 @@ using AnimalHelp.WPF.Views.Member;
 using AnimalHelp.WPF.Views.Volounteer;
 using System;
 using System.Windows;
+using AnimalHelp.WPF.ViewModels.Default;
 using AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
+using AnimalHelp.WPF.Views.Default;
 using AnimalHelp.WPF.Views.Volounteer.BlackList;
 
 namespace AnimalHelp.WPF.Views.Factories;
@@ -21,6 +23,7 @@ public class AnimalHelpWindowFactory : IAnimalHelpWindowFactory
     {
         return viewModel switch
         {
+            MainViewModel mainViewModel => new MainWindow(mainViewModel, this),
             LoginViewModel loginViewModel => new LoginWindow(loginViewModel, this),
             RegisterViewModel registerViewModel => new RegisterWindow(registerViewModel, this),
             AdminMenuViewModel adminMenuViewModel => new AdminMenuWindow(adminMenuViewModel, this),

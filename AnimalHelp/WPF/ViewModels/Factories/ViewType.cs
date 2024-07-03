@@ -21,4 +21,6 @@ public enum ViewType
     RateAnimal,
     BlackList,
     BlackListDiscussion,
+    SimpleFeed,
+    DonationList,
 }

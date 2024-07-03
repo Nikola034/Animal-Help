@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM"
         mc:Ignorable="d"
-        Height="440" Width="330"
+        Height="480" Width="330"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
 
@@ -39,6 +39,14 @@
                 </Button.Template>
             </Button>
             <Button Content="Sign Up" Command="{Binding SwitchToRegisterCommand}" FontSize="16" Foreground="Black" Background="White" Height="35" Width="250" BorderThickness="0">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button><Button Content="Go Back" Command="{Binding GoBackCommand}" FontSize="16" Foreground="Black" Background="White" Height="35" Width="250" BorderThickness="0" Margin="0 20 0  0">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border CornerRadius="10" Background="{TemplateBinding Background}">

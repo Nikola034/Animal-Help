@@ -25,6 +25,8 @@ namespace AnimalHelp.WPF.ViewModels.Common
 
         public ICommand LoginCommand { get; }
         public ICommand SwitchToRegisterCommand { get; }
+        public ICommand GoBackCommand { get; }
+        
         public LoginViewModel(ILoginService loginService, INavigationService navigationService, NavigationStore navigationStore, IAdoptionCentreService adoptionCentreService)
         {
             _loginService = loginService;
@@ -32,6 +34,7 @@ namespace AnimalHelp.WPF.ViewModels.Common
             NavigationStore = navigationStore;
             LoginCommand = new RelayCommand(Login!);
             SwitchToRegisterCommand = new RelayCommand(SwitchToRegister);
+            GoBackCommand = new RelayCommand(GoBack);
         }
 
         public string Email
@@ -93,6 +96,11 @@ namespace AnimalHelp.WPF.ViewModels.Common
         private void SwitchToRegister(object? parameter)
         {
             _navigationService.Navigate(ViewType.Register);
+        }
+        
+        private void GoBack(object? obj)
+        {
+            _navigationService.Navigate(ViewType.Main);
         }
 
         // Helper method to convert SecureString to plain text
