@@ -10,6 +10,8 @@ using AnimalHelp.WPF.Views.Member;
 using AnimalHelp.WPF.Views.Volounteer;
 using System;
 using System.Windows;
+using AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
+using AnimalHelp.WPF.Views.Volounteer.BlackList;
 
 namespace AnimalHelp.WPF.Views.Factories;
 
@@ -27,6 +29,7 @@ public class AnimalHelpWindowFactory : IAnimalHelpWindowFactory
             CreateDonationViewModel createDonationViewModel => new Donations.CreateDonationWindow(createDonationViewModel, this),
             AdoptionRequestViewModel adoptionRequestViewModel => new AdoptionRequestWindow(adoptionRequestViewModel, this),
             RateAnimalViewModel rateAnimalViewModel => new RateAnimalWindow(rateAnimalViewModel, this),
+            BlackListDiscussionViewModel blackListDiscussionViewModel => new BlackListDiscussionWindow(blackListDiscussionViewModel, this),
             _ => throw new ArgumentOutOfRangeException(nameof(viewModel), viewModel,
                 "No Window exists for the given ViewModel: " + viewModel.GetType())
         };

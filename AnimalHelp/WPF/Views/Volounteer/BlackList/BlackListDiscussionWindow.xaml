@@ -1,0 +1,62 @@
+﻿<mvvm:NavigableWindow x:Class="AnimalHelp.WPF.Views.Volounteer.BlackList.BlackListDiscussionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mvvm="clr-namespace:AnimalHelp.WPF.MVVM"
+        xmlns:blackList="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer.BlackList"
+        d:DataContext="{d:DesignInstance Type=blackList:BlackListDiscussionViewModel}"
+        mc:Ignorable="d"
+        Title="Black List Proposal" Height="550" Width="400">
+    
+    <Grid Margin="10">
+        <!-- Define Row and Column Layout -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Messages Header -->
+        <TextBlock Text="Discussion Messages" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Grid.Row="0" Grid.ColumnSpan="2" />
+
+        <!-- Messages List -->
+        <ListBox ItemsSource="{Binding Messages}" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,10" Background="LightGray" BorderThickness="1" BorderBrush="DarkGray">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="5" Padding="10" CornerRadius="5" BorderBrush="DarkGray" BorderThickness="1" Background="White">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Author}" Foreground="DarkBlue" />
+                            <TextBlock Text="{Binding Content}" FontWeight="Bold" TextWrapping="Wrap" Margin="0,5,0,0" />
+                            <TextBlock Text="{Binding Time, StringFormat='MMM dd, yyyy HH:mm'}" FontStyle="Italic" Foreground="Gray" HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- New Message Input -->
+        <TextBox Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0" Margin="0,0,10,0" Height="30" VerticalContentAlignment="Center" Padding="5"
+                 Background="White" BorderBrush="DarkGray" BorderThickness="1" />
+
+        <!-- Send Button -->
+        <Button Content="Send" Command="{Binding AddMessageCommand}" Grid.Row="2" Grid.Column="1" Height="30" Width="100"
+                Background="#4CAF50" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" BorderBrush="Transparent" Cursor="Hand" />
+
+        <!-- Action Buttons Container -->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <!-- Accept Button -->
+            <Button Content="Accept Proposal" Command="{Binding AcceptProposalCommand}" Width="150" Margin="0,0,10,0"
+                    Background="Red" Foreground="White" FontWeight="Bold" Cursor="Hand" />
+
+            <!-- Reject Button -->
+            <Button Content="Reject Proposal" Command="{Binding RejectProposalCommand}" Width="150"
+                    Background="Orange" Foreground="White" FontWeight="Bold" Cursor="Hand" />
+        </StackPanel>
+    </Grid>
+</mvvm:NavigableWindow>

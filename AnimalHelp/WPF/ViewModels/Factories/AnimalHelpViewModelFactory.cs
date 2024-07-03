@@ -5,6 +5,7 @@ using AnimalHelp.WPF.ViewModels.Donations;
 using AnimalHelp.WPF.ViewModels.Member;
 using AnimalHelp.WPF.ViewModels.Volounteer;
 using System;
+using AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
 
 namespace AnimalHelp.WPF.ViewModels.Factories;
 
@@ -28,6 +29,8 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<AdoptionRequestViewModel> _adoptionRequestViewModel;
     private readonly CreateViewModel<AdoptionsOverviewViewModel> _adoptionsOverviewViewModel;
     private readonly CreateViewModel<RateAnimalViewModel> _rateAnimalViewModel;
+    private readonly CreateViewModel<BlackListViewModel> _createBlackListViewModel;
+    private readonly CreateViewModel<BlackListDiscussionViewModel> _createBlackListDiscussionViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
@@ -45,7 +48,9 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
         CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
         CreateViewModel<RateAnimalViewModel> rateAnimalViewModel,
-        CreateViewModel<VotingViewModel> votingViewModel
+        CreateViewModel<VotingViewModel> votingViewModel,
+        CreateViewModel<BlackListViewModel> createBlackListViewModel,
+        CreateViewModel<BlackListDiscussionViewModel> createBlackListDiscussionViewModel
         )
     {
         _createMainViewModel = createMainViewModel;
@@ -65,6 +70,8 @@ public class AnimalHelpViewModelFactory
         _adoptionsOverviewViewModel = adoptionOverviewViewModel;
         _rateAnimalViewModel = rateAnimalViewModel;
         _createVotingViewModel = votingViewModel;
+        _createBlackListViewModel = createBlackListViewModel;
+        _createBlackListDiscussionViewModel = createBlackListDiscussionViewModel;
     }
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
@@ -87,6 +94,8 @@ public class AnimalHelpViewModelFactory
             ViewType.AdoptionRequest => _adoptionRequestViewModel(),
             ViewType.AdoptionsOverview => _adoptionsOverviewViewModel(),
             ViewType.RateAnimal => _rateAnimalViewModel(),
+            ViewType.BlackList => _createBlackListViewModel(),
+            ViewType.BlackListDiscussion => _createBlackListDiscussionViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

@@ -1,6 +1,7 @@
 ﻿using AnimalHelp.Application.DTO;
 using AnimalHelp.Domain.Model;
 using System;
+using System.Collections.Generic;
 
 namespace AnimalHelp.Application.UseCases.User;
 public interface IAccountService
@@ -14,6 +15,14 @@ public interface IAccountService
     public bool IsEmailTaken(string email);
     public UserDto GetPerson(Profile profile);
     public UserDto GetPerson(string email);
+    public UserDto GetUserById(string id);
+    
+    /// <summary>
+    /// Returns the list of all UserDtos for every volunteer and member. Admins are excluded.
+    /// </summary>
+    /// <returns>Returns a list of UserDto sorted by id.</returns>
+    public List<UserDto> GetAllUsers();
 
+    void UpdateUser(UserDto user);
 }
 

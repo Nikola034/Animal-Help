@@ -14,6 +14,7 @@ public static class AddStoresHostBuilderExtensions
             services.AddSingleton<IAuthenticationStore, AuthenticationStore>();
             services.AddSingleton<CurrentPostStore>();
             services.AddSingleton<CurrentAdoptionStore>();
+            services.AddSingleton<CurrentBlackListProposalStore>();
         });
         
         return host;
