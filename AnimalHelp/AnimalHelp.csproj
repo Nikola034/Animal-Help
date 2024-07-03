@@ -200,8 +200,6 @@
     <Compile Include="Application\Services\DonationServices\ITransactionService.cs" />
     <Compile Include="Application\Services\DonationServices\TransactionService.cs" />
     <Compile Include="Application\Services\IVolunteeringApplicationService.cs" />
-    <Compile Include="Application\Services\Post\CommentInfoService.cs" />
-    <Compile Include="Application\Services\Post\ICommentInfoService.cs" />
     <Compile Include="Application\Services\Post\IPostService.cs" />
     <Compile Include="Application\Services\Post\PostService.cs" />
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
@@ -470,7 +468,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\Views\Donations\CreateDonationWindow.xaml" />
-
     <Page Include="WPF\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -509,26 +506,26 @@
   <ItemGroup>
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
-  <!-- <ItemGroup>
+   <ItemGroup>
     <Resource Include="Data\Id\AdoptionId.txt" />
     <Resource Include="Data\Id\AdoptionRequestId.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Images\beaver.jpg" />
-    <Resource Include="Data\Images\famnut.jpg" />
-    <Resource Include="Data\Images\nut.jpg" />
-    <Resource Include="Data\Images\pigs.jpg" />
-    <Resource Include="Data\Images\zolika.jpg" />
-    <Content Include="Data\bank-statement.xml" />
-    <Content Include="Data\Admin.json" />
-    <Resource Include="Data\Id\PostId.txt" />
-    <Resource Include="Data\Id\AdminId.txt" />
-    <Content Include="Data\Id\UserId.txt" />
-    <Content Include="Data\Members.json" />
-  </ItemGroup> -->
+  <!-- <ItemGroup> -->
+    <!-- <Resource Include="Data\Images\beaver.jpg" /> -->
+    <!-- <Resource Include="Data\Images\famnut.jpg" /> -->
+    <!-- <Resource Include="Data\Images\nut.jpg" /> -->
+    <!-- <Resource Include="Data\Images\pigs.jpg" /> -->
+    <!-- <Resource Include="Data\Images\zolika.jpg" /> -->
+    <!-- <Content Include="Data\bank-statement.xml" /> -->
+    <!-- <Content Include="Data\Admin.json" /> -->
+    <!-- <Resource Include="Data\Id\PostId.txt" /> -->
+    <!-- <Resource Include="Data\Id\AdminId.txt" /> -->
+    <!-- <Content Include="Data\Id\UserId.txt" /> -->
+    <!-- <Content Include="Data\Members.json" /> -->
+  <!-- </ItemGroup>  -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.1-ci680\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.1-ci680\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
