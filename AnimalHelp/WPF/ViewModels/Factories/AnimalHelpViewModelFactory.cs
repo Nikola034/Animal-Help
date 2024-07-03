@@ -25,6 +25,9 @@ public class AnimalHelpViewModelFactory
     private readonly CreateViewModel<ApprovePostsViewModel> _createApprovePostsViewModel;
     private readonly CreateViewModel<CreateAnimalViewModel> _createAnimalViewModel;
     private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
+    private readonly CreateViewModel<AdoptionRequestViewModel> _adoptionRequestViewModel;
+    private readonly CreateViewModel<AdoptionsOverviewViewModel> _adoptionsOverviewViewModel;
+    private readonly CreateViewModel<RateAnimalViewModel> _rateAnimalViewModel;
 
     public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
@@ -39,6 +42,9 @@ public class AnimalHelpViewModelFactory
         CreateViewModel<ApprovePostsViewModel> createApprovePostsViewModel,
         CreateViewModel<CreateAnimalViewModel> createAnimalViewModel,
         CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
+        CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
+        CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
+        CreateViewModel<RateAnimalViewModel> rateAnimalViewModel,
         CreateViewModel<VotingViewModel> votingViewModel
         )
     {
@@ -55,6 +61,9 @@ public class AnimalHelpViewModelFactory
         _createApprovePostsViewModel = createApprovePostsViewModel;
         _createAnimalViewModel = createAnimalViewModel;
         _agencyInformationViewModel = agencyInformationViewModel;
+        _adoptionRequestViewModel = adoptionRequestViewModel;
+        _adoptionsOverviewViewModel = adoptionOverviewViewModel;
+        _rateAnimalViewModel = rateAnimalViewModel;
         _createVotingViewModel = votingViewModel;
     }
     public ViewModelBase CreateViewModel(ViewType viewType)
@@ -75,6 +84,9 @@ public class AnimalHelpViewModelFactory
             ViewType.ApprovePosts => _createApprovePostsViewModel(),
             ViewType.Animals => _createAnimalViewModel(),
             ViewType.AgencyInfo => _agencyInformationViewModel(),
+            ViewType.AdoptionRequest => _adoptionRequestViewModel(),
+            ViewType.AdoptionsOverview => _adoptionsOverviewViewModel(),
+            ViewType.RateAnimal => _rateAnimalViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

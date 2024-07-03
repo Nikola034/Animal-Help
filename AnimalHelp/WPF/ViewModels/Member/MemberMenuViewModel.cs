@@ -68,6 +68,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
             }
         }
         private CreateAnimalViewModel? createAnimalViewModel;
+        private AdoptionsOverviewViewModel? adoptionsOverviewViewModel;
 
         private CreateAnimalViewModel CreateAnimalViewModel
         {
@@ -81,7 +82,22 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 return createAnimalViewModel;
             }
         }
-        public MemberMenuViewModel(IAuthenticationStore authenticationStore, IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore, ILoginService loginService, IVolunteeringApplicationService applicationService, IMemberRepository memberRepository)
+        private AdoptionsOverviewViewModel AdoptionsOverviewViewModel
+        {
+            get
+            {
+                if (adoptionsOverviewViewModel == null)
+                {
+                    adoptionsOverviewViewModel = (AdoptionsOverviewViewModel)_viewModelFactory.CreateViewModel(ViewType.AdoptionsOverview);
+                }
+
+                return adoptionsOverviewViewModel;
+            }
+        }
+
+        public MemberMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, 
+            INavigationService navigationService, NavigationStore navigationStore, IAuthenticationStore authenticationStore,
+            IMemberRepository memberRepository, IVolunteeringApplicationService applicationService, ILoginService loginService)
         {
             _memberService = memberService;
             _authenticationStore = authenticationStore;
@@ -106,6 +122,7 @@ namespace AnimalHelp.WPF.ViewModels.Member
                 "posts" => CreatePostViewModel,
                 "feed" => FeedViewModel,
                 "animals" => CreateAnimalViewModel,
+                "adoptions" => AdoptionsOverviewViewModel,
                 _ => CurrentViewModel
             };
         }

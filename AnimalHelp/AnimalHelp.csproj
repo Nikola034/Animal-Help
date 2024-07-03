@@ -193,6 +193,8 @@
     <Compile Include="Application\Services\DonationServices\DonationService.cs" />
     <Compile Include="Application\Services\DonationServices\IDonationService.cs" />
     <Compile Include="Application\Services\VolunteeringApplicationService.cs" />
+    <Compile Include="Application\Stores\CurrentAdoptionStore.cs" />
+    <Compile Include="Application\Stores\CurrentPostStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Application\Utility\XmlServices\XmlTransactionParser.cs" />
     <Compile Include="Domain\Model\AdoptionCentre.cs" />
@@ -315,12 +317,16 @@
     <Compile Include="WPF\ViewModels\Factories\AnimalHelpViewModelFactory.cs" />
     <Compile Include="WPF\ViewModels\Factories\ViewType.cs" />
     <Compile Include="WPF\ViewModels\MainViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\AdoptionRequestViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\AdoptionsOverviewViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\AdoptionViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\CreatePostViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\FeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Member\MemberMenuViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\ApprovePostsViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VotingViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\CreateAnimalViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Member\RateAnimalViewModel.cs" />
     <Compile Include="WPF\ViewModels\Volounteer\VolounteerMenuViewModel.cs" />
     <Compile Include="WPF\Views\Admin\AdminMenuWindow.xaml.cs">
       <DependentUpon>AdminMenuWindow.xaml</DependentUpon>
@@ -352,6 +358,12 @@
     <Compile Include="WPF\Views\Factories\IAnimalHelpWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\IWindowFactory.cs" />
     <Compile Include="WPF\Views\Factories\AnimalHelpWindowFactory.cs" />
+    <Compile Include="WPF\Views\Member\AdoptionRequestWindow.xaml.cs">
+      <DependentUpon>AdoptionRequestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Member\AdoptionsOverviewView.xaml.cs">
+      <DependentUpon>AdoptionsOverviewView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Views\Member\CreatePostView.xaml.cs">
       <DependentUpon>CreatePostView.xaml</DependentUpon>
     </Compile>
@@ -377,18 +389,24 @@
     <Compile Include="WPF\Views\Volounteer\CreateAnimalView.xaml.cs">
       <DependentUpon>CreateAnimalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Views\Member\RateAnimalWindow.xaml.cs">
+      <DependentUpon>RateAnimalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Views\Volounteer\VolounteerMenuWindow.xaml.cs">
       <DependentUpon>VolounteerMenuWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\Adoption.json" />
+    <None Include="Data\AdoptionCentre.json" />
+    <None Include="Data\AdoptionRequest.json" />
     <None Include="Data\Animals.json" />
+    <None Include="Data\Donations.json" />
     <None Include="Data\Members.json" />
-    <None Include="Data\Admin.json" />
     <None Include="Data\Posts.json" />
+    <None Include="Data\Transactions.json" />
     <None Include="Data\VolunteeringApplication.json" />
-    <None Include="Data\Volunteers.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +431,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="WPF\Views\Donations\DonationListWindow.xaml" />
+    <Page Include="WPF\Views\Member\AdoptionRequestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Views\Member\AdoptionsOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\Views\Donations\ImportTransactionsWindow.xaml" />
     <Page Include="WPF\Views\Member\CreatePostView.xaml">
       <SubType>Designer</SubType>
@@ -447,6 +473,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF\Views\Member\RateAnimalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\Views\Volounteer\VolounteerMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -456,34 +486,20 @@
     <Folder Include="Application\Utility\Authentication\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Id\AdminId.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Id\UserId.txt" />
+    <Resource Include="Data\Id\AdoptionId.txt" />
+    <Resource Include="Data\Id\AdoptionRequestId.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Images\beaver.jpg" />
     <Resource Include="Data\Images\famnut.jpg" />
     <Resource Include="Data\Images\nut.jpg" />
     <Resource Include="Data\Images\pigs.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Data\Images\zolika.jpg" />
     <Content Include="Data\Admin.json" />
-    <Content Include="Data\AdoptionCentre.json" />
-    <Content Include="Data\bank-statement.xml" />
-    <Content Include="Data\Donations.json" />
-    <Content Include="Data\Id\AdminId.txt" />
-    <Content Include="Data\Id\AdoptionCentreId.txt" />
-    <Content Include="Data\Id\DonationId.txt" />
-    <Content Include="Data\Id\PostId.txt" />
+    <Resource Include="Data\Id\PostId.txt" />
+    <Resource Include="Data\Id\AdminId.txt" />
     <Content Include="Data\Id\UserId.txt" />
     <Content Include="Data\Members.json" />
-    <Content Include="Data\PersonProfile.json" />
-    <Content Include="Data\Posts.json" />
-    <Content Include="Data\Profiles.json" />
-    <Content Include="Data\Transactions.json" />
-    <Content Include="Data\Volunteers.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

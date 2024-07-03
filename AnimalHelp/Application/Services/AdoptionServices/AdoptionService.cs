@@ -13,6 +13,12 @@ public class AdoptionService : IAdoptionService
         _adoptionRepository = adoptionRepository;
     }
 
+    public Adoption AcceptAdoptionRequest(AdoptionRequest request)
+    {
+        var adoption = new Adoption(request.Type, true, request.PostId, request.UserEmail);
+        return _adoptionRepository.Add(adoption);
+    }
+
     public Adoption AddAdoption(AdoptionType type, bool isActive, Domain.Model.Post post, string userId)
     {
         if (userId == "")
@@ -20,6 +26,17 @@ public class AdoptionService : IAdoptionService
             throw new ArgumentException("User id required for donation");
         }
         return _adoptionRepository.Add(new Adoption(type, isActive, post.Id, userId));
+    }
+
+    public void DeactivateAdoption(string id)
+    {
+        var adoption = _adoptionRepository.Get(id);
+        if (adoption == null)
+        {
+            throw new ArgumentException("Invalid id provided, there is no adoption with given id");
+        }
+        adoption.IsActive = false;
+        _adoptionRepository.Update(adoption.Id, adoption);
     }
 
     public void DeleteAdoption(string id)
@@ -57,9 +74,9 @@ public class AdoptionService : IAdoptionService
         return _adoptionRepository.GetByType(type);
     }
 
-    public List<Adoption> GetByUserId(string id)
+    public List<Adoption> GetByUserEmail(string email)
     {
-        return _adoptionRepository.GetByUserId(id);
+        return _adoptionRepository.GetByUserEmail(email);
     }
 
     public void RateAnimal(string id, int rating)

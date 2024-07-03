@@ -25,6 +25,8 @@ public class AnimalHelpWindowFactory : IAnimalHelpWindowFactory
             MemberMenuViewModel memberMenuViewModel => new MemberMenuWindow(memberMenuViewModel, this),
             VolounteerMenuViewModel volounteerMenuViewModel => new VolounteerMenuWindow(volounteerMenuViewModel, this),
             CreateDonationViewModel createDonationViewModel => new Donations.CreateDonationWindow(createDonationViewModel, this),
+            AdoptionRequestViewModel adoptionRequestViewModel => new AdoptionRequestWindow(adoptionRequestViewModel, this),
+            RateAnimalViewModel rateAnimalViewModel => new RateAnimalWindow(rateAnimalViewModel, this),
             _ => throw new ArgumentOutOfRangeException(nameof(viewModel), viewModel,
                 "No Window exists for the given ViewModel: " + viewModel.GetType())
         };

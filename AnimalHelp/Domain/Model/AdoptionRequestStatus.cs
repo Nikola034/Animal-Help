@@ -1,4 +1,4 @@
-﻿namespace AnimalHelp.Domain.Model;
+﻿ namespace AnimalHelp.Domain.Model;
 
 public enum AdoptionRequestStatus
 {

@@ -6,10 +6,19 @@ using AnimalHelp.Domain.Model;
 using AnimalHelp.WPF.MVVM;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
 namespace AnimalHelp.WPF.ViewModels.Member
 {
     public class FeedViewModel : ViewModelBase, INavigableDataContext
     {
+        public ICommand ApplyForAdoptionCommand { get; }
+
+
+
         public ObservableCollection<Post> Posts { get; set; }
 
         private Post? _selectedItem;
@@ -20,21 +29,37 @@ namespace AnimalHelp.WPF.ViewModels.Member
         }
         public NavigationStore NavigationStore { get; }
 
+
+        private readonly CurrentPostStore _currentPostStore;
         private readonly IMemberService _memberService;
         private readonly IPostService _postService;
         private readonly INavigationService _navigationService;
         private readonly IAuthenticationStore _authenticationStore;
-        public FeedViewModel(IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService, INavigationService navigationService, NavigationStore navigationStore)
+        private readonly IPopupNavigationService _popupNavigationService;
+        public FeedViewModel(IAuthenticationStore authenticationStore, IMemberService memberService, IPostService postService, 
+            INavigationService navigationService, NavigationStore navigationStore, IPopupNavigationService popupNavigationService,
+            CurrentPostStore currentPostStore)
         {
             _authenticationStore = authenticationStore;
             _memberService = memberService;
             _postService = postService;
             _navigationService = navigationService;
+            _popupNavigationService = popupNavigationService;
+
             NavigationStore = navigationStore;
+            _currentPostStore = currentPostStore;
+
+            ApplyForAdoptionCommand = new RelayCommand<string>(OpenAdoptionApplicationWindow);
 
             Posts = new();
 
             LoadPosts();
+        }
+
+        private void OpenAdoptionApplicationWindow(string postId)
+        {
+            _currentPostStore.CurrentPost = _postService.GetById(postId);
+            _popupNavigationService.Navigate(Factories.ViewType.AdoptionRequest);
         }
 
         private void LoadPosts()

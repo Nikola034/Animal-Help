@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="AnimalHelp.WPF.Views.Member.AdoptionsOverviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Member"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="BlueBtnColor" Color="#34a0a4" />
+        <SolidColorBrush x:Key="RedBtnColor" Color="#91261f" />
+        <SolidColorBrush x:Key="GrayBtnColor" Color="Gray" />
+        <SolidColorBrush x:Key="YellowBtnColor" Color="#c9c30a" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Applied posts" HorizontalAlignment="Left" FontSize="24" FontFamily="Roboto" Margin="10,3,0,0"/>
+        <DataGrid Grid.Row="3"  Width="400" ItemsSource="{Binding AppliedPosts}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="-380,0,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="50" />
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="100" />
+                <DataGridTextColumn Header="PostId" Binding="{Binding PostId}" Width="60" />
+                <DataGridTemplateColumn  Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Cancel"
+                                     FontSize="14"
+                                     Foreground="White"
+                                     Background="{StaticResource RedBtnColor}"
+                                     Height="25"
+                                     Width="80"
+                                     BorderThickness="0"
+                                     Margin="2"
+                                     Command="{Binding DataContext.CancelApplicationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                     CommandParameter="{Binding Id}">   
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Attending course -->
+
+        <DockPanel Grid.Row="4">
+            <Label Content="Adopted" HorizontalAlignment="Left" FontSize="24" FontFamily="Roboto" Margin="10,3,0,0" DockPanel.Dock="Top"/>
+            <DataGrid ItemsSource="{Binding Adoptions}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="10,10,10,103" Height="61">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="40"/>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding AnimalName}" Width="*" />
+                    <DataGridTextColumn Header="Breed" Binding="{Binding AnimalBreed}" Width="*" />
+                    <DataGridTextColumn Header="Post Id" Binding="{Binding PostId}" Width="60" />
+                    <DataGridTextColumn Header="Animal rating" Binding="{Binding AnimalRating}" Width="60" />
+                    <DataGridTextColumn Header="Member rating" Binding="{Binding MemberRating}" Width="60" />
+                    <DataGridTemplateColumn  Width="180">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Return Animal"
+                                  FontSize="14"
+                                  Foreground="White"
+                                  Background="{StaticResource RedBtnColor}"
+                                  Height="30"
+                                  Width="150"
+                                  BorderThickness="0"
+                                  Margin="2"
+                                  Command="{Binding DataContext.ReturnAnimalCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                  CommandParameter="{Binding Id}">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</UserControl>

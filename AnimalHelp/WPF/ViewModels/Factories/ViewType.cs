@@ -15,5 +15,8 @@ public enum ViewType
     ApprovePosts,
     Animals,
     AgencyInfo,
-    VotingVolunteer
+    VotingVolunteer,
+    AdoptionRequest,
+    AdoptionsOverview,
+    RateAnimal
 }

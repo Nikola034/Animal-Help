@@ -1,9 +1,12 @@
 ﻿using AnimalHelp.Application.Services;
+using AnimalHelp.Application.Services.AdoptionServices;
+using AnimalHelp.Application.Services.Post;
 using AnimalHelp.Application.Stores;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.Domain.Model.Users;
 using AnimalHelp.Domain.RepositoryInterfaces;
 using AnimalHelp.WPF.MVVM;
+using AnimalHelp.WPF.ViewModels.Member;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -18,33 +21,67 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         private readonly IVolunteeringApplicationService _volunteeringApplicationService;
         private readonly IVolunteeringApplicationRepository _volunteeringApplicationRepository;
         private readonly IVolunteerRepository _volunteerRepository;
+        private readonly IAdoptionRequestService _adoptionRequestService;
+        private readonly IAdoptionService _adoptionService;
         public ObservableCollection<VolunteeringApplication> VolunteeringApplications { get; set; }
+        public ObservableCollection<AdoptionRequest> AdoptionRequests { get; set; }
+        public ICommand AcceptAdoptionCommand { get; }
+        public ICommand RejectAdoptionCommand { get; }
         public ICommand PositiveApplicationCommand { get; }
         public ICommand NegativeApplucationCommand { get; }
 
 
         public NavigationStore NavigationStore { get; }
-        public VotingViewModel(IAuthenticationStore authenticationStore, NavigationStore navigationStore, IVolunteeringApplicationRepository applicationRepository, IVolunteeringApplicationService applicationService, IVolunteerRepository volunteerRepository, IMemberRepository m)
+        public VotingViewModel(IAuthenticationStore authenticationStore, NavigationStore navigationStore, 
+            IVolunteeringApplicationRepository applicationRepository, 
+            IVolunteeringApplicationService applicationService, 
+            IVolunteerRepository volunteerRepository, IMemberRepository memberRepository, IAdoptionRequestService adoptionRequestService,
+            IPostService postService, IAdoptionService adoptionService)
         {
-            /*var members = m.GetAll();
-            foreach(var member in members)
-            {
-                applicationService.ApplyForVolunteering(member);
-            }*/
-
-
             _authenticationStore = authenticationStore;
             NavigationStore = navigationStore;
             _volunteeringApplicationRepository = applicationRepository;
             _volunteeringApplicationService = applicationService;
             _volunteerRepository = volunteerRepository;
+            _adoptionRequestService = adoptionRequestService;
+            _adoptionService = adoptionService;
 
             VolunteeringApplications = new();
             LoadApplications();
 
+            AdoptionRequests = new();
+            LoadAdoptionRequests();
+
             NegativeApplucationCommand = new RelayCommand<string>(NegativeApplucation);
             PositiveApplicationCommand = new RelayCommand<string>(PositiveApplication);
 
+            AcceptAdoptionCommand = new RelayCommand<string>(AcceptAdoption);
+            RejectAdoptionCommand = new RelayCommand<string>(RejectAdoption);
+
+        }
+
+        private void RejectAdoption(string requestId)
+        {
+            // delete adoption request (maybe create a notification if needed)
+            _adoptionRequestService.DeleteAdoptionRequest(requestId);
+            LoadAdoptionRequests();
+        }
+
+        private void AcceptAdoption(string requestId)
+        {
+            _adoptionService.AcceptAdoptionRequest(_adoptionRequestService.GetById(requestId));
+            _adoptionRequestService.DeleteAdoptionRequest(requestId);
+            LoadAdoptionRequests();
+            MessageBox.Show("Adoption request accepted!", "Success");
+        }
+
+        private void LoadAdoptionRequests()
+        {
+            AdoptionRequests.Clear();
+            foreach (AdoptionRequest adoptionRequest in _adoptionRequestService.GetAll())
+            {
+                AdoptionRequests.Add(adoptionRequest);
+            }
         }
 
         private void LoadApplications()

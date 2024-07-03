@@ -35,6 +35,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IVolunteeringApplicationService, VolunteeringApplicationService>();
             services.AddSingleton<ITransactionService, TransactionService>();
             services.AddSingleton<ITransactionParser, XmlTransactionParser>();
+            services.AddSingleton<IPopupNavigationService, PopupNavigationService>();
         });
 
         return host;
