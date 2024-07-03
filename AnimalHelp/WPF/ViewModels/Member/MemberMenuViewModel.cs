@@ -58,10 +58,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
         {
             get
             {
-                if (feedViewModel == null)
-                {
-                    feedViewModel = (FeedViewModel)_viewModelFactory.CreateViewModel(ViewType.Feed);
-                }
+
+                feedViewModel = (FeedViewModel)_viewModelFactory.CreateViewModel(ViewType.Feed);
+
 
                 return feedViewModel;
             }
@@ -86,10 +85,9 @@ namespace AnimalHelp.WPF.ViewModels.Member
         {
             get
             {
-                if (adoptionsOverviewViewModel == null)
-                {
-                    adoptionsOverviewViewModel = (AdoptionsOverviewViewModel)_viewModelFactory.CreateViewModel(ViewType.AdoptionsOverview);
-                }
+
+                adoptionsOverviewViewModel = (AdoptionsOverviewViewModel)_viewModelFactory.CreateViewModel(ViewType.AdoptionsOverview);
+
 
                 return adoptionsOverviewViewModel;
             }

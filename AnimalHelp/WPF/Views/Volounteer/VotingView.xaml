@@ -47,23 +47,21 @@
 
 
 
-                            <DataGridTextColumn Header="Name" Binding="{Binding Applicant.Name}" Width="100" />
-                            <DataGridTextColumn Header="Surname" Binding="{Binding Applicant.Surname}" Width="100" />
-                            <DataGridTextColumn Header="email" Binding="{Binding Applicant.Profile.Email}" Width="100" />
-                            <DataGridTextColumn Header="PhoneNumber" Binding="{Binding Applicant.PhoneNumber}" Width="100" />
-                            <DataGridTemplateColumn  Width="90">
+                            <DataGridTextColumn Header="Name" Binding="{Binding Applicant.Name}" Width="0.2*" />
+                            <DataGridTextColumn Header="Surname" Binding="{Binding Applicant.Surname}" Width="0.2*" />
+                            <DataGridTextColumn Header="email" Binding="{Binding Applicant.Profile.Email}" Width="0.2*" />
+                            <DataGridTextColumn Header="PhoneNumber" Binding="{Binding Applicant.PhoneNumber}" Width="0.2*" />
+                            <DataGridTemplateColumn  Width="0.1*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Yes"
                                                 FontSize="14"
                                                 Foreground="White"
                                                 Background="{StaticResource BlueBtnColor}"
-                                                Height="25"
-                                                Width="80"
                                                 BorderThickness="0"
                                                 Margin="2"
                                                 Command="{Binding DataContext.PositiveApplicationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                CommandParameter="{Binding Id}">        
+                                                CommandParameter="{Binding Id}">
                                             <Button.Template>
                                                 <ControlTemplate TargetType="{x:Type Button}">
                                                     <Border CornerRadius="10" Background="{TemplateBinding Background}">
@@ -76,15 +74,13 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTemplateColumn  Width="90">
+                            <DataGridTemplateColumn  Width="0.1*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="No"
                             FontSize="14"
                             Foreground="White"
                             Background="{StaticResource RedBtnColor}"
-                            Height="25"
-                            Width="80"
                             BorderThickness="0"
                             Margin="2"
                             Command="{Binding DataContext.NegativeApplucationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
@@ -154,19 +150,17 @@
 
 
 
-                            <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*" />
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="50" />
-                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="100" />
-                            <DataGridTextColumn Header="PostId" Binding="{Binding PostId}" Width="60" />
-                            <DataGridTemplateColumn  Width="90">
+                            <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="0.2*" />
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="0.2*" />
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="0.2*" />
+                            <DataGridTextColumn Header="PostId" Binding="{Binding PostId}" Width="0.2*" />
+                            <DataGridTemplateColumn  Width="0.1*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Yes"
                 FontSize="14"
                 Foreground="White"
                 Background="{StaticResource BlueBtnColor}"
-                Height="25"
-                Width="80"
                 BorderThickness="0"
                 Margin="2"
                 Command="{Binding DataContext.AcceptAdoptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
@@ -183,15 +177,13 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTemplateColumn  Width="90">
+                            <DataGridTemplateColumn  Width="0.1*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="No"
                 FontSize="14"
                 Foreground="White"
                 Background="{StaticResource RedBtnColor}"
-                Height="25"
-                Width="80"
                 BorderThickness="0"
                 Margin="2"
                 Command="{Binding DataContext.RejectAdoptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"

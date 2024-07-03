@@ -82,10 +82,9 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         {
             get
             {
-                if (approvePostsViewModel == null)
-                {
-                    approvePostsViewModel = (ApprovePostsViewModel)_viewModelFactory.CreateViewModel(ViewType.ApprovePosts);
-                }
+
+                approvePostsViewModel = (ApprovePostsViewModel)_viewModelFactory.CreateViewModel(ViewType.ApprovePosts);
+
 
                 return approvePostsViewModel;
             }
