@@ -128,10 +128,10 @@
                 <TextBox Text="{Binding AnimalTypeBreed, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="0"/>
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
-                <Button Margin="5" Content="Add" Width="70" Command="{Binding AddAnimalCommand}" />
-                <Button Margin="5" Content="Update" Width="70" Command="{Binding UpdateAnimalCommand}"/>
-                <Button Margin="5" Content="Delete" Width="70"  Command="{Binding DeleteAnimalCommand}"/>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="266">
+                <Button Margin="5" Content="Add" Width="76" Command="{Binding AddAnimalCommand}" />
+                <Button Margin="5" Content="Update" Width="86" Command="{Binding UpdateAnimalCommand}"/>
+                <Button Margin="5" Content="Delete" Width="78"  Command="{Binding DeleteAnimalCommand}"/>
             </StackPanel>
         </Grid>
     </Border>
