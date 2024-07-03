@@ -15,44 +15,51 @@
             <ItemsControl ItemsSource="{Binding Posts}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderThickness="1" BorderBrush="Gray" Background="{DynamicResource MaterialDesignPaper}" Padding="10" Margin="10" CornerRadius="5">
+                        <Border BorderThickness="1" BorderBrush="Gray" Background="White" Padding="10" Margin="10" CornerRadius="10" Effect="{StaticResource MaterialDesignShadowDepth5}">
                             <StackPanel>
 
-                                <TextBlock Text="{Binding State}" FontWeight="Bold" />
-                                <Label Content="Publish date: " FontWeight="Bold"></Label>
-                                <TextBlock Text="{Binding PublishDate, StringFormat='{}{0:MM/dd/yyyy}'}" />
-                                <Label Content="Description: " FontWeight="Bold"></Label>
+                                <TextBlock Text="{Binding PublishDate, StringFormat='{}{0:MM/dd/yyyy}'}" FontStyle="Italic" />
                                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,5,0,5"/>
-                                <Label Content="Likes: " FontWeight="Bold"></Label>
-                                <TextBlock Text="{Binding Likes}" />
-                                <TextBlock Text="Comments:" FontWeight="Bold" Margin="0,5,0,5"/>
 
-                                <TextBlock Text="Photos:" FontWeight="Bold" Margin="0,5,0,5"/>
-                                <ItemsControl ItemsSource="{Binding Photos}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Image Source="{Binding Url}" Width="50" Height="50" />
-                                                <TextBlock Text="{Binding Description}" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+
+
+
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                    <ItemsControl ItemsSource="{Binding Photos}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" Margin="10,0">
+                                                    <Image Source="{Binding Url}" Width="200" Height="200" />
+                                                    <TextBlock Text="{Binding Description}" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+
+
                                 <TextBlock Text="Animal:" FontWeight="Bold" Margin="0,5,0,5"/>
                                 <TextBlock Text="{Binding Animal}" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
 
-                                    <Button Margin="5" Command="{Binding DataContext.LikeCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignFlatButton}">
-                                        <Button.ContentTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <materialDesign:PackIcon Kind="ThumbUpOutline" VerticalAlignment="Center" Margin="0,0,5,0" />
-                                                    <TextBlock Text="Like" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </Button.ContentTemplate>
-
-                                    </Button>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="5" Command="{Binding DataContext.LikeCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignFlatButton}">
+                                            <Button.ContentTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="ThumbUpOutline" VerticalAlignment="Center" Margin="0,0,5,0" />
+                                                        <TextBlock Text="Like" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Button.ContentTemplate>
+                                        </Button>
+                                        <TextBlock Text="{Binding Likes}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                                    </StackPanel>
                                     <Button  Margin="5"  Command="{Binding DataContext.ApplyForAdoptionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding Id}" Style="{StaticResource MaterialDesignFlatButton}" Visibility="{Binding DataContext.IsApplyVisible, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
                                         <Button.ContentTemplate>
@@ -102,7 +109,7 @@
                                     <ItemsControl ItemsSource="{Binding Comments}" >
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Border BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}" Background="{DynamicResource MaterialDesignPaper}" Padding="5" Margin="5" CornerRadius="5">
+                                                <Border BorderThickness="1" BorderBrush="Gray" Background="White" Padding="10" Margin="10" CornerRadius="10">
                                                     <StackPanel>
                                                         <TextBlock Text="{Binding AuthorEmail}" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBodyLight}" />
                                                         <TextBlock Text="{Binding Content}" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
