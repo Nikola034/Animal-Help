@@ -4,6 +4,7 @@ namespace AnimalHelp.Domain.Model;
 
 public abstract class User
 {
+    public string Id { get; set; }
     public string Name { get; set; }
     public string Surname { get; set; }
     public DateTime BirthDate { get; set; }
@@ -13,8 +14,9 @@ public abstract class User
 
     public Profile Profile { get; set; }
 
-    protected User(string name, string surname, DateTime birthDate, Gender gender, string phoneNumber)
+    protected User(string id, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber)
     {
+        Id = id;
         Name = name;
         Surname = surname;
         BirthDate = birthDate;
@@ -23,8 +25,9 @@ public abstract class User
         IsBlackListed = false;
     }
 
-    protected User(string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, bool isBlackListed)
+    protected User(string id, string name, string surname, DateTime birthDate, Gender gender, string phoneNumber, bool isBlackListed)
     {
+        Id = id;
         Name = name;
         Surname = surname;
         BirthDate = birthDate;

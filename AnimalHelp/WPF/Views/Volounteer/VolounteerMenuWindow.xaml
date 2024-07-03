@@ -12,6 +12,8 @@
         xmlns:approveView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
         xmlns:animals="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer"
         xmlns:animalsView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
+        xmlns:blackList="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer.BlackList"
+        xmlns:blackList1="clr-namespace:AnimalHelp.WPF.Views.Volounteer.BlackList"
         mc:Ignorable="d"
 
         Title="VolounteerMenuWindow"
@@ -33,6 +35,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type animals:VotingViewModel}">
             <animalsView:VotingView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type blackList:BlackListViewModel}">
+            <blackList1:BlackListView/>
         </DataTemplate>
 
         <SolidColorBrush x:Key="BlueBtnColor" Color="#34a0a4" />
@@ -91,6 +96,13 @@ CommandParameter = "voting"
 Command="{Binding NavCommand}"
 Grid.Row="5"
 />
+                <Button Content="Black List"
+                        Margin="20,10,10,8"
+                        CommandParameter = "blacklist"
+                        Command="{Binding NavCommand}"
+                        Grid.Row="5"
+                />
+                
                 <Button Content="Logout"
                     FontSize="14"
                     Foreground="White"

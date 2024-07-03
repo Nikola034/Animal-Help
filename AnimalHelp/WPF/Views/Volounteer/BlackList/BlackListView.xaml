@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="AnimalHelp.WPF.Views.Volounteer.BlackList.BlackListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AnimalHelp.WPF.Views.Volounteer.BlackList"
+        xmlns:blackList="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer.BlackList"
+        d:DataContext="{d:DesignInstance Type=blackList:BlackListViewModel}"
+        mc:Ignorable="d"
+        >
+    
+    <UserControl.Resources>
+        <local:RatingToColorConverter x:Key="RatingToColorConverter"/>
+        <local:UserTypeToColorConverter x:Key="UserTypeToColorConverter"/>
+        <local:MemberVisibilityConverter x:Key="MemberVisibilityConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <TabControl>
+            <!-- Tab for Black List Proposals -->
+            <TabItem Header="Black List Proposals">
+                <Grid>
+                    <Label Content="Blacklist Proposals" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+                    <ListBox ItemsSource="{Binding Proposals}" Margin="10,40,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5" Background="White">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- User Info -->
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                                <TextBlock Text="{Binding User.Name}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                                <TextBlock Text="{Binding User.Surname}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <!-- User Type Badge -->
+                                            <Border Grid.Row="0" Grid.Column="1" Background="{Binding User.UserType, Converter={StaticResource UserTypeToColorConverter}}"
+                                                    CornerRadius="10" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">
+                                                <TextBlock Text="{Binding User.UserType}" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+
+                                            <!-- Rating for Members Only -->
+                                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="{Binding User.UserType, Converter={StaticResource MemberVisibilityConverter}}">
+                                                <TextBlock Text="Rating: " FontWeight="Bold" Foreground="Black" Margin="0,0,5,0"/>
+                                                <TextBlock Text="{Binding User.Rating, StringFormat={}{0:N2}}" FontWeight="Bold" Foreground="{Binding User.Rating, Converter={StaticResource RatingToColorConverter}}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                    <Button Content="Open Discussion" Command="{Binding DataContext.OpenDiscussionCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding}" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab for Blacklisted Users -->
+            <TabItem Header="Blacklisted Users">
+                <Grid>
+                    <Label Content="Blacklisted Users" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+                    <ListBox ItemsSource="{Binding BlackListedUsers}" Margin="10,40,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5" Background="White">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- User Info -->
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                                <TextBlock Text="{Binding Surname}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <!-- User Type Badge -->
+                                            <Border Grid.Row="0" Grid.Column="1" Background="{Binding UserType, Converter={StaticResource UserTypeToColorConverter}}"
+                                                    CornerRadius="10" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">
+                                                <TextBlock Text="{Binding UserType}" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+
+                                            <!-- Rating for Members Only -->
+                                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="{Binding UserType, Converter={StaticResource MemberVisibilityConverter}}">
+                                                <TextBlock Text="Rating: " FontWeight="Bold" Foreground="Black" Margin="0,0,5,0"/>
+                                                <TextBlock Text="{Binding Rating, StringFormat={}{0:N2}}" FontWeight="Bold" Foreground="{Binding Rating, Converter={StaticResource RatingToColorConverter}}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab for Active Users -->
+            <TabItem Header="Active Users">
+                <Grid>
+                    <Label Content="Active Users" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+                    <ListBox ItemsSource="{Binding ActiveUsers}" Margin="10,40,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5" Background="White">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- User Info -->
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                                <TextBlock Text="{Binding Surname}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <!-- User Type Badge -->
+                                            <Border Grid.Row="0" Grid.Column="1" Background="{Binding UserType, Converter={StaticResource UserTypeToColorConverter}}"
+                                                    CornerRadius="10" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">
+                                                <TextBlock Text="{Binding UserType}" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+
+                                            <!-- Rating for Members Only -->
+                                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="{Binding UserType, Converter={StaticResource MemberVisibilityConverter}}">
+                                                <TextBlock Text="Rating: " FontWeight="Bold" Foreground="Black" Margin="0,0,5,0"/>
+                                                <TextBlock Text="{Binding Rating, StringFormat={}{0:N2}}" FontWeight="Bold" Foreground="{Binding Rating, Converter={StaticResource RatingToColorConverter}}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                    <Button Content="Propose for Blacklist" Command="{Binding DataContext.ProposeForBlackListCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding}" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

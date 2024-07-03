@@ -5,6 +5,7 @@ using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Member;
+using AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
 
 namespace AnimalHelp.WPF.ViewModels.Volounteer
 {
@@ -17,11 +18,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
         private readonly IMemberService _memberService;
         private readonly INavigationService _navigationService;
 
-
-
         private readonly IAnimalHelpViewModelFactory _viewModelFactory;
-
-
 
         public NavigationStore NavigationStore { get; }
 
@@ -43,8 +40,6 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 return votingViewModel;
             }
         }
-
-
 
         private CreatePostViewModel? createPostViewModel;
 
@@ -103,6 +98,21 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 return createAnimalViewModel;
             }
         }
+
+        private BlackListViewModel? _blackListViewModel;
+        private BlackListViewModel BlackListViewModel
+        {
+            get
+            {
+                if (_blackListViewModel == null)
+                {
+                    _blackListViewModel = (BlackListViewModel)_viewModelFactory.CreateViewModel(ViewType.BlackList);
+                }
+
+                return _blackListViewModel;
+            }
+        }
+        
         public VolounteerMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore, ILoginService loginService)
 
         {
@@ -128,6 +138,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 "approve" => ApprovePostsViewModel,
                 "animals" => CreateAnimalViewModel,
                 "voting" => VotingViewModel,
+                "blacklist" => BlackListViewModel,
                 _ => CurrentViewModel
             };
         }
