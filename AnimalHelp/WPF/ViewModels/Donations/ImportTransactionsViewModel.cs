@@ -5,10 +5,12 @@ using System.Windows.Input;
 using AnimalHelp.Application.Services.DonationServices;
 using AnimalHelp.Application.Services.Post;
 using AnimalHelp.Application.Stores;
+using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.Domain.Model;
 using AnimalHelp.Domain.Model.Donations;
 using AnimalHelp.WPF.MVVM;
 using AnimalHelp.WPF.Util;
+using AnimalHelp.WPF.ViewModels.Factories;
 
 namespace AnimalHelp.WPF.ViewModels.Donations;
 
@@ -18,6 +20,8 @@ public class ImportTransactionsViewModel : ViewModelBase, INavigableDataContext
     
     private readonly ITransactionService _transactionService;
     private readonly IFileDialogService _fileDialogService;
+    private readonly IClosePopupNavigationService _closePopupNavigationService;
+    private readonly DonationStore _donationStore;
 
     private ObservableCollection<Transaction> _transactions;
     private Transaction? _selectedTransaction;
@@ -26,11 +30,13 @@ public class ImportTransactionsViewModel : ViewModelBase, INavigableDataContext
     public ICommand SelectFileCommand { get; }
     public ICommand SaveCommand { get; }
     
-    public ImportTransactionsViewModel(NavigationStore navigationStore, ITransactionService transactionService, IFileDialogService fileDialogService, IPostService postService)
+    public ImportTransactionsViewModel(NavigationStore navigationStore, ITransactionService transactionService, IFileDialogService fileDialogService, IPostService postService, IClosePopupNavigationService closePopupNavigationService, DonationStore donationStore)
     {
         NavigationStore = navigationStore;
         _transactionService = transactionService;
         _fileDialogService = fileDialogService;
+        _closePopupNavigationService = closePopupNavigationService;
+        _donationStore = donationStore;
         _transactions = new();
         _posts = new ObservableCollection<Post>(postService.GetAll());
         SelectFileCommand = new RelayCommand(_ => ImportFile());
@@ -72,6 +78,8 @@ public class ImportTransactionsViewModel : ViewModelBase, INavigableDataContext
         _transactionService.SaveTransactions(Transactions.ToList());
         Transactions.Clear();
         MessageBox.Show("Transactions saved successfully.", "Success");
+        _donationStore.UpdateDonationList();
+        _closePopupNavigationService.Navigate(ViewType.TransactionImport);
     }
 
     private bool CanSave()

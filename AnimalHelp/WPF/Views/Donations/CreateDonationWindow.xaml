@@ -31,7 +31,7 @@
         </StackPanel>
         
         <TextBlock Grid.Row="5" Text="Select Post" VerticalAlignment="Center" Margin="0,0,0,5"/>
-        <ComboBox Grid.Row="6" ItemsSource="{Binding Posts}" SelectedItem="{Binding SelectedPost}" DisplayMemberPath="PostTitle" Margin="0,0,0,10"/>
+        <ComboBox Grid.Row="6" ItemsSource="{Binding Posts}" SelectedItem="{Binding SelectedPost}" DisplayMemberPath="Animal.Name" Margin="0,0,0,10"/>
         
         <Button Grid.Row="7" Content="Save" Command="{Binding SaveCommand}" Width="Auto" Margin="0,0,0,10"/>
     </Grid>

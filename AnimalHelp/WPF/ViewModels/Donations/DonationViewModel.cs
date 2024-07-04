@@ -9,5 +9,5 @@ public class DonationViewModel(DonationDto donation)
     public DateTime DateTime { get; } = donation.DateTime;
     public string From { get; } = donation.IsAnonymous ? "" : donation.From;
     public string Description { get; } = donation.Description;
-    public string PostDescription { get; } = donation.Post?.Animal.Id ?? "";
+    public string PostDescription { get; } = donation.Post?.Animal.Name ?? "";
 }

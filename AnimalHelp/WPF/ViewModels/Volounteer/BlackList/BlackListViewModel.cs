@@ -14,7 +14,6 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
 
 public class BlackListViewModel : ViewModelBase
 {
-    private readonly NavigationStore _navigationStore;
     private readonly IBlackListService _blackListService;
     private readonly IAdoptionService _adoptionService;
     private readonly IPopupNavigationService _popupNavigationService;
@@ -28,14 +27,12 @@ public class BlackListViewModel : ViewModelBase
     public ICommand OpenDiscussionCommand { get; }
 
     public BlackListViewModel(
-        NavigationStore navigationStore, 
         IBlackListService blackListService,
         IAdoptionService adoptionService,
         IPopupNavigationService popupNavigationService, 
         CurrentBlackListProposalStore currentBlackListProposalStore
         )
     {
-        _navigationStore = navigationStore;
         _blackListService = blackListService;
         _adoptionService = adoptionService;
         _popupNavigationService = popupNavigationService;
@@ -45,23 +42,25 @@ public class BlackListViewModel : ViewModelBase
 
         ProposeForBlackListCommand = new RelayCommand(ProposeForBlackList);
         OpenDiscussionCommand = new RelayCommand(OpenDiscussion);
+
+        currentBlackListProposalStore.CurrentProposalCleared += LoadUserLists;
     }
 
     public ObservableCollection<BlackListProposalViewModel> Proposals
     {
         get => _proposals;
-        set => SetField(ref _proposals, value);
+        private set => SetField(ref _proposals, value);
     }
     public ObservableCollection<UserViewModel> BlackListedUsers
     {
         get => _blacklistedUsers;
-        set => SetField(ref _blacklistedUsers, value);
+        private set => SetField(ref _blacklistedUsers, value);
     }
 
     public ObservableCollection<UserViewModel> ActiveUsers
     {
         get => _activeUsers;
-        set => SetField(ref _activeUsers, value);
+        private set => SetField(ref _activeUsers, value);
     }
     
     private void LoadUserLists()
@@ -105,12 +104,6 @@ public class BlackListViewModel : ViewModelBase
             return;
         _currentBlackListProposalStore.BlackListProposalDto = proposalViewModel.Proposal;
         _popupNavigationService.Navigate(ViewType.BlackListDiscussion);
-        _navigationStore.PopupClosed += OnPopupClosed;
     }
     
-    private void OnPopupClosed()
-    {
-        LoadUserLists();
-        _navigationStore.PopupClosed -= OnPopupClosed;
-    }
 }

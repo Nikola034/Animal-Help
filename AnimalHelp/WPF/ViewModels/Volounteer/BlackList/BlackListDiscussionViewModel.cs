@@ -19,6 +19,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
 public class BlackListDiscussionViewModel : ViewModelBase, INavigableDataContext
 {
     public NavigationStore NavigationStore { get; }
+    private readonly CurrentBlackListProposalStore _currentBlackListProposalStore;
     private readonly IBlackListService _blackListService;
     private readonly IAdoptionService _adoptionService;
     private readonly IVolunteerService _volunteerService;
@@ -38,6 +39,7 @@ public class BlackListDiscussionViewModel : ViewModelBase, INavigableDataContext
     public BlackListDiscussionViewModel(NavigationStore navigationStore, CurrentBlackListProposalStore currentBlackListProposalStore, IBlackListService blackListService, IAdoptionService adoptionService, IVolunteerService volunteerService, IAuthenticationStore authenticationStore, IClosePopupNavigationService closePopupNavigationService)
     {
         NavigationStore = navigationStore;
+        _currentBlackListProposalStore = currentBlackListProposalStore;
         _blackListService = blackListService;
         _adoptionService = adoptionService;
         _volunteerService = volunteerService;
@@ -99,6 +101,7 @@ public class BlackListDiscussionViewModel : ViewModelBase, INavigableDataContext
     {
         _blackListService.AcceptProposal(Proposal.Proposal.Proposal);
         MessageBox.Show("User blacklisted successfully.");
+        _currentBlackListProposalStore.BlackListProposalDto = null;
         _closePopupNavigationService.Navigate(ViewType.BlackListDiscussion);
     }
 
@@ -106,6 +109,7 @@ public class BlackListDiscussionViewModel : ViewModelBase, INavigableDataContext
     {
         _blackListService.RejectProposal(Proposal.Proposal.Proposal);
         MessageBox.Show("Blacklist proposal rejected.");
+        _currentBlackListProposalStore.BlackListProposalDto = null;
         _closePopupNavigationService.Navigate(ViewType.BlackListDiscussion);
     }
     
