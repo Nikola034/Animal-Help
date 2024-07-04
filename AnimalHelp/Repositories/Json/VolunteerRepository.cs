@@ -20,12 +20,7 @@ public class VolunteerRepository : AutoIdRepository<Volunteer>, IVolunteerReposi
         return null;
     }
 
-    public void SaveNewVolunteer(Volunteer volunteer)
-    {
-        var volunteers = Load();
-        volunteers.Add(volunteer.Id, volunteer);
-        Save(volunteers);
-    }
+
 
 
 
