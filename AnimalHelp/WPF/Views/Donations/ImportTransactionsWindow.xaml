@@ -32,14 +32,15 @@
                   Grid.Row="1" Grid.Column="0"
                   Margin="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="Date" Binding="{Binding DateTime}" />
-                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" />
-                <DataGridTextColumn Header="Receiver" Binding="{Binding Receiver.Owner}" />
-                <DataGridTextColumn Header="Sender" Binding="{Binding Sender.Owner}" />
-                <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Date" Binding="{Binding DateTime}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Receiver" Binding="{Binding Receiver.Owner}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Sender" Binding="{Binding Sender.Owner}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Note" Binding="{Binding Note}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
+
 
         <!-- Selected Transaction Details -->
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">

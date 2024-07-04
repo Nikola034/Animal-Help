@@ -23,4 +23,6 @@ public enum ViewType
     BlackListDiscussion,
     SimpleFeed,
     DonationList,
+    TransactionImport,
+    DonationsOverview,
 }

@@ -10,101 +10,60 @@ using System;
 
 namespace AnimalHelp.WPF.ViewModels.Factories;
 
-public class AnimalHelpViewModelFactory
+public class AnimalHelpViewModelFactory(
+    CreateViewModel<MainViewModel> createMainViewModel,
+    CreateViewModel<LoginViewModel> createLoginViewModel,
+    CreateViewModel<RegisterViewModel> createRegisterViewModel,
+    CreateViewModel<CreatePostViewModel> createPostViewModel,
+    CreateViewModel<AdminMenuViewModel> createAdminViewModel,
+    CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
+    CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
+    CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
+    CreateViewModel<CreateDonationViewModel> createDonationViewModel,
+    CreateViewModel<FeedViewModel> createFeedViewModel,
+    CreateViewModel<ApprovePostsViewModel> createApprovePostsViewModel,
+    CreateViewModel<CreateAnimalViewModel> createAnimalViewModel,
+    CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
+    CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
+    CreateViewModel<AdoptionsOverviewViewModel> adoptionOverviewViewModel,
+    CreateViewModel<RateAnimalViewModel> rateAnimalViewModel,
+    CreateViewModel<VotingViewModel> votingViewModel,
+    CreateViewModel<BlackListViewModel> createBlackListViewModel,
+    CreateViewModel<BlackListDiscussionViewModel> createBlackListDiscussionViewModel,
+    CreateViewModel<SimpleFeedViewModel> createSimpleFeedViewModel,
+    CreateViewModel<DonationsListViewModel> createDonationsListViewModel,
+    CreateViewModel<ImportTransactionsViewModel> createImportTransactionsViewModel,
+    CreateViewModel<DonationsOverviewViewModel> createDonationsOverviewViewModel
+    )
     : IAnimalHelpViewModelFactory
 {
-    private readonly CreateViewModel<MainViewModel> _createMainViewModel;
-    private readonly CreateViewModel<LoginViewModel> _createLoginViewModel;
-    private readonly CreateViewModel<RegisterViewModel> _createRegisterViewModel;
-    private readonly CreateViewModel<CreatePostViewModel> _createPostViewModel;
-    private readonly CreateViewModel<AdminMenuViewModel> _createAdminViewModel;
-    private readonly CreateViewModel<VolunteerRegistrationViewModel> _createVolunteerRegistrationViewModel;
-    private readonly CreateViewModel<VolounteerMenuViewModel> _createVolunteerMenuViewModel;
-    private readonly CreateViewModel<MemberMenuViewModel> _createMemberMenuViewModel;
-    private readonly CreateViewModel<CreateDonationViewModel> _createDonationViewModel;
-    private readonly CreateViewModel<FeedViewModel> _createFeedViewModel;
-    private readonly CreateViewModel<VotingViewModel> _createVotingViewModel;
-    private readonly CreateViewModel<ApprovePostsViewModel> _createApprovePostsViewModel;
-    private readonly CreateViewModel<CreateAnimalViewModel> _createAnimalViewModel;
-    private readonly CreateViewModel<AgencyInformationViewModel> _agencyInformationViewModel;
-    private readonly CreateViewModel<AdoptionRequestViewModel> _adoptionRequestViewModel;
-    private readonly CreateViewModel<AdoptionsOverviewViewModel> _adoptionsOverviewViewModel;
-    private readonly CreateViewModel<RateAnimalViewModel> _rateAnimalViewModel;
-    private readonly CreateViewModel<BlackListViewModel> _createBlackListViewModel;
-    private readonly CreateViewModel<BlackListDiscussionViewModel> _createBlackListDiscussionViewModel;
-    private readonly CreateViewModel<SimpleFeedViewModel> _createSimpleFeedViewModel;
-    private readonly CreateViewModel<DonationsListViewModel> _createDonationsListViewModel;
-
-    public AnimalHelpViewModelFactory(CreateViewModel<MainViewModel> createMainViewModel,
-        CreateViewModel<LoginViewModel> createLoginViewModel,
-        CreateViewModel<RegisterViewModel> createRegisterViewModel, 
-        CreateViewModel<CreatePostViewModel> createPostViewModel,
-        CreateViewModel<AdminMenuViewModel> createAdminViewModel,
-        CreateViewModel<VolunteerRegistrationViewModel> createVolunteerRegistrationViewModel,
-        CreateViewModel<VolounteerMenuViewModel> createVolunteerMenuViewModel,
-        CreateViewModel<MemberMenuViewModel> createMemberMenuViewModel,
-        CreateViewModel<CreateDonationViewModel>  createDonationViewModel,
-        CreateViewModel<FeedViewModel> createFeedViewModel,
-        CreateViewModel<ApprovePostsViewModel> createApprovePostsViewModel,
-        CreateViewModel<CreateAnimalViewModel> createAnimalViewModel,
-        CreateViewModel<AgencyInformationViewModel> agencyInformationViewModel,
-        CreateViewModel<AdoptionRequestViewModel> adoptionRequestViewModel,
-        CreateViewModel<AdoptionsOverviewViewModel>adoptionOverviewViewModel,
-        CreateViewModel<RateAnimalViewModel> rateAnimalViewModel,
-        CreateViewModel<VotingViewModel> votingViewModel,
-        CreateViewModel<BlackListViewModel> createBlackListViewModel,
-        CreateViewModel<BlackListDiscussionViewModel> createBlackListDiscussionViewModel,
-        CreateViewModel<SimpleFeedViewModel> createSimpleFeedViewModel, 
-        CreateViewModel<DonationsListViewModel> createDonationsListViewModel
-        )
-    {
-        _createMainViewModel = createMainViewModel;
-        _createLoginViewModel = createLoginViewModel;
-        _createRegisterViewModel = createRegisterViewModel;
-        _createPostViewModel = createPostViewModel;
-        _createAdminViewModel = createAdminViewModel;
-        _createVolunteerRegistrationViewModel = createVolunteerRegistrationViewModel;
-        _createVolunteerMenuViewModel = createVolunteerMenuViewModel;
-        _createMemberMenuViewModel = createMemberMenuViewModel;
-        _createDonationViewModel = createDonationViewModel;
-        _createFeedViewModel = createFeedViewModel;
-        _createApprovePostsViewModel = createApprovePostsViewModel;
-        _createAnimalViewModel = createAnimalViewModel;
-        _agencyInformationViewModel = agencyInformationViewModel;
-        _adoptionRequestViewModel = adoptionRequestViewModel;
-        _adoptionsOverviewViewModel = adoptionOverviewViewModel;
-        _rateAnimalViewModel = rateAnimalViewModel;
-        _createVotingViewModel = votingViewModel;
-        _createBlackListViewModel = createBlackListViewModel;
-        _createBlackListDiscussionViewModel = createBlackListDiscussionViewModel;
-        _createSimpleFeedViewModel = createSimpleFeedViewModel;
-        _createDonationsListViewModel = createDonationsListViewModel;
-    }
     public ViewModelBase CreateViewModel(ViewType viewType)
     {
         return viewType switch
         {
-            ViewType.Main => _createMainViewModel(),
-            ViewType.Login => _createLoginViewModel(),
-            ViewType.Register => _createRegisterViewModel(),
-            ViewType.CreatePost => _createPostViewModel(),
-            ViewType.Admin => _createAdminViewModel(),
-            ViewType.VolunteerTable => _createVolunteerRegistrationViewModel(),
-            ViewType.VotingVolunteer => _createVotingViewModel(),
-            ViewType.VolounteerMenu => _createVolunteerMenuViewModel(),
-            ViewType.MemberMenu => _createMemberMenuViewModel(),
-            ViewType.CreateDonation => _createDonationViewModel(),
-            ViewType.Feed => _createFeedViewModel(),
-            ViewType.ApprovePosts => _createApprovePostsViewModel(),
-            ViewType.Animals => _createAnimalViewModel(),
-            ViewType.AgencyInfo => _agencyInformationViewModel(),
-            ViewType.AdoptionRequest => _adoptionRequestViewModel(),
-            ViewType.AdoptionsOverview => _adoptionsOverviewViewModel(),
-            ViewType.RateAnimal => _rateAnimalViewModel(),
-            ViewType.BlackList => _createBlackListViewModel(),
-            ViewType.BlackListDiscussion => _createBlackListDiscussionViewModel(),
-            ViewType.SimpleFeed => _createSimpleFeedViewModel(),
-            ViewType.DonationList => _createDonationsListViewModel(),
+            ViewType.Main => createMainViewModel(),
+            ViewType.Login => createLoginViewModel(),
+            ViewType.Register => createRegisterViewModel(),
+            ViewType.CreatePost => createPostViewModel(),
+            ViewType.Admin => createAdminViewModel(),
+            ViewType.VolunteerTable => createVolunteerRegistrationViewModel(),
+            ViewType.VotingVolunteer => votingViewModel(),
+            ViewType.VolounteerMenu => createVolunteerMenuViewModel(),
+            ViewType.MemberMenu => createMemberMenuViewModel(),
+            ViewType.CreateDonation => createDonationViewModel(),
+            ViewType.Feed => createFeedViewModel(),
+            ViewType.ApprovePosts => createApprovePostsViewModel(),
+            ViewType.Animals => createAnimalViewModel(),
+            ViewType.AgencyInfo => agencyInformationViewModel(),
+            ViewType.AdoptionRequest => adoptionRequestViewModel(),
+            ViewType.AdoptionsOverview => adoptionOverviewViewModel(),
+            ViewType.RateAnimal => rateAnimalViewModel(),
+            ViewType.BlackList => createBlackListViewModel(),
+            ViewType.BlackListDiscussion => createBlackListDiscussionViewModel(),
+            ViewType.SimpleFeed => createSimpleFeedViewModel(),
+            ViewType.DonationList => createDonationsListViewModel(),
+            ViewType.TransactionImport => createImportTransactionsViewModel(),
+            ViewType.DonationsOverview => createDonationsOverviewViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(viewType), viewType, "No ViewModel exists for the given ViewType: " + viewType)
         };
     }

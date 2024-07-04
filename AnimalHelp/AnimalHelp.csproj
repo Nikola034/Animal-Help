@@ -210,6 +210,7 @@
     <Compile Include="Application\Stores\CurrentAdoptionStore.cs" />
     <Compile Include="Application\Stores\CurrentPostStore.cs" />
     <Compile Include="Application\Stores\CurrentBlackListProposalStore.cs" />
+    <Compile Include="Application\Stores\DonationStore.cs" />
     <Compile Include="Application\Stores\NavigationStore.cs" />
     <Compile Include="Application\Utility\XmlServices\XmlTransactionParser.cs" />
     <Compile Include="Domain\Model\AdoptionCentre.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="WPF\ViewModels\Default\SimpleFeedViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\CreateDonationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\DonationsListViewModel.cs" />
+    <Compile Include="WPF\ViewModels\Donations\DonationsOverviewViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\DonationViewModel.cs" />
     <Compile Include="WPF\ViewModels\Donations\IDateTimeSortable.cs" />
     <Compile Include="WPF\ViewModels\Donations\ImportTransactionsViewModel.cs" />
@@ -377,6 +379,9 @@
     </Compile>
     <Compile Include="WPF\Views\Donations\DonationListView.xaml.cs">
       <DependentUpon>DonationListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Views\Donations\DonationsOverviewView.xaml.cs">
+      <DependentUpon>DonationsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Views\Donations\DonationTemplateSelector.cs" />
     <Compile Include="WPF\Views\Donations\ImportTransactionsWindow.xaml.cs">
@@ -463,6 +468,7 @@
     </Page>
     <Page Include="WPF\Views\Default\SimpleFeedView.xaml" />
     <Page Include="WPF\Views\Donations\DonationListView.xaml" />
+    <Page Include="WPF\Views\Donations\DonationsOverviewView.xaml" />
     <Page Include="WPF\Views\Member\AdoptionRequestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -517,6 +523,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Id\UserId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\bank-statement.xml" />
   </ItemGroup>
   <!-- <ItemGroup> -->
     <!-- <Resource Include="Data\Images\beaver.jpg" /> -->

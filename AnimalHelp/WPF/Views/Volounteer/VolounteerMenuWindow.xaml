@@ -14,6 +14,8 @@
         xmlns:animalsView="clr-namespace:AnimalHelp.WPF.Views.Volounteer"
         xmlns:blackList="clr-namespace:AnimalHelp.WPF.ViewModels.Volounteer.BlackList"
         xmlns:blackList1="clr-namespace:AnimalHelp.WPF.Views.Volounteer.BlackList"
+        xmlns:donations="clr-namespace:AnimalHelp.WPF.ViewModels.Donations"
+        xmlns:donations1="clr-namespace:AnimalHelp.WPF.Views.Donations"
         mc:Ignorable="d"
 
         Title="VolounteerMenuWindow"
@@ -39,6 +41,9 @@
         <DataTemplate DataType="{x:Type blackList:BlackListViewModel}">
             <blackList1:BlackListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type donations:DonationsOverviewViewModel}">
+            <donations1:DonationsOverviewView/>
+        </DataTemplate>
 
         <SolidColorBrush x:Key="BlueBtnColor" Color="#34a0a4" />
         <SolidColorBrush x:Key="RedBtnColor" Color="#91261f" />
@@ -57,6 +62,7 @@
             <Grid Background="LightGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
@@ -101,6 +107,13 @@ Grid.Row="5"
                         CommandParameter = "blacklist"
                         Command="{Binding NavCommand}"
                         Grid.Row="6"
+                />
+                
+                <Button Content="Donations"
+                        Margin="20,10,10,8"
+                        CommandParameter = "donations"
+                        Command="{Binding NavCommand}"
+                        Grid.Row="7"
                 />
                 
                 <Button Content="Logout"

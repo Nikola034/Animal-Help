@@ -3,6 +3,7 @@ using AnimalHelp.Application.UseCases.Authentication;
 using AnimalHelp.Application.UseCases.User;
 using AnimalHelp.Application.Utility.Navigation;
 using AnimalHelp.WPF.MVVM;
+using AnimalHelp.WPF.ViewModels.Donations;
 using AnimalHelp.WPF.ViewModels.Factories;
 using AnimalHelp.WPF.ViewModels.Member;
 using AnimalHelp.WPF.ViewModels.Volounteer.BlackList;
@@ -112,6 +113,20 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 return _blackListViewModel;
             }
         }
+
+        private DonationsOverviewViewModel? _donationsOverviewViewModel;
+        private DonationsOverviewViewModel DonationsOverviewViewModel
+        {
+            get
+            {
+                if (_donationsOverviewViewModel == null)
+                {
+                    _donationsOverviewViewModel = (DonationsOverviewViewModel)_viewModelFactory.CreateViewModel(ViewType.DonationsOverview);
+                }
+
+                return _donationsOverviewViewModel;
+            }
+        }
         
         public VolounteerMenuViewModel(IMemberService memberService, IAnimalHelpViewModelFactory viewModelFactory, INavigationService navigationService, NavigationStore navigationStore, ILoginService loginService)
 
@@ -139,6 +154,7 @@ namespace AnimalHelp.WPF.ViewModels.Volounteer
                 "animals" => CreateAnimalViewModel,
                 "voting" => VotingViewModel,
                 "blacklist" => BlackListViewModel,
+                "donations" => DonationsOverviewViewModel,
                 _ => CurrentViewModel
             };
         }

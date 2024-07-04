@@ -33,7 +33,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<CreateAnimalViewModel>();
             services.AddScoped<AgencyInformationViewModel>();
             services.AddTransient<ImportTransactionsViewModel>();
-            services.AddTransient<DonationsListViewModel>();
+            services.AddSingleton<DonationsListViewModel>();
             services.AddTransient<VotingViewModel>();
             services.AddTransient<AdoptionRequestViewModel>();
             services.AddTransient<AdoptionsOverviewViewModel>();
@@ -41,6 +41,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<BlackListViewModel>();
             services.AddTransient<BlackListDiscussionViewModel>();
             services.AddTransient<SimpleFeedViewModel>();
+            services.AddTransient<DonationsOverviewViewModel>();
 
             services.AddScoped<CreateViewModel<MainViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<MainViewModel>
@@ -120,6 +121,10 @@ public static class AddViewModelsHostBuilderExtensions
             
             services.AddScoped<CreateViewModel<SimpleFeedViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<SimpleFeedViewModel>
+            );
+            
+            services.AddScoped<CreateViewModel<DonationsOverviewViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<DonationsOverviewViewModel>
             );
         });
 
