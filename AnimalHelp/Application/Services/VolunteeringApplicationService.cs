@@ -2,12 +2,11 @@
 using AnimalHelp.Domain.Model;
 using AnimalHelp.Domain.Model.Users;
 using AnimalHelp.Domain.RepositoryInterfaces;
-
 using static AnimalHelp.Domain.Model.Users.Vote;
 
 namespace AnimalHelp.Application.Services;
 
-public class VolunteeringApplicationService: IVolunteeringApplicationService
+public class VolunteeringApplicationService : IVolunteeringApplicationService
 {
     private readonly IAccountService _accountService;
     private readonly IVoteRepository _voteRepository;
@@ -25,7 +24,7 @@ public class VolunteeringApplicationService: IVolunteeringApplicationService
 
     public bool ApplyForVolunteering(Member member)
     {
-        if(_volunteeringApplicationRepository.Get(member) != null)
+        if (_volunteeringApplicationRepository.Get(member) != null)
         {
             return false;       //cant apply twice
         }
@@ -37,7 +36,7 @@ public class VolunteeringApplicationService: IVolunteeringApplicationService
 
     public bool VoteForVolunteeringApplication(string votingVolunteerId, string applicationId, VoteVerdict verdict)
     {
-        if(_voteRepository.GetVote(applicationId, votingVolunteerId) != null)
+        if (_voteRepository.GetVote(applicationId, votingVolunteerId) != null)
         {
             return false;   //cant vote twice
         }
@@ -49,13 +48,14 @@ public class VolunteeringApplicationService: IVolunteeringApplicationService
         VolunteeringApplication application = _volunteeringApplicationRepository.Get(applicationId);
         application.AddVote(verdict);
         _volunteeringApplicationRepository.Update(applicationId, application);
-        if(application.State == VolunteeringApplication.ApplicationState.Accepted)
+        if (application.State == VolunteeringApplication.ApplicationState.Accepted)
         {
             Member member = application.Applicant;
             _accountService.DeleteMember(member);
             Volunteer volunteer = new Volunteer(member.Name, member.Surname, member.BirthDate, member.Gender, member.PhoneNumber);
             volunteer.Profile = member.Profile;
-            _volunteerRepository.SaveNewVolunteer(volunteer);
+            volunteer.Profile.UserType = UserType.Volunteer;
+            _volunteerRepository.Add(volunteer);
         }
         return true;
     }
